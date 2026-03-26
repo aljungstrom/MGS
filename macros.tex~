@@ -1,0 +1,149 @@
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[osf,helvratio=.9]{newpxtext}     % largsc
+\renewcommand{\rmdefault}{pplx} % use FPL text for better sc
+\usepackage[vvarbb]{newpxmath}
+\let\Bbbk\relax
+\DeclareSymbolFont{largesymbols}  {OMX}{zplm}{m}{n}
+\makeatletter
+\re@DeclareMathSymbol{\sumop}{\mathop}{largesymbols}{"50}
+\re@DeclareMathSymbol{\prodop}{\mathop}{largesymbols}{"51}
+\re@DeclareMathSymbol{\intop}{\mathop}{largesymbols}{"52}
+\makeatother
+\usepackage[cal=cm,scr=zapfc,scrscaled=1.2,frak=euler]{mathalfa}
+\let\pxopenbox\openbox % pxmath already has openbox but amsthm also defines it
+\let\openbox\relax
+\usepackage{csquotes}
+\usepackage[main=english,shorthands=off]{babel}
+\usepackage{amsthm}
+\renewcommand*{\openbox}{\pxopenbox}
+\usepackage{mathtools}          %to get \vcentcolon
+\usepackage{thmtools}
+\usepackage{xspace}
+\usepackage{booktabs}
+
+\usepackage{quiver}
+
+\usepackage{tikz,tikz-cd}
+%\input tikzsetup
+
+%% Some TikZ stuff
+\newcommand*{\pbcorner}[1][dr]{\ar[#1,phantom,"\lrcorner" , very near start]}
+\newcommand*{\pocorner}[1][dr]{\ar[#1,phantom,"\ulcorner" , very near end]}
+
+\usepackage{enumitem}
+\usepackage{hyphenat}
+\usepackage[backref=true,
+            maxnames=10,
+            style=authoryear,
+            backend=biber,
+            bibencoding=utf8]{biblatex}
+\addbibresource{papers.bib}
+
+% hyperref should be the package loaded last
+\definecolor{linkcolor}{rgb}{0,0,0.5}
+\usepackage[colorlinks,
+            bookmarksnumbered=true,
+            bookmarksdepth=2,
+            bookmarksopenlevel=2,
+            citecolor=linkcolor,
+            linkcolor=linkcolor,
+            urlcolor=linkcolor,
+            pdfborderstyle=,
+            unicode]{hyperref}
+% To get unicode in pdfinfo, we need to use hypersetup, not package options
+\hypersetup{
+  pdfauthor={Ulrik Buchholtz and Mark Williams},
+  pdftitle={Synthetic Homotopy Theory with HoTT/UF},
+  pdfsubject={Mathematics},
+  pdfkeywords={type theory, homotopy theory}}
+% - except for cleveref!
+\usepackage[capitalize]{cleveref}
+
+%% Enable synctex
+\pdfadjustspacing=1
+\brokenpenalty=10000 %%% No hyphenation across page breaks
+\synctex=1
+
+\setlength{\normalrulethickness}{0.59pt}
+
+\checkandfixthelayout
+
+
+%%% Space after period
+\DeclareMathSymbol{.}{\mathpunct}{letters}{"3A}
+\DeclareMathSymbol{\decimalperiod}{\mathord}{letters}{"3A}
+
+%%% MACROS
+\DeclarePairedDelimiter\Trunc{\lVert}{\rVert} % truncated type
+\DeclarePairedDelimiter\trunc{\lvert}{\rvert} % truncation constructor
+\DeclarePairedDelimiter\abs{\lvert}{\rvert} % absolute value
+\DeclarePairedDelimiterX\setof[2]\lbrace\rbrace{\, #1 \,\delimsize\vert\, #2 \,}
+\newcommand*{\setTrunc}[1]{{\Trunc{#1}}_0}
+\newcommand*{\settrunc}[1]{{\trunc{#1}}_0}
+\newcommand*{\refl}{\mathrm{refl}}
+\newcommand*{\Sloop}{\mathrm{loop}}
+
+\DeclareMathOperator{\inl}{inl}
+\DeclareMathOperator{\inr}{inr}
+\DeclareMathOperator{\glue}{glue}
+\DeclareMathOperator{\merid}{merid}
+\DeclareMathOperator{\cofib}{cofib}
+\DeclareMathOperator{\fib}{fib}
+\DeclareMathOperator{\ap}{ap}
+\DeclareMathOperator{\apd}{apd}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\trp}{trp} % transport?
+\DeclareMathOperator{\lift}{lift}
+\DeclareMathOperator{\suc}{suc}
+\DeclareMathOperator{\cst}{cst}
+\DeclareMathOperator{\pt}{pt}
+\DeclareMathOperator{\fst}{fst}
+\DeclareMathOperator{\snd}{snd}
+
+
+\DeclareMathOperator{\Prop}{Prop}
+\DeclareMathOperator{\Set}{Set}
+\DeclareMathOperator{\Fin}{Fin}
+\DeclareMathOperator{\Tors}{Tors}
+\DeclareMathOperator{\Cyc}{Cyc}
+
+\newcommand*{\SetEndo}{\Set_\circlearrowleft} % might change
+
+\DeclareMathOperator{\isProp}{isProp}
+\DeclareMathOperator{\isContr}{isContr}
+\DeclareMathOperator{\isSurj}{isSurj}
+\DeclareMathOperator{\isEquiv}{isEquiv}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+
+\newcommand*{\QQ}{\mathbb{Q}}
+\newcommand*{\ZZ}{\mathbb{Z}}
+\newcommand*{\NN}{\mathbb{N}}
+
+\newcommand*{\UU}{\mathcal{U}}
+\newcommand*{\II}{\mathbb{I}}
+
+\newcommand*{\B}{\mathrm{B}}
+\newcommand*{\blank}{\_}
+\newcommand*{\pto}{\to_\bullet}
+
+\renewcommand*{\th}{\textsuperscript{th}\xspace}
+
+\newcommand*{\jeq}{\equiv}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main.tex"
+%%% End:
