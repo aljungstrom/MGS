@@ -12,7 +12,7 @@
 \begin{center}
   \LARGE
   {\bfseries Synthetic Homotopy Theory}\\[1cm]
-  \large Lecture notes and exercises for the\\[5mm]
+  \large Abbreviated lecture notes\\[5mm]
   \Large Midlands Graduate School (MGS)\\
   \large 13--17 April 2026, Nottingham, UK\\[1cm]
   by\\
@@ -32,7 +32,7 @@
 
 \clearpage
 
-\tableofcontents*
+%\tableofcontents*
 
 \mainmatter
 
@@ -40,145 +40,147 @@
 
 %% \chapter{Introduction}
 
-\chapter{Truncated and connected types}
+
+
+
+\chapter*{Lecture 1}
 %\textcite{Shulman-logic-of-space}
+\subsection*{Why?}
+\begin{itemize}
+\item Understanding types better
+  \begin{itemize}
+  \item Types `=' spaces, so need to understand their higher structure
+  \end{itemize}
+\item Use type-theoretic tools to simpify problems from traditional homotopy theory/alg. topology
+  \begin{itemize}
+    \item E.g. compute homotopy groups of spheres
+  \end{itemize}
+\end{itemize}
 
-\section{Motivation 1: Understanding types better}
+\subsection*{Preliminary plan}
+\begin{enumerate}
+\item Preliminaries/defn of homotopy groups
+\item Higher inductive types, $\pi_1(S^1)$
+\item Long exact sequence of homotopy groups, $\pi_3(S^2)$
+\item The Blakers-Massey theorem and applications: $\pi_n(S^n)$ and cohomology
+\end{enumerate}
 
-We assume that the reader knows the basics of Martin-Löf's dependent type theory
-(MLTT) with the usual type formers such as dependent sums $(a : A) \times B(a)$,
-dependent products $(a : A) \to B(a)$, identity types $a=_Ab$, empty type $0$,
-unit type $1$, coproducts $A+B$, natural numbers type $\NN$, and universes
-$\UU$. If not, good references that also go in the direction of synthetic
-homotopy theory include~\textcite{Rijke2022,hottbook}.
+\subsection*{Notation/conventions}
+\begin{itemize}
+\item In general: follow HoTT book.
+\item $\refl_{(x)} : x =_A x$
+\item $\UU$ = the universe of types 
+\item $\trp^{B}_p : B(x) \to B(y)$ where $B:A \to \UU$ and $p : x =_A y$
+\item $(x: X) \to B(x)$ instead of $\Pi_{x:X}B(x)$
+\item $(x : X) \times B(x)$ instead of $\Sigma_{x:X} B(x)$
+\item `Path induction' instead of `J-rule' or `identity induction'
+\end{itemize}
+\axel{
+Let $x_0 : X$ and $B: (x : X) \to x_0 = x \to \UU$. In order to construct elements $B(x,p)$ for all $x:X$ and $p : x_0 = x$, it suffices to do so when $x := x_0$ and $p := \refl_{x_0}$.
+}
 
-MLTT can be used both as a programming language and as a foundation for mathematics. For the latter, the idea is to use the propositions as types paradigm, according to which universal quantification $\forall a:A, B(a)$ can be encoded as the dependent product $(a:A) \to B(a)$, existential quantification $\exists a:A, B(a)$ as the dependent sum $(a:A) \times B(a)$, and disjunction $A \vee B$ as the coproduct $A + B$.
-But this translation does not give an adequate formalization of many mathematical concepts, as the following example illustrates.
-
-Consider a function $f : A \to B$. Intuitively, we would express the
-\emph{image} of $f$ as the subtype of $B$ consisting of those $b:B$ for which
-there exists $a:A$ with $f(a)=_Bb$. According the above translation, this becomes the type
-\[(b:B)\times(a:A)\times(f(a)=_Bb)\]
-consisting of triples $(b,a,p)$ where $b:B$, $a:A$ and $p:f(a)=_Bb$.
-Using the principle of function extensionality (which is not provable in MLTT, but needs to be assumed in order to capture the mathematical practice of identifying functions $f,g : (a:A) \to B(a)$ when we have identification $h(a):f(a)=_{B(a)}g(a)$ for all $a:A$),
-it turns out (see below), that this type of triples can be identified with the type $A$ via the projection to the second factor. (The inverse maps $a:A$ to the triple $(f(a), a, \refl_a)$.)
-
-In other words, this definition of the image is not correct. A related example
-is the formalization that a function $f : A \to B$ is a \emph{surjection} via
-the proposition
-\[\forall b:B, \exists a:A, f(a) =_B b.\]
-According to the above translation, this becomes the type
-\[(b:B) \to (a:A)\times(f(a)=_B b).\]
-However, if we have an element $s$ of this type, we can compose with the first projection
-to get a function $g : B \to A$ such that $f(g(b))=_Bb$ for all $b:B$, i.e.,
-a section of $f$.
-But the statement that every surjection has a section is equivalent to the axiom of choice, and we want to be free to assume this or not, if we're doing constructive mathematics.
-
-The solution to these problems became apparent with the advent of \emph{Univalent Foundations}: Here we realize that all types have a built-in homotopical structure that we can probe with the identity types. For instance, mathematical propositions are not any old types, but types $A$ in which any two elements can be identified, i.e., for which we have a function $p:(a,b:A) \to a=_Ab$. And then we need a new type former, \emph{propositional truncation}, $\Trunc\blank$, that associates to any type $A$ a proposition $\Trunc A$. Then the correct definition of the image becomes
-\[\im(f) := (b : B) \times \Trunc{(a:A) \times (f(a)=_B b)},\]
-and the correct definition of being surjective becomes
-\[\isSurj(f) := (b : B) \to \Trunc{(a:A) \times (f(a)=_Bb)}.\]
-That is, the correct interpretation of a general existential proposition $\exists a:A, B(a)$ is the truncation of the dependent sum, $\Trunc{(a:A)\times B(a)}$.
-
-Propositional truncation also solves the problem of how to express quotients in type theory.
-
-One motivation for studying \emph{synthetic homotopy theory} is to better
-understand this higher structure of types as probed by the identity types, and
-to understand the identity types various types, how to exploit the higher
-structure in the formalization of mathematics, and to develop tools for dealing
-with truncations and its higher-dimensional cousins.
-
-\section{Motivation 2: Homotopy groups of spheres}
-
-The univalent foundations interpretation of type theory also suggests new type formers,
-so-called \emph{higher inductive types} (HITs). The most basic example is the (homotopical) circle, which we'll return to below. We'll see that many HITs can be defined in terms of pushouts. This is not too surprising, as any colimit can be expressed via (infinite) coproducts and pushouts (or coequalizers). In type theory, we can express pullbacks via identity types, so it's natural to want to have a type former for pushouts.
-
-Using HITs built from pushouts, we suddenly have access to all the (homotopical)
-spheres $S^n$, along with their homotopy groups $\pi_k(S^n)$. These are famous
-characters in a long-running story (classical \emph{analysis situs}, algebraic
-topology, homotopy theory). See~\cref{tab:pi-k-s-n} for a small
-sample. Mathematicians have expended a lot of effort trying to understand the
-patterns in these groups, and they have come up with a lot of clever tools,
-including long exact sequences, homology and cohomology theories (and their
-operations), spectral sequences, and higher category theory
-($(\infty,1)$-category theory) along the way. Many of these have been ported to
-type theory, although the definition of $(\infty,1)$-categories has so far
-eluded us. (Many even think it's impossible to capture higher categories with
-the type formers mentioned so far, but this has also not been proved.)
-
-\begin{table}
-  \centering
-  \begin{tabular}{ccccccccc}\toprule
-    $k$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ \\ \midrule
-    $S^1$ & $\ZZ$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\
-    $S^2$ & $0$ & $\ZZ$ & $\ZZ$ & $\ZZ/2$ & $\ZZ/2$ & $\ZZ/12$ & $\ZZ/2$ & $\ZZ/2$ \\
-    $S^3$ & $0$ & $0$ & $\ZZ$ & $\ZZ/2$ & $\ZZ/2$ & $\ZZ/12$ & $\ZZ/2$ & $\ZZ/2$ \\
-    $S^4$ & $0$ & $0$ & $0$ & $\ZZ$ & $\ZZ/2$ & $\ZZ/2$ & $\ZZ\times \ZZ/12$ & $\ZZ/2\times\ZZ/2$ \\
-    $S^5$ & $0$ & $0$ & $0$ & $0$ & $\ZZ$ & $\ZZ/2$ & $\ZZ/2$ & $\ZZ/24$ \\ \bottomrule
-  \end{tabular}
-  \caption{Some homotopy groups of spheres, $\pi_k(S^n)$}
-  \label{tab:pi-k-s-n}
-\end{table}
-
-So a second motivation for studying synthetic homotopy theory is to understand the tools of classical homotopy theory from the point of view of type theory, trying to generalize them so they're no longer tied to classical axioms such as the axiom of choice, and to push the boundaries of what we can express with type theory.
-
-We shall develop enough material to understand the first row, why the next two rows agree for $k\ge 4$, why there are zeros under the diagonal, and why $\pi_3(S^2)\simeq \ZZ$.
-
-\paragraph{A note on terminology}
-We use \emph{univalent foundations} (UF) for the general program of developing mathematics with the univalence axiom, paying close attention to the identifications in and between various types. It is compatible with both classical and constructive mathematics, where we view the former as a special case of the latter where we assume the general axiom of choice (which also implies the law of excluded middle). \emph{Homotopy type theory} (HoTT) is to be understood in analogy with \emph{set theory} as studying both formal systems for implementing UF (typically type theories), as well how to formalize mathematical notions and proofs in these systems. Book HoTT is a particular choice of formal system, corresponding to that employed in~\textcite{hottbook}. Cubical type theories are newer formal systems adapted to UF where the univalence axiom is provable from more primitive ingredients so that they directly function as programming languages. Since the resolution of Voevoedsky's homotopy canonicity conjecture, book HoTT can also be used as a programming language.
-
-\section{Homotopical notions in type theory}
-
-We begin our journey into synthetic homotopy theory by translating the notions of truncatedness and connectedness into type theory.
-We also introduce the algebra of paths in type theory, and show how it can be used to define homotopy groups of types.
-
+\section*{Univalence}
 \begin{definition}
-    A type $X$ is \textbf{contractible} if we have an inhabitant of the type
-    \[ \isContr(X) := (x : X) \times ((y : X) \to x =_X y). \]
-    A type $X$ is a \textbf{proposition} if we have an inhabitant of
-    \[ \isProp(X) := (x, y : X) \to x =_X y.\]
+    A type $X$ is \textbf{contractible} if the type
+    \[ \isContr(X) := (x : X) \times ((y : X) \to x =_X y) \]
+    is inhabited.
 \end{definition}
 
 \begin{definition}
-  A map $f : X \to Y$ is an \textbf{equivalence} if for all $y : Y$ we have $\fib_f(y)$ is contractible, where $\fib_f(y) := (x:X)\times(f(x)=_Yy)$ is the \textbf{homotopy fiber} of $f$ at $y$. (Which we met above when discussing images and surjections.)
-
-  The \textbf{type of equivalences} from $X$ to $Y$ is the dependent sum
-  \[ (X \simeq Y) := (X \to Y) \times \isEquiv(f).\]
+    A type $X$ is a \textbf{proposition} if the type
+    \[ \isProp(X) := (x, y : X) \to x =_X y\]
+    is inhabited.
 \end{definition}
 
 \begin{definition}
-  The \textbf{univalence axiom} states that for every universe $\UU$, the map
-  \[
-    (X=_\UU Y) \to (X \simeq Y),
-    \quad
-    \refl_X \mapsto (\id_X, \_),
-  \]
-  is an equivalence.
+  The \textbf{fibre} of a function $f:X\to Y$ over a point $y : Y$ is the type
+  \[ \fib_f(y) := (x : X) \times (f(x) = y) \]
 \end{definition}
 
-\begin{remark}
-  In the following we always assume univalence. It implies function extensionality: the map
-  \[ (f =_{(x:X) \to Y(x)} g) \to \Bigl((x:X) \to f(x)=_{Y(x)}g(x)\Bigr),
-    \quad
-    \refl_f \mapsto (x \mapsto \refl_{f(x)}),
-  \]
-  from \textbf{homotopies} to paths is an equivalence. We shall use both
-  freely, going between equivalences and homotopies and the corresponding
-  identifications.
+\begin{definition}
+  A function $f:X\to Y$ is an \textbf{equivalence} if $\fib_f(y)$ is contractible for all $y$.
+\end{definition}
+\begin{itemize}
+\item Let $(X\simeq Y) \times \isEquiv(f)$
+\item Fact: $\id_X : X \to X$ is an equivalence.
+\end{itemize}
+
+\begin{remark}\label{rmk:qinv}
+  Why not use $\underset{:= \qinv(f)}{\underbrace{(g : (Y \to X)) \times (g \circ f = \id) \times (f \circ g = \id)}}$ as definition?
+  \begin{itemize}
+  \item \axel {Too much structure}
+  \item $\qinv(f) \leftrightarrow \isEquiv(f)$ but $\qinv(f) \not\simeq \isEquiv(f)$. \axel{For our purposes, we can pretend that they are the same}.
+  \end{itemize}
 \end{remark}
 
+
+\begin{axiom}[Univalence]
+  The map
+  \[
+    \trp^{Y \mapsto X \simeq Y}_{(-)}(\mathsf{idEquiv}_X) : X=_\UU Y \to (X \simeq Y)
+  \]
+  is an equivalence.
+\end{axiom}
+
+\begin{itemize}
+\item In particular, $X \simeq Y \to X = Y$
+\end{itemize}
+
+\begin{fact}
+  Univalence $\implies$ $\funExt(f) := (((x y : X) \to f(x) = g(x)) \to f = g)$
+\end{fact}
+
+\begin{itemize}
+\item From now on, always assume univalence (and funExt). 
+\end{itemize}
+
+\section*{Univalence}
+
+\axel{The thing that makes types complicated is their higher structure. The notion of $n$-type helps us stratify this.}
+
 \begin{definition}
-    We can define a stratification of types which begins with contractible types and then propositions by recursion. For a type $X$ we say:
+    A type $X$ is
     \begin{itemize}
-        \item $X$ is a \textbf{$-2$-type} if it is contractible.
-        \item $X$ is a \textbf{$-1$-type} if it is a proposition.
-        \item $X$ is an\textbf{ $n$-type} if for all $x, y : X$ the type $x=_Xy$ is an $n-1$ type.
+        \item a \textbf{$-2$-type} if $\isContr{A}$,
+        \item a \textbf{$-1$-type} if $\isProp{A}$, and
+        \item an \textbf{ $n$-type} if $(x, y : X) \to \isType{(n-1)}(x=_Ay)$.
     \end{itemize}
 \end{definition}
 
+\begin{convention}\phantom{.}
+  \begin{itemize}
+  \item $0$-types are called \textbf{Sets}
+  \item $1$-types are called \textbf{Groupoids}
+  \end{itemize}
+\end{convention}
+
+\begin{example}\phantom{.}
+  \begin{itemize}
+  \item All $(-2)$-types are equivalent to $1$.
+  \item Propositions:
+    \begin{itemize}
+    \item $1$, $\emptyset$ (and everything in between)
+    \item $\isEquiv(f)$, $\isType{n-1}(X)$.
+    \end{itemize}
+  \item Sets:
+    \begin{itemize}
+    \item Any (plain) inductive type, e.g.\ $\bZ$
+    \item cf. Hedberg's theorem
+    \end{itemize}
+  \item The universe of $n$-types, $\UU^{\le n} := (X : \UU) \times \isType{n}(X)$, is an $n+1$ type.
+    \begin{itemize}
+    \item Idea
+      \begin{align*}
+        [(X,\mathsf{nt}_X) \simeq_{\UU^{\le n}} (Y,\mathsf{nt}_Y) ] &\simeq (X =_{\UU} Y) \\
+        &\simeq (X \simeq Y)
+      \end{align*}
+    \end{itemize}
+  \end{itemize}
+\end{example}
+
 \begin{remark}
     We call $0$-types sets and $1$-types groupoids. These correspond exactly to the usual notions!
-    This also explains the indexing, as sets are ``$0$-dimensional'' objects. But it's also natural to use an indexing where contractible types are at level $0$: This hierarchy is called the h-level (homotopy level) hierarchy, so a type is \textbf{of hlevel $n+2$} if and only if it is an $n$-type.
+    This also explains the indexing, as sets are \say{$0$-dimensional} objects. But it's also natural to use an indexing where contractible types are at level $0$: This hierarchy is called the h-level (homotopy level) hierarchy, so a type is \textbf{of hlevel $n+2$} if and only if it is an $n$-type.
 \end{remark}
 
 \begin{example}
@@ -194,42 +196,34 @@ We give some basic examples of $n$-types.
 \end{example}
 
 \begin{definition}
-    There is a \textbf{truncation} operation for each $n$ which takes a type $X$ to an $n$-type version of itself in a natural way.
-    We do not define it here, however we present its universal property, which is all that's needed to work with it.
-
-    Given a type $X$, its \textbf{$n$-truncation} is a type $\Trunc{X}_n$.
-    It comes with a map $\trunc{\blank}_n : X \to \Trunc{X}_n$ such that for any $n$-type $Y$, and any map $X \to Y$, there is a unique map $\Trunc{X}_n \to Y$ so that
-    \[\begin{tikzcd}
-        X  \ar[r] \ar[d, swap, "\trunc{\blank}_n"] & Y \\
-        \Trunc{X}_n \ar[ur,dashed]
-      \end{tikzcd}\] commutes. Equivalently, the map
+  Given a type $X$, there is an $n$-type $\Trunc{X}_n$ equipped with a map $\trunc{-}_n: X \to \Trunc{X}_n$ s.t. for every $f: X \to Y$ where $Y$ is an $n$-type, we have
+\[\begin{tikzcd}[ampersand replacement=\&]
+	X \& Y \\
+	{\Trunc{X}_n}
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["{\trunc{-}_n}"', from=1-1, to=2-1]
+	\arrow[dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+\textbf{Alt:}
     $\blank\circ\trunc\blank_n : (\Trunc X_n \to Y) \to (X \to Y)$ is an
     equivalence.
-
-    Further we have an induction principle, which similarly
-    characterizes dependent functions into a family of $n$-types.
 \end{definition}
-
-The case of $-1$-truncation, otherwise known as propositional truncation, holds an important role in logic as well as in homotopy theory.
-We think of $\Trunc{X}_{-1}$ as the proposition asking whether $X$ is inhabited.
-Due to its importance we will often denote $-1$-truncation without the subscript, $\Trunc{X}$.
-
-The case of $0$-truncation, a.k.a.\ set truncation, also corresponds to a common operation on spaces: The set $\setTrunc{X}$ is the set of path components of $X$.
+\begin{itemize}
+  \item Common notation: $\Trunc{X} := \Trunc{X}_{-1}$
+\end{itemize}
 
 \begin{definition}
     A type $X$ is \textbf{$n$-connected} if $\Trunc{X}_n$ is contractible.
 \end{definition}
+\begin{itemize}
+  \item Convention: `connected' = `$0$-connected'
+\end{itemize}
 
-As special cases, we say that $X$ is \textbf{inhabited} (constructively
-nonempty) if it's $-1$-connected, and \textbf{connected} if it's $0$-connected.
-Every type is $-2$-connected, since $\Trunc{X}_{-2}$ is automatically contractible.
-
-We have a corresponding notion of connectedness and truncatedness for maps defined fiberwise.
 \begin{definition}
     A map $f : X \to Y$ is:
     \begin{enumerate}
-        \item \textbf{$n$-truncated} if for all $y : Y$, the type $\fib_f(y)$ is an $n$-type.
-        \item \textbf{$n$-connected} if for all $y : Y$, the type $\fib_f(y)$ is $n$-connected.
+        \item \textbf{$n$-truncated} if $\fib_f(y)$ is an $n$-type for all $y:Y$,
+        \item \textbf{$n$-connected} if $\fib_f(y)$ is $n$-connected for all $y:Y$.
     \end{enumerate}
 \end{definition}
 
@@ -239,174 +233,155 @@ and an \textbf{embedding} if it's $-1$-truncated. For reasons we'll see later, w
     The map $\trunc{\blank}_n : X \to \Trunc{X}_n$ is $n$-connected.
 \end{example}
 
-\section{Path algebra}
+\section*{Towards homotopy groups: path algebra}
 
-Paths are the ``morphism'' part of the groupoid structure of types.
-We can concatenate paths together when the endpoints agree, we can invert paths, and we have an identity path.
+\paragraph{Recall:}
+Have $\_\cdot\_ : x = y \to y = z \to x = z$ and $(-)^{-1} : x = y \to y = x$ s.t.
+\begin{itemize}
+\item $p \cdot p^{-1} = \refl$
+\item $p^{-1} \cdot p = \refl$
+\item $p \cdot \refl = p$
+\item $\refl \cdot p = p$
+\item $(p \cdot q) \cdot r = p \cdot (q \cdot r)$
+\end{itemize}
+And
+\begin{itemize}
+\item Given $f :X \to Y$ and $p:x=y$, we have $\ap_f(p) : f(x) = g(x)$
+\item Exercise $\ap_f(p\cdot q) = \ap_f(p) \cdot \ap_f(q)$
+\end{itemize}
+
+\paragraph{Q.} What if $f : (x:X) \to B(x)$ is a dependent function? $f(x) = f(y)$ doesn't type check!
 
 \begin{definition}
-    Given $p : x = y$ and $q :  y = z$ in a type $X$, we define their \textbf{concatenation} $p \cdot q : x = z$ by path induction:
-    \[  \refl_y \cdot q := q \]
-
-    We can also define $p^{-1} : y = x$ by path induction:
-    \[ (\refl_x)^{-1} := \refl_x \]
+  Given $B: X \to \UU$ dep. type, $p: x_0 = y_0$, and terms $b_0 : B(x_0)$ and $b:B(x_1)$, define
+  \[(b_0 =^B_p b_1) := (\trp^B_p(b_0) = b_1) \]
+  $\uparrow$ the type of \textbf{dependent paths} from $b_0$ to $b_1$ (over $p$). 
 \end{definition}
 
-These operations satisfy groupoid laws up to higher paths:
-\begin{lemma}
-    For any $p : x = y$, $q : y = z$ and $r : z = w$ we have terms of the following types:
-    \begin{itemize}
-        \item $p \cdot (q \cdot r) = (p \cdot q) \cdot r$,
-        \item $p \cdot p^{-1} = \refl_y$ and $p^{-1} \cdot p = \refl_x$,
-        \item $\refl_x \cdot p = p$ and $p \cdot \refl_y = p$.
-    \end{itemize}
-\end{lemma}
-\begin{proof}
-    All by path induction, and the definition of composition.
-\end{proof}
+\axel{Coincides with usual equality type when $p$ is $\refl$}
 
-Furthermore, every function forms a (higher) groupoid homomorphism.
-\begin{definition}
-    Given $f : X \to Y$ and $x_0, x_1 : X$ we obtain a map
-    \begin{align*}
-        \ap_f : x_0 =_X x_1 &\to f(x_0) =_Y f(x_1) \\
-        \ap_f(\refl_{x_0}) &:= \refl_{f(x_0)}
-    \end{align*}
-    by path induction.
-\end{definition}
+\begin{itemize}
+\item Can now define dependent $\ap$ for $f: (x:X) \to B(x)$ , i.e.\ $\apd_f : (p : x = y) \to f(x) =^B_p f(y)$ by pattern-matching.
+\end{itemize}
 
-This satisfies standard functoriality laws, again up to higher paths.
-We've set it up so that definitionally the identity path is mapped to the other identity path.
 
-\begin{lemma}
-    Given $f : X \to Y$ and $p : x_0 = x_1$, $q : x_1 = x_2$ we have a term of type
-    \[\ap_f(p \cdot q) = \ap_f(p) \cdot \ap_f(q)\]
-\end{lemma}
-\begin{proof}
-    By path induction.
-\end{proof}
-%
-This is a good place to recall the notion of dependent path.
-%
-Recall that we can define, by path induction, a map $\mathsf{coe} : A=B \to A \to B$.
-%
-\begin{definition}\label{def:dep-typ}
-  Let $B : A \to \UU$ be a dependent type, and let $p : a_0 =_A a_1$ be a path in $A$. Given two terms $b_0 : B(a_0)$ and $b_1:B(a_1)$, we write $b_0=^B_p b_1$ for the the type of \textbf{dependent paths} (over $p$) between $b_0$ and $b_1$. It is defined by
-  \[(b_0=^B_p b_1) := (\mathsf{coe}(\ap_B(p), b_0) = b_1)\]
-\end{definition}
-%
-\begin{remark}
-  There is a dependent version of $\ap_f$, often denoted $\apd_f$, where $f : (a:A) \to B(a))$ is a dependent function. It is of type $(p : a_0=_A a_1) \to a_0=^P_p a_1$ and is, like $\ap$, defined by path induction. Since these two definitions agree when $B$ is a constant family of types (i.e.\ a non-dependent type), we will abuse notation and write $\ap$ for both dependent and non-dependent function application.  
-\end{remark}
-%
-The case when $B$ in \cref{def:dep-typ} is itself a path type is especially important.
-\begin{definition}\label{def:fillers}
-Consider the following square of paths:
-\begin{equation}\label{eq:fill}\begin{tikzcd}[ampersand replacement=\&]
-	z \& w \\
-	x \& y
-	\arrow["q", from=1-1, to=1-2]
-	\arrow["r", from=2-1, to=1-1]
-	\arrow["p"', from=2-1, to=2-2]
-	\arrow["s"', from=2-2, to=1-2]
-\end{tikzcd}\end{equation}
-A \textbf{filler} of \eqref{eq:fill} is a dependent path $p =_{(l,r)}^{(x,y)\mapsto x = y}q$.
-\end{definition}
-An alternative definition of the above would be to say that a filler of \eqref{eq:fill} is a path $p \cdot s =_{x = w} r \cdot q$. The advantage of the above definition is that it definitionally agrees with the usual identity type $(p= q)$ whenever $s$ and $r$ are $\refl$.
-%
-We obtain a notion of function application on squares by iterating (dependent) $\ap$, i.e.\ $\ap_{\ap_f}$.
-%
-We can mimic \cref{def:fillers} to define fillers of ($3$-)cubes, $4$-cubes, and so on.\footnote{There is, however no general definition of fillers of $n$-cubes. In fact, even defining an appropriate notion of $n$-cube is a long-standing open problem.} This is a good exercise but will not be needed for this course.
   
 
-\section{Homotopy groups}
-
-We now work towards defining the homotopy groups of a type.
+\section*{Finally: Homotopy groups}
 
 \begin{definition}
-    A \textbf{pointed type} is a pair $(X, x_0)$ where $X : \UU$ and $x_0 : X$. The collection of pointed types is
-    $ \UU_{\bullet} := (X : \UU) \times (X)$.
-
-    A morphism between two pointed types $(X, x_0)$ and $(Y, y_0)$ is a pair $(f, p)$ consisting of a map $f : X \to Y$ and a path $p : f(x_0) = y_0$.
-    We denote the type of pointed maps as $(X, x_0) \to_\ast (Y, y_0)$
+    A \textbf{pointed type} is a pair $(X, \star_X) : \ub{\UU_\star}{(X : \UU) \times X}$ where $X : \UU$ and $\star_X : X$.
 \end{definition}
+\begin{definition}
+  A \textbf{pointed map} is a pair $(f ; \star_X) : \ub{(X,\star_X) \to_\star (Y,\star_Y)}{(f : X \to Y) (\times f(\star_X) = \star_Y)}$
+\end{definition}
+\begin{notation}\phantom{.}
+  \begin{itemize}
+  \item Often simply write $X : \UU_\star$ and $f : X \to_\star Y$, i.e.\ we leave basepoints and pointedness proofs implicit
+  \item Always write $\star_X : X$ for basepoints and $\star_f : f(\star_X) = \star_Y$ for pointedness proofs. 
+  \end{itemize}
+\end{notation}
 
 \begin{definition}
-    We have the \textbf{loop space} operation $\Omega : \UU_{\bullet} \to \UU_{\bullet}$ defined by
-    \[ \Omega(X, x_0) := (x_0 =_X x_0, \refl_{x_0})\]
+    We define the \textbf{loop space} of a pointed types $X$ by
+    \[ \Omega(X) := (\star_X = \star_X)\]
+This type is itself pointed by $\refl_{\star_X}$.
 \end{definition}
 
-We will often be imprecise when writing pointed types and loop spaces, dropping the notation of the point when it is clear.
-In fact when a type is connected the choice of basepoint doesn't matter (up to mere equivalence), see the exercises.
+\begin{itemize}
+  \item It is \textbf{functorial}: given $f : X \to_\star Y$, we define $\Omega(f) : \Omega(X) \to \Omega(Y)$ by
+    \[\Omega(f)(p) := (\star_f)^{-1} \cdot \ap_f(p) \cdot \star_f\]
+  \item Path composition defines a `group structure' on $\Omega$
+    \begin{itemize}
+    \item Problem: group laws only hold up to homotopy
+    \item Solution: need to truncate
+    \end{itemize}
+\end{itemize}
 
+\begin{definition}
+  The \textbf{first homotopy group} of a pointed type $X$ is defined by $\pi_1(X):= \Trunc{X}_0$
+  \begin{itemize}
+    \item Multiplication: $\trunc{p} \cdot \trunc{q} = \trunc{p \cdot q}$
+  \end{itemize}
+\end{definition}
+
+%
 The loop space is the fundamental structure which will allow us to define homotopy groups.
-First note that the loop space is already ``group-like''.
-Using path concatenation we get an operation $\_ \cdot \_ : \Omega(X, x_0) \to \Omega(X, x_0) \to \Omega(X, x_0)$.
+First note that the loop space is already 'group-like'.
+Using path concatenation we get an operation $\_ \cdot \_ : \Omega(X, \star_X) \to \Omega(X, \star_X) \to \Omega(X, \star_X)$.
 This satisfies the usual group laws: path composition is associative, has unit $\refl_x$ and for each element $p$, it's inverse is $p^{-1}$.
 The only thing that is preventing this from being a group is that it isn't a set!
 These group laws only hold up to homotopy.
-For instance there might be more than one element of $p \cdot p^{-1} = \refl_{x_0}$.
+For instance there might be more than one element of $p \cdot p^{-1} = \refl_{\star_X}$.
 To solve this we set truncate everything to end up with an ordinary group.
 
 \begin{definition}
-    The \textbf{first homotopy group}, traditionally called the \textbf{fundamental group}, of a pointed type $(X, x_0)$ is
-    \[ \pi_1(X, x_0) := \setTrunc{\Omega(X,x_0)}\]
+    The \textbf{first homotopy group}, traditionally called the \textbf{fundamental group}, of a pointed type $X$ is
+    \[ \pi_1 X := \setTrunc{\Omega X}\]
 \end{definition}
 
 By set truncating we collapsed all of the higher loops of our type.
 The higher homotopy groups are introduced to keep track of this higher homotopy information.
 
 \begin{definition}
-    The $n$\th loop space of $(X, x_0)$ is defined by recursion:
+    The $n$\th loop space of $X$ is defined by recursion:
     \begin{align*}
-        \Omega^0(X, x_0) &:= (X, x_0) \\
-        \Omega^{n+1}(X, x_0) &:= \Omega(\Omega^{n}(X, x_0))
+        \Omega^0X &:= X \\
+        \Omega^{n+1}X &:= \Omega(\Omega^{n}X)
     \end{align*}
-
-    The $n$\th homotopy group of $(X, x_0)$ is then:
-    \[ \pi_n(X, x_0) := \setTrunc{\Omega^n(X, x_0)}\]
+    The $n$\th homotopy group of $(X, \star_X)$ is then:
+    \[ \pi_n X := \setTrunc{\Omega^n X}\]
 \end{definition}
 
-Note all these operations are functorial: Given a pointed map $(f,q) : (X, x_0) \pto (Y, y_0)$ we get a map
+Note all these operations are functorial: Given a pointed map $(f,q) : (X, \star_X) \pto (Y, \star_Y)$ we get a map
 \begin{align*}
-    \Omega f : \Omega(X, x_0) &\pto \Omega(Y, y_0)  \\
+    \Omega f : \Omega(X, \star_X) &\pto \Omega(Y, \star_Y)  \\
     (\Omega f)(p)& := q\cdot \ap_f(p)\cdot q^{-1}
 \end{align*}
-which descends to a group homomorphism $\pi_n(X, x_0) \to \pi_n(Y, y_0)$ for each $n$ by truncation.
+which descends to a group homomorphism $\pi_n(X, \star_X) \to \pi_n(Y, \star_Y)$ for each $n$ by truncation.
 
-\section{The fundamental theorem of identity types}
+\section*{The fundamental theorem of identity types}
 
 Doing homotopy theory in HoTT is all about identity types, and so we need a good generic way to understand them.
-A fundamental property of identity types is that given a fixed basepoint $x : X$ the type $(y : X) \times (x =_X y)$ is contractible onto $(x, \refl_x)$.
+A fundamental property of identity types is that given any fixed $x_0 : X$, the type $(x : X) \times (x_0 =_X x)$ is contractible with $(x_0, \refl_{x_0})$ as centre of contraction.
 This is clear by path induction.
 
-Even though this might seem like a trivial property, it is in fact a defining property, which the fundamental theorem makes clear.
-
+In fact, this property completely characterises the identity type in HoTT, as is made clear by the \emph{Fundamental Theorem of Identity Types}:
+%
 \begin{theorem}[The Fundamental Theorem of Identity Types]
-    Let $(X, x_0)$ be a pointed type and $Y : X \to \UU$ a type family.
-    Suppose we have a function $f_x : x_0 =_X x \to Y(x)$ for all $x : X$.
-    Then the following are equivalent:
-    \begin{enumerate}
-        \item $f$ is a family of equivalences.
-        \item The total space $(x : X) \times Y(x)$ is contractible.
+    Let $R : X \to X \to \UU$ be a reflexive binary relation. The following are equivalent   \begin{enumerate}
+        \item The obvious map\footnote{i.e.\ the map defined by path induction which
+          sends $\refl_x$ to the term of type $R(x,x)$ given to us by
+          reflexivity of $R$} $x =_A y \to R(x,y)$  is an equivalence.
+        \item For any $x :X$, the total space $(y : X) \times (R(x ,y))$ is contractible.
     \end{enumerate}
 \end{theorem}
 
-As an example, let us characterize the identity types of dependent sums. If $Y:X\to\UU$ is a type family over $X$ with a fixed element $(x_0,y_0):(x:X)\times Y(x)$ of the type space,
+As an example, let us characterize the identity types of dependent sums. If $Y:X\to\UU$ is a type family over $X$ with a fixed element $(\star_X,\star_Y):(x:X)\times Y(x)$ of the type space,
 define $P:\bigl((x:X)\times Y(x)\bigr) \to \UU$ by
 \begin{equation}\label{eq:dep-sum}
-  P(x,y) := (p : x_0=_X x) \times (p_* y_0 =_{Y(x)} y).
+  P(x,y) := (p : \star_X=_X x) \times (p_* y_0 =_{Y(x)} y).
 \end{equation}
 We can show that the total space is contractible by twice contracting a singleton:
 \begin{align*}
   &(x:X)\times(y:Y(x))\times P(x,y)\\
   \simeq\;
-  &(x:X)\times(y:Y(x))\times(p : x_0=_X x)\times(p_*y_0 =_{Y(x)}y)\\
+  &(x:X)\times(y:Y(x))\times(p : \star_X=_X x)\times(p_*y_0 =_{Y(x)}y)\\
   \simeq\;
-  &(y:Y(x_0))\times(\refl_{x_0*}y_0 = y)
+  &(y:Y(\star_X))\times(\refl_{\star_X*}y_0 = y)
   \simeq 1
 \end{align*}
-
+%
+There is also a pointed version of this theorem.
+%
+\begin{theorem}[The Fundamental Theorem of Identity Types]
+  Let $X$ be a pointed type and $Y: X \to \UU$ a family of types equipped with a point $y_0 : (\star_X)$. The following statments are equivalent:
+  \begin{enumerate}
+        \item The obvious map $\star_X =_A x \to Y(x)$  is an equivalence.
+        \item The total space $(x : X) \times Y(x)$ is contractible.
+    \end{enumerate}
+\end{theorem}
+%
 This in turn can be used to establish the following important characterization of type families,
 sometimes known as \textbf{straightening--unstraightening}.
 \begin{theorem}
@@ -416,6 +391,8 @@ sometimes known as \textbf{straightening--unstraightening}.
   \]
 \end{theorem}
 The inverse maps a type over $X$, $f : Y\to X$, to the family of fibers, $\fib_f$.
+%
+Let us spell out the key consequence of this theorem, because it is \emph{incredibly useful}. Fix a predicate $P : (X : \UU) \times (X \to Y) \to \UU$, i.e.\ a statement about universally quantified over all types $X$ and maps $X \to Y$. In order to prove that $P(X,f)$ holds for all $X \rightarrow{f} Y$, it suffices to prove $P$ for all first projections of the form $(y:Y) \times B(y) \xrightarrow{\fst} Y$.  
 
 \section{Exercises}
 \begin{enumerate}
@@ -515,6 +492,26 @@ The inverse maps a type over $X$, $f : Y\to X$, to the family of fibers, $\fib_f
   \item Show that $\Trunc X_0$ satisfies the universal property of the set
     quotient of $X$ modulo the equivalence relation $\sim$, where $x\sim x'$ if
     and only if $\Trunc{x=_X x'}$.
+
+  %% \item Given two functions $f : X_1 \to Y$ and $g : X_2 \to Y$, we
+  %%   can define their pullback $X_1 \times_Y X_2 := (x_1 : X_1) \times
+  %%   (x_2 : X_2) \times (f(x_1) = g(x_2))$. Letting $\UU/Y : = (X :
+  %%   \UU) \times (X \to Y)$, this can be viewed as a product $\times :
+  %%   \UU/Y \times \UU/Y \to \UU/Y$ defined by $(X_1,f) \times (X_2,g)
+  %%   := (X_1 \times_Y X_2 , (x_1,x_2,p) \mapsto f(x_1))$
+  %%   \begin{enumerate}
+  %%   \item Define the functorial action of $\times$. For this question, you should is a triple $(\alpha,\beta,\gamma)$.
+  %%   \item An Define the functorial action
+  %%   \end{enumerate}
+
+
+\begin{enumerate}
+  \item The obvious way of defining the type of arrows over the universe $(x:X)$
+\end{enumerate}
+This means, in particular, that we have an automorpism $(x:X) \times (X \to Y) \simeq (x : X) \times(X \to Y)$ defined by
+\[(X \xrightarrow{f} Y) \mapsto ((y : Y) \times (\fib_f(y)) \xrightarrow{\fst} Y).\]
+As a result, anytime we wish to prove a property ranging over the the slice $\UU/Y := $
+
 \end{enumerate}
 
 \chapter{A menagerie of higher inductive types}
@@ -755,6 +752,8 @@ In the exercises we'll construct natural equivalences $2*A\simeq \Sigma A$.
 \item Show that the two definitions of $S^1$ are equivalent. That is show the
   HIT for $S^1$ is the same thing as $\Sigma 2$.
 
+%% \item Recall the notion of quasi-isomorphism from \cref{rmk:qinv}. Show that $(S^1 \simeq S^1)$
+
 \item Show that evaluation at the loop gives pointed equivalence
   \[
     (S^1 \pto X) \pto \Omega X
@@ -787,25 +786,27 @@ In the exercises we'll construct natural equivalences $2*A\simeq \Sigma A$.
 \item Construct for pointed types $X,Y$ an equivalence
   \[X * Y \simeq \Sigma(X\wedge Y).\]
 
-\item The torus is often drawn as a (filled) square with side identifications
-  %% \[\begin{tikzpicture}
-  %%     \begin{scope}[
-  %%       very thick,
-  %%       decoration={markings,
-  %%         mark=at position .150 with {\arrow{latex}},
-  %%         mark=at position .380 with {\arrow{latex}},
-  %%         mark=at position .405 with {\arrow{latex}},
-  %%         mark=at position .605 with {\arrowreversed{latex}},
-  %%         mark=at position .865 with {\arrowreversed{latex}},
-  %%         mark=at position .840 with {\arrowreversed{latex}}}]
-  %%       \draw[postaction={decorate}] (0,0) -- (0, 2) -- (2, 2) -- (2, 0) -- (0, 0);
-  %%     \end{scope}
-  %% \end{tikzpicture}\]
-  The arrows show how to glue the edges of the square:
-  arrows with corresponding symbols should be glued together, in the orientation
-  depicted.  Using this drawing, define a higher inductive type for the torus.
-  Show this type is equivalent to $S^1 \times S^1$.
-
+\item The torus, $T^2$, is often drawn as a (filled) square with side identifications
+\begin{equation}\label{eq:torus}
+\begin{tikzcd}[ampersand replacement=\&]
+	\star \& \star \\
+	\star \& \star
+	\arrow["{\ell_1}", from=1-1, to=1-2]
+	\arrow["{\ell_2}", from=2-1, to=1-1]
+	\arrow["{\ell_1}"', from=2-1, to=2-2]
+	\arrow["{\ell_2}"', from=2-2, to=1-2]
+\end{tikzcd}
+\end{equation}
+In HoTT, we can capture this as HIT with
+\begin{enumerate}
+\item[$\bullet$] A point constructor $\star : T^2$
+\item[$\bullet$] Two paths $\ell_1,\ell_2 : \star = \star$
+\item[$\bullet$] A filler $\mathsf{sq}$ of the square of paths in \eqref{eq:torus}.
+\end{enumerate}
+Recall \cref{def:fillers} for the definition of \emph{fillers}.
+%
+Show this type is equivalent to $S^1 \times S^1$.
+%
   (\emph{Hint})\enspace You may assume that eliminators compute definitionally
   on point constructors (as in cubical type theory), otherwise it's quite
   intricate!

@@ -14,8 +14,9 @@
 \usepackage[cal=cm,scr=zapfc,scrscaled=1.2,frak=euler]{mathalfa}
 \let\pxopenbox\openbox % pxmath already has openbox but amsthm also defines it
 \let\openbox\relax
-\usepackage{csquotes}
 \usepackage[main=english,shorthands=off]{babel}
+\usepackage[autostyle, english = british]{csquotes}
+
 \usepackage{amsthm}
 \renewcommand*{\openbox}{\pxopenbox}
 \usepackage{mathtools}          %to get \vcentcolon
@@ -23,9 +24,12 @@
 \usepackage{xspace}
 \usepackage{booktabs}
 
-\usepackage{quiver}
+
+
+
 
 \usepackage{tikz,tikz-cd}
+\usepackage{quiver}
 %\input tikzsetup
 
 %% Some TikZ stuff
@@ -94,7 +98,7 @@
 \DeclareMathOperator{\ap}{ap}
 \DeclareMathOperator{\apd}{apd}
 \DeclareMathOperator{\ev}{ev}
-\DeclareMathOperator{\trp}{trp} % transport?
+\DeclareMathOperator{\trp}{transport} % transport?
 \DeclareMathOperator{\lift}{lift}
 \DeclareMathOperator{\suc}{suc}
 \DeclareMathOperator{\cst}{cst}
@@ -113,8 +117,11 @@
 
 \DeclareMathOperator{\isProp}{isProp}
 \DeclareMathOperator{\isContr}{isContr}
+\newcommand*{\isType}[1]{\textsf{is-{$#1$}-type}\;}
 \DeclareMathOperator{\isSurj}{isSurj}
 \DeclareMathOperator{\isEquiv}{isEquiv}
+\DeclareMathOperator{\funExt}{funExt}
+\DeclareMathOperator{\qinv}{qinv}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\id}{id}
 
@@ -127,23 +134,36 @@
 
 \newcommand*{\B}{\mathrm{B}}
 \newcommand*{\blank}{\_}
-\newcommand*{\pto}{\to_\bullet}
+\newcommand*{\pto}{\to_\star}
+
+\newcommand*{\say}[1]{`{#1}'}
 
 \renewcommand*{\th}{\textsuperscript{th}\xspace}
 
 \newcommand*{\jeq}{\equiv}
 
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{lemma}{Lemma}
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{example}[theorem]{Example}
+\newtheorem*{definition}{Def}
+\newtheorem*{remark}{Remark}
+\newtheorem*{fact}{Fact}
+\newtheorem*{convention}{Convention}
+\newtheorem*{notation}{Notation}
+\newtheorem*{recall}{Recall}
+\newtheorem*{example}{Exx}
+
+\newcommand*{\axel}[1]{{\color{red}#1}}
 
 
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main.tex"
 %%% End:
+
+\newcommand{\bZ}{\ensuremath{\mathbb{Z}}}
+
+\newcommand{\ub}[2]{\ensuremath{\underset{#1}{\underbrace{#2}}}}
