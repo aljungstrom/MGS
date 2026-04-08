@@ -188,6 +188,9 @@ We give some basic examples of $n$-types.
 \begin{itemize}
 \item The only $-2$-type is the unit type $1$. More precisely, the type of
   $-2$-types is contractible.
+  \begin{itemize}
+    \item Important mention: the \textbf{singleton} type (over some $x:X$) i.e. $(y : X) \times (x = y)$ is contractible.
+  \end{itemize}
     \item $-1$-types are subtypes of $1$. For example the empty type $0$.
     \item The type of integers $\ZZ$ is a $0$-type. More generally any (non higher) inductive type is a $0$-type.
     \item The type of $n$-types in a universe $\UU$, $\UU^{\le n}$, is an $n+1$ type, for $n\ge-1$.
@@ -216,7 +219,8 @@ We give some basic examples of $n$-types.
     A type $X$ is \textbf{$n$-connected} if $\Trunc{X}_n$ is contractible.
 \end{definition}
 \begin{itemize}
-  \item Convention: `connected' = `$0$-connected'
+\item Convention: `connected' = `$0$-connected'
+\item If $X$ is $(n \geq -1)$-connected, then $x=_{X}y$ is $(n-1)$-connected for all $x,y:X$ (see Exercise X)
 \end{itemize}
 
 \begin{definition}
@@ -293,7 +297,10 @@ This type is itself pointed by $\refl_{\star_X}$.
     \[\Omega(f)(p) := (\star_f)^{-1} \cdot \ap_f(p) \cdot \star_f\]
   \item Path composition defines a `group structure' on $\Omega$
     \begin{itemize}
-    \item Problem: group laws only hold up to homotopy
+    \item Problem: group laws only hold up to homotopy.
+      \begin{itemize}
+      \item For instance there might be more than one element of $p \cdot p^{-1} = \refl_{\star_X}$.
+      \end{itemize}
     \item Solution: need to truncate
     \end{itemize}
 \end{itemize}
@@ -305,48 +312,47 @@ This type is itself pointed by $\refl_{\star_X}$.
   \end{itemize}
 \end{definition}
 
-%
-The loop space is the fundamental structure which will allow us to define homotopy groups.
-First note that the loop space is already 'group-like'.
-Using path concatenation we get an operation $\_ \cdot \_ : \Omega(X, \star_X) \to \Omega(X, \star_X) \to \Omega(X, \star_X)$.
-This satisfies the usual group laws: path composition is associative, has unit $\refl_x$ and for each element $p$, it's inverse is $p^{-1}$.
-The only thing that is preventing this from being a group is that it isn't a set!
-These group laws only hold up to homotopy.
-For instance there might be more than one element of $p \cdot p^{-1} = \refl_{\star_X}$.
-To solve this we set truncate everything to end up with an ordinary group.
+\paragraph{Note} $\Omega : \UU_\star \to \UU_\star$ -- can be iterated.
 
 \begin{definition}
-    The \textbf{first homotopy group}, traditionally called the \textbf{fundamental group}, of a pointed type $X$ is
-    \[ \pi_1 X := \setTrunc{\Omega X}\]
-\end{definition}
-
-By set truncating we collapsed all of the higher loops of our type.
-The higher homotopy groups are introduced to keep track of this higher homotopy information.
-
-\begin{definition}
-    The $n$\th loop space of $X$ is defined by recursion:
-    \begin{align*}
-        \Omega^0X &:= X \\
-        \Omega^{n+1}X &:= \Omega(\Omega^{n}X)
-    \end{align*}
-    The $n$\th homotopy group of $(X, \star_X)$ is then:
+    The $n$th homotopy group of $X:\UU_\star$ is defined by
     \[ \pi_n X := \setTrunc{\Omega^n X}\]
+    Note that $n \geq 1$!
 \end{definition}
+\begin{itemize}
+\item $\Omega$ is functorial $\implies$ $\pi_n$ is functorial
+\item Write $f^* := \pi_n(f) : \pi_n(X) \to \pi_n(Y)$ for its functorial action.
+\end{itemize}
 
-Note all these operations are functorial: Given a pointed map $(f,q) : (X, \star_X) \pto (Y, \star_Y)$ we get a map
-\begin{align*}
-    \Omega f : \Omega(X, \star_X) &\pto \Omega(Y, \star_Y)  \\
-    (\Omega f)(p)& := q\cdot \ap_f(p)\cdot q^{-1}
-\end{align*}
-which descends to a group homomorphism $\pi_n(X, \star_X) \to \pi_n(Y, \star_Y)$ for each $n$ by truncation.
+\axel{Let's compute some very exciting homotopy groups!}
+\begin{proposition}
+  If $X$ is an $n$-type, then $\pi_{k}(X)$ vanishes $\forall k>n$.
+\end{proposition}
+\begin{corollary}
+  $\pi_{n \geq 1}(X)$ vanishes for any set $X$. In particular for $X = 1$.
+\end{corollary}
 
-\section*{The fundamental theorem of identity types}
+%% More exciting:
+%% \begin{proposition}
+%%   If $X$ is $n$-connected, then $\pi_{k}(X)$ vanishes $\forall k\leq n$.
+%% \end{proposition}
+%% \begin{proposition}
+%%   Let $f : X \to_\star Y$ be $n$-connected. Then $f^* : \pi_k(X) \to \pi_k(Y)$ is
+%%   \begin{itemize}
+%%   \item an isomorphism when $k \leq n$,
+%%   \item surjective when $k = n+1$ and
+%%   \end{itemize}
+%% \end{proposition}
+%% \begin{itemize}
+%%   \item $\uparrow$ key tool for computing homotopy groups of highly connected spaces, e.g.\ $n$-\textbf{spheres}.
+%% \end{itemize}
 
-Doing homotopy theory in HoTT is all about identity types, and so we need a good generic way to understand them.
-A fundamental property of identity types is that given any fixed $x_0 : X$, the type $(x : X) \times (x_0 =_X x)$ is contractible with $(x_0, \refl_{x_0})$ as centre of contraction.
-This is clear by path induction.
+\section*{Digression: the fundamental theorem of identity types}
 
-In fact, this property completely characterises the identity type in HoTT, as is made clear by the \emph{Fundamental Theorem of Identity Types}:
+\begin{itemize}
+\item Understanding homotopy groups = understanding identity types
+\item These are uniquely characterised by $\refl$ and path induction. Formally:
+\end{itemize}
 %
 \begin{theorem}[The Fundamental Theorem of Identity Types]
     Let $R : X \to X \to \UU$ be a reflexive binary relation. The following are equivalent   \begin{enumerate}
@@ -357,22 +363,25 @@ In fact, this property completely characterises the identity type in HoTT, as is
     \end{enumerate}
 \end{theorem}
 
-As an example, let us characterize the identity types of dependent sums. If $Y:X\to\UU$ is a type family over $X$ with a fixed element $(\star_X,\star_Y):(x:X)\times Y(x)$ of the type space,
-define $P:\bigl((x:X)\times Y(x)\bigr) \to \UU$ by
-\begin{equation}\label{eq:dep-sum}
-  P(x,y) := (p : \star_X=_X x) \times (p_* y_0 =_{Y(x)} y).
-\end{equation}
-We can show that the total space is contractible by twice contracting a singleton:
+\begin{example}
+  \textbf{Q.} Given $(x,y) ,(x',y') : (x:X)\times B(x)$, how can we describe
+  \[(x,y) =_{(x : X) \times B(x)} (x',y')?\]
+  %
+  \textbf{A.} Define $R : \left[(x:X)\times B(x) \right]^2 \to \UU$ by
+  \[R((x,y),(x',y')) := (p : x = y) \times (x' =^B_p y')\]
+  and show that
+  \[\left[(x',y') : (x :X ) \times B(x)\right] \times R((x,y),(x',y'))\] is contractible:
 \begin{align*}
-  &(x:X)\times(y:Y(x))\times P(x,y)\\
+  &\left[(x',y') : (x :X ) \times B(x)\right] \times R((x,y),(x',y')) \\
   \simeq\;
-  &(x:X)\times(y:Y(x))\times(p : \star_X=_X x)\times(p_*y_0 =_{Y(x)}y)\\
+  & \ub{\mathsf{contr}}{(x': X) \times (p : x = x')} \times (y' : B(x')) \times (y =^B_p y') \\
   \simeq\;
-  &(y:Y(\star_X))\times(\refl_{\star_X*}y_0 = y)
+  &(y':B(x))\times(y = y')
   \simeq 1
 \end{align*}
 %
-There is also a pointed version of this theorem.
+\end{example}
+Pointed version:
 %
 \begin{theorem}[The Fundamental Theorem of Identity Types]
   Let $X$ be a pointed type and $Y: X \to \UU$ a family of types equipped with a point $y_0 : (\star_X)$. The following statments are equivalent:
@@ -382,17 +391,17 @@ There is also a pointed version of this theorem.
     \end{enumerate}
 \end{theorem}
 %
-This in turn can be used to establish the following important characterization of type families,
-sometimes known as \textbf{straightening--unstraightening}.
-\begin{theorem}
-  For any small type $X:\UU$, forming the dependent sum along with the first projection gives an equivalence:
-  \[
-    (X \to \UU) \simeq \Bigl((Y : \UU) \times (Y \to X)\Bigr)
-  \]
-\end{theorem}
-The inverse maps a type over $X$, $f : Y\to X$, to the family of fibers, $\fib_f$.
-%
-Let us spell out the key consequence of this theorem, because it is \emph{incredibly useful}. Fix a predicate $P : (X : \UU) \times (X \to Y) \to \UU$, i.e.\ a statement about universally quantified over all types $X$ and maps $X \to Y$. In order to prove that $P(X,f)$ holds for all $X \rightarrow{f} Y$, it suffices to prove $P$ for all first projections of the form $(y:Y) \times B(y) \xrightarrow{\fst} Y$.  
+%% This in turn can be used to establish the following important characterization of type families,
+%% sometimes known as \textbf{straightening--unstraightening}.
+%% \begin{theorem}
+%%   For any small type $X:\UU$, forming the dependent sum along with the first projection gives an equivalence:
+%%   \[
+%%     (X \to \UU) \simeq \Bigl((Y : \UU) \times (Y \to X)\Bigr)
+%%   \]
+%% \end{theorem}
+%% The inverse maps a type over $X$, $f : Y\to X$, to the family of fibers, $\fib_f$.
+%% %
+%% Let us spell out the key consequence of this theorem, because it is \emph{incredibly useful}. Fix a predicate $P : (X : \UU) \times (X \to Y) \to \UU$, i.e.\ a statement about universally quantified over all types $X$ and maps $X \to Y$. In order to prove that $P(X,f)$ holds for all $X \rightarrow{f} Y$, it suffices to prove $P$ for all first projections of the form $(y:Y) \times B(y) \xrightarrow{\fst} Y$.  
 
 \section{Exercises}
 \begin{enumerate}
@@ -464,6 +473,13 @@ Let us spell out the key consequence of this theorem, because it is \emph{incred
         \item Deduce that for $n \geq 2$, the path composition in $\Omega^n(X, x)$ is commutative, and thus that $\pi_n(X, x)$ is abelian.
     \end{enumerate}
 
+  \item Recall that $\UU^{\le n} := (X: \UU) \times \isType{n}(X)$ is an $(n+1)$-type. This allows us to define $R : \Trunc{X}_{n+1} \times \Trunc{X}_{n+1} \to \UU^{\le n}$ by the truncation elimination: 
+    \[R(\trunc{x}_{n+1} , \trunc{y}_{n+1}) := \Trunc{x = y}_{n}\]
+    %
+
+    Apply the fundamental theorem of identity types with the above
+    family to deduce that $(\trunc{x}_{n+1} =_{\Trunc{X}_{n+1}} \trunc{y}_{n+1}) \simeq \Trunc{x = y}_n$
+    
   \item Show that when $X$ is connected, that $\pi_n(X, x_0) \cong \pi_n(X, x_1)$ are merely isomorphic for any $x_0, x_1 : X$, that is, construct an element of the type
     \[
       (x_0, x_1: X) \to \Trunc{\pi_n(X,x_0) \simeq \pi_n(X,x_1)}.
@@ -505,131 +521,157 @@ Let us spell out the key consequence of this theorem, because it is \emph{incred
   %%   \end{enumerate}
 
 
-\begin{enumerate}
-  \item The obvious way of defining the type of arrows over the universe $(x:X)$
-\end{enumerate}
-This means, in particular, that we have an automorpism $(x:X) \times (X \to Y) \simeq (x : X) \times(X \to Y)$ defined by
-\[(X \xrightarrow{f} Y) \mapsto ((y : Y) \times (\fib_f(y)) \xrightarrow{\fst} Y).\]
-As a result, anytime we wish to prove a property ranging over the the slice $\UU/Y := $
+%% \begin{enumerate}
+%%   \item The obvious way of defining the type of arrows over the universe $(x:X)$
+%% \end{enumerate}
+%% This means, in particular, that we have an automorpism $(x:X) \times (X \to Y) \simeq (x : X) \times(X \to Y)$ defined by
+%% \[(X \xrightarrow{f} Y) \mapsto ((y : Y) \times (\fib_f(y)) \xrightarrow{\fst} Y).\]
+%% As a result, anytime we wish to prove a property ranging over the the slice $\UU/Y := $
 
 \end{enumerate}
 
 \chapter{A menagerie of higher inductive types}
 
+\paragraph{Plan}
+\begin{enumerate}
+\item Introduce basic HITS: The circle, pushouts, suspensions and $n$-spheres
+\item Compute vanishing homotopy groups of spheres
+\item $3$x$3$-lemma
+\end{enumerate}
+
 \section{The circle}
-
-A higher inductive type is like a normal inductive type, where instead of just being able to specify points of the type, we can also specify paths between points, paths between paths, and so on.
-For example, take the circle, which we define as follows.
+\begin{itemize}
+\item Higher inductive types (HITs): inductive types with path constructors
+\end{itemize}
 \begin{definition}
-    The \textbf{circle} is the HIT generated by
+  The \textbf{circle}, $S^1$,is the HIT generated by
     \begin{align*}
-        \ast &: S^1 \\
-        \Sloop &: \ast = \ast
+        \star_{S^1} &: S^1 \\
+        \Sloop &: \star_{S^1} = \star_{S^1}
     \end{align*}
+    \axel{Draw it}
 \end{definition}
-This type comes with universal properties as normal inductive types do.
-In this case the recursion principle tells us that to define a map $S^1 \to X$ it's enough to give a point $x : X$ and a path $x =_X x$. More precisely, the evaluation map
+\textbf{Elimination principle:} To define a map $f : S^1 \to X$, need to define:
+\begin{itemize}
+\item $f(\star_{S^1}) := ?$ \hspace{1cm}$:$\hspace{1cm}$X$
+\item $\ap_f(\Sloop) := ?$ \hspace{1cm}$:$\hspace{1cm}$f(\star_{S^1}) = f(\star_{S^1})$
+\end{itemize}
+\textbf{Alt:} the evaluation map 
+\[(S^1 \to X) \to (x : X) \times (x =_X x) , \quad f \mapsto (f(\ast), \ap_f(\Sloop)) \]
+is an equivalence.\\
+\textbf{Dependent version:} for a dependent type $B : S^1 \to \UU$, the evaluation map
 \[
-  (S^1 \to X) \to (x : X) \times (x=_X x),
-  \quad
-  f \mapsto (f(\ast), \ap_f(\Sloop)),
+  \Bigl((z : S^1) \to B(z)\Bigr) \to \Bigl(x : B(\ast) \times (\Sloop_*(x)
+  =^B_{\Sloop} x)\Bigr),
+  \quad f \mapsto (f(\ast), \apd_f(\Sloop))
 \]
-is an equivalence. From this we deduce also an induction principle for type families $p : S^1 \to \UU$. Here we encounter again a ``dependent path'' ($\Sloop_*(x) =_{P(\ast)} x$). The map
-\[
-  \Bigl((z : S^1) \to P(z)\Bigr) \to \Bigl(x : P(\ast) \times (\Sloop_*(x)
-  =_{P(\ast)} x)\Bigr),
-  \quad f \mapsto (f(\ast), \ap_f(\Sloop))
-\]
-is an
-equivalence.
+is an equivalence.
 
-We can visualise the circle as one would normally, $\ast$ is the basepoint and and $\mathrm{loop}$ as a loop drawn from the basepoint to itself.
+%% We can visualise the circle as one would normally, $\ast$ is the basepoint and and $\mathrm{loop}$ as a loop drawn from the basepoint to itself.
 
-%% \[
-%% \begin{tikzpicture}
-%%     \draw[fill=none,
-%%           decoration={markings,
-%%                       mark=at position 0.25 with {\arrow[scale=1.1]{>} \node at (0,-.3) {loop};}},
-%%           postaction={decorate}]
-%%     (0,0) circle (0.7) node [black,yshift=-1.5cm] {};
-%%     \draw[fill=black](0,-0.7) circle (1 pt) node [below] {\huge $\ast$};
-%% \end{tikzpicture}
-%% \]
+%% %% \[
+%% %% \begin{tikzpicture}
+%% %%     \draw[fill=none,
+%% %%           decoration={markings,
+%% %%                       mark=at position 0.25 with {\arrow[scale=1.1]{>} \node at (0,-.3) {loop};}},
+%% %%           postaction={decorate}]
+%% %%     (0,0) circle (0.7) node [black,yshift=-1.5cm] {};
+%% %%     \draw[fill=black](0,-0.7) circle (1 pt) node [below] {\huge $\ast$};
+%% %% \end{tikzpicture}
+%% %% \]
 
-In this way higher inductive types let us write down a definition for any space formed by a collection of points, identifications between those points, identifications between those identifications, and so on.
-We can then form any CW-complex, a standard notion from topology, we might want as an HIT. For an example of this see the exercises.
+%% In this way higher inductive types let us write down a definition for any space formed by a collection of points, identifications between those points, identifications between those identifications, and so on.
+%% We can then form any CW-complex, a standard notion from topology, we might want as an HIT. For an example of this see the exercises.
 
 \section{Pushouts}
 
-Adding paths to inductive types is like a weaker version quotienting in set based mathematics, in the sense we force elements to be equal.
-Thus we can define all sorts of colimits and other ``gluing'' constructions by higher inductive types.
+%% Adding paths to inductive types is like a weaker version quotienting in set based mathematics, in the sense we force elements to be equal.
+%% Thus we can define all sorts of colimits and other ``gluing'' constructions by higher inductive types.
+
+\axel{Can define almost any space CW complex we want this way, but almost all of these constructions will turn out to be equivalent to an instance of the following:}
 
 \begin{definition}
-    Given maps $f : A \to B$ and $g : A \to C$ we can form their \textbf{pushout} by the higher inductive type $B \sqcup^A C$ with the following constructors:
+    Given a span $B \xleftarrow{f} A \xrightarrow{g} C$ we can form its \textbf{pushout} by the higher inductive type $B \sqcup^A C$ with the following constructors:
     \begin{align*}
         \inl &: B \to B \sqcup^A C \\
         \inr &: C \to B \sqcup^A C \\
         \glue &: (a : A) \to \inl (f a) = \inr (g a)
     \end{align*}
+    \axel{Draw pictures}
 \end{definition}
 
 \begin{definition} Numerous construction of (in general, higher) types as pushouts:
     \begin{enumerate}
-        \item Given a type $X$ its \textbf{suspension} $\Sigma X$ is the pushout of $1 \leftarrow X \to 1$.
-          We often name the two inclusions $\inl$ and $\inr$ as $N, S : 1 \to \Sigma X$,
-          for the \emph{north} and \emph{south} poles.
-          The family of paths $\merid : (x : X) \to N=S$
-          are called the \emph{meridians}.
-        \item Given types $X$, $Y$, their \textbf{join} $X \ast Y$ is the pushout of $X \leftarrow X \times Y \rightarrow Y$.
-        \item Given pointed types $(X, x_0)$ and $(Y, y_0)$, their \textbf{wedge product} $X \vee Y$ is given by the pushout of the inclusion of the basepoints $X \leftarrow 1 \rightarrow Y$.
-        \item Given pointed types $(X, x_0)$ and $(Y, y_0)$, their \textbf{smash product} $X \wedge Y$ is given as the pushout $1 \leftarrow X \vee Y \rightarrow X \times Y$ where:
+    \item $\Sigma X$, the \textbf{suspension} of $X$; = pushout of $1 \leftarrow X \rightarrow 1$. Conventions:
+      \begin{itemize}
+      \item $N:= \inl(\star_1)$
+      \item $S:= \inr(\star_1)$ , and
+      \item $\merid(x) := \glue(x)$
+      \item Always take $\Sigma X$ to be pointed by $N$.
+      \end{itemize}
+        \item $X \ast Y$, the \textbf{join}, of $X$ and $Y$ = pushout of $X \leftarrow X \times Y \rightarrow Y$.
+        \item $X \vee Y$, the \textbf{wedge sum} of two \underline{pointed types} $X$ and $Y$ = pushout of $X \xleftarrow{\star_X} 1 \xrightarrow{\star_Y} Y$.
+        \item Given a map $f : X \to Y$ its \textbf{cofibre}, $\cofib(f)$, is given by the pushout of the diagram $1 \leftarrow X \rightarrow Y$.
+        \item There is an inclusion $\iota : X \vee Y \to X \times Y$ defined by
         \begin{align*}
             X \vee Y &\to X \times Y \\
             \inl x &\mapsto (x, y_0) \\
             \inr y &\mapsto (x_0, y)
         \end{align*}
-        \item Given a map $f : X \to Y$ its \textbf{cofiber}, $\cofib(f)$, is given by the pushout of the diagram $1 \leftarrow X \rightarrow Y$.
+        Its cofibre is called the \textbf{smash product}, denoted $X \wedge Y$.
     \end{enumerate}
 \end{definition}
 
-\section{Suspensions}
+\section{Suspensions/spheres}
+\axel{We have seen We will use the above to define spheres}
+%
+\begin{itemize}
+\item Have seen $S^1$
+\item Q: How to define $S^n$?
+\item Easy for fixed $n$ but in general?
+\end{itemize}
+Solution: iterated suspensions.
 
+%
 An immediate use for suspensions is given by defining higher dimensional spheres.
 Although it is clear how to define each sphere individually as an HIT, this doesn't give a definition of all the spheres internal to type theory, as we are unable to produce a function $\NN \to \UU$ this way.
 Instead we can define the higher spheres uniformly via iterated suspension.
-
-\begin{definition} The type family $S^{-} : \NN \to \UU$ of \textbf{spheres} is given by recursion:
-    \begin{align*}
-        S^0 &:= 2 \\
-        S^{n+1} &:= \Sigma S^n
-    \end{align*}
-    We also let $S^{-1} := 0$ be the empty type.
+%
+\begin{definition} We define the $n$-sphere, $S^n$, by $S^n := \Sigma \emptyset$.
 \end{definition}
-Geometrically, the spheres $S^{n-1}$ are the (homotopy types of) of the unit spheres of $\mathbb{R}^n$, $n\ge0$.
+\axel{Draw}
+%
+%
 \begin{theorem}[Loop Space--Suspension Adjunction]
-    Let $(X, x_0)$, $(Y, y_0)$ be pointed types. Then we have an equivalence:
-    \[ \Bigl((\Sigma X, N) \pto (Y, y_0)\Bigr) \simeq \Bigl((X,x_0) \pto (\Omega(Y, y_0), \refl_{y_0})\Bigr) \]
+  Let $X$ and $Y$ be a pointed type. We have
+  \[ (\Sigma X \pto Y) \simeq (X \pto \Omega(Y)) \]
 \end{theorem}
 \begin{proof}
-    We calculate, first by unfolding the universal property of a suspension.
+    Unfold universal property of $\Sigma X$:
     \begin{align*}
-        (\Sigma X, N) \pto (Y, y_0)
-        &\equiv (f : \Sigma X \to Y) \times (f(N) = y_0) \\
-        &\simeq (y_N : Y) \times (y_S : Y) \times (X \to y_N = y_S) \times (y_N = y_0)
+        (\Sigma X \pto Y)
+        &\equiv (f : \Sigma X \to Y) \times (f(N) = \star_Y) \\
+      &\simeq (y_N : Y) \times (y_S : Y) \times (X \to y_N = y_S) \times (y_N = \star_Y)\\
+      &\simeq \ub{\text{contr. at $(\star_Y,\refl)$}}{(y_N : Y) \times (y_N = \star_Y)} \times (y_S : Y) \times (X \to y_N = y_S)\\
+      &\simeq (y_S : Y) \times (X \to \star_Y = y_S)\\
+      &\simeq (y_S : Y) \times (p : X \to \star_Y = y_S) \times (q : \star_Y = y_S) \times (q = p(\star_X))\\
+      &\simeq \ub{\text{contr. at $(\star_Y,\refl)$}}{(y_S : Y)  \times (q : \star_Y = y_S)}  \times (p : X \to \star_Y = y_S) \times (q = p(\star_X)) \\
+      &\simeq (p : X \to \star_Y = \star_Y) \times (\refl = p(\star_X))\\
+      &\simeq (X \pto \Omega Y)
     \end{align*}
-    Note that the data of a point $y_N : Y$ and a path $y_N = y_0$ is contractible, thus by composing with the inverse of the path, we see the type above is equivalent to:
-    \[ (y_S : Y) \times (g : X \to y_0 = y_S) \]
-    By using the point $x_0 : X$, we get a distinguished path $g(x_0) : y_0 = y_S$.
-    Thus we can compose pointwise by the inverse of these paths to get that this type is equivalent to
-    \[ (h : X \to y_0 = y_0) \times (h(x_0) = \refl_{y_0}) \]
-    which is definitionally:
-    \[ (X, x_0) \pto \Omega(Y, y_0)\]
-
-    Overall the map takes $f : \Sigma X \pto Y$ to
-    $\Omega(f) \circ \eta : X \pto \Omega Y$,
-    where $\eta : X \pto \Omega\Sigma X$ maps $x$ to $\merid(x_0)^{-1}\cdot \merid(x)$
-    with the obvious proof of pointedness.
+    %% Overall the map takes $f : \Sigma X \pto Y$ to
+    %% $\Omega(f) \circ \eta : X \pto \Omega Y$,
+    %% where $\eta : X \pto \Omega\Sigma X$ maps $x$ to $\merid(x_0)^{-1}\cdot \merid(x)$
+    %% with the obvious proof of pointedness.
 \end{proof}
+
+\begin{itemize}
+\item The unit $X \to_\star \Omega(\Sigma X)$ we will denote by $\sigma$. Very important map!
+\item \textbf{Exercise} Trace the above proof to verify that $\sigma(x) = \merid(x) \cdot \merid(x_0)^{-1} $
+\end{itemize}
+
+
+\paragraph{Exercise:} check that the the 
 
 \begin{lemma}
   \label{lem:n-trunc-sphere-orth}
@@ -680,10 +722,22 @@ Geometrically, the spheres $S^{n-1}$ are the (homotopy types of) of the unit sph
 
 \section{The three-by-three lemma and applications}
 
-The following lemma is an instance of commutativity of colimits (a Fubini-type lemma),
-and it's very useful, though quite tedious to formalize.
-
-Consider a commuting diagram
+  Given a commutative diagram
+\[\begin{tikzcd}[ampersand replacement=\&]
+	B \& A \& C \\
+	Y \& X \& Z
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow[from=1-2, to=1-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow["h"{description}, from=1-2, to=2-2]
+	\arrow["g", from=1-3, to=2-3]
+	\arrow[from=2-2, to=2-1]
+	\arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+we get an induced map $B \sqcup^A C \to Y \sqcup^X Z$
+\textbf{exercise: construct it}.\\
+%
+Consider:
 \[
   \begin{tikzcd}
     A_{00} & A_{02}\ar[l]\ar[r] & A_{04} \\
@@ -707,9 +761,9 @@ or form the pushouts of the rows resulting in a span
 \begin{lemma}[$3\times 3$]
   There is a natural equivalence between the pushouts of the two spans above.
 \end{lemma}
-
-We'll not go into the proof here, but rather focus on some applications.
-
+\begin{proof}
+  Direct but technical.
+\end{proof}
 \begin{proposition}
   For any types $A,B,C$, there is a natural equivalence
   \[(A * B) * C \simeq A * (B * C).\]
@@ -786,6 +840,8 @@ In the exercises we'll construct natural equivalences $2*A\simeq \Sigma A$.
 \item Construct for pointed types $X,Y$ an equivalence
   \[X * Y \simeq \Sigma(X\wedge Y).\]
 
+\item We can define the unit interval type $\II$ to be the pushout of the constant span $1 \leftarrow 1 \rightarrow 1$. Working in Martin-Löf type theory \emph{without} univalence (and function extensionality) but with pushouts with definitional computation rules for point constructors\footnote{Given a triplet $(x,y,p) : ((x, y) : A \times A) \times (x = y)$, the universal property of truncation gives us a function $f : \II \to A$. The statement means that the equalities $f(\inl{\star_1}) = x$ and $f(\inr{\star_1}) = y$ hold strictly, i.e.\ by $\refl$.}, prove function extensionality.
+
 \item The torus, $T^2$, is often drawn as a (filled) square with side identifications
 \begin{equation}\label{eq:torus}
 \begin{tikzcd}[ampersand replacement=\&]
@@ -801,9 +857,8 @@ In HoTT, we can capture this as HIT with
 \begin{enumerate}
 \item[$\bullet$] A point constructor $\star : T^2$
 \item[$\bullet$] Two paths $\ell_1,\ell_2 : \star = \star$
-\item[$\bullet$] A filler $\mathsf{sq}$ of the square of paths in \eqref{eq:torus}.
+\item[$\bullet$] A filler $\mathsf{sq}$ of the square of paths in \eqref{eq:torus}, i.e.\ a path $\ell_1 \cdot \ell_2 = \ell_2 \cdot \ell_1$ or, equivalently, $\ell_1 =^{x \mapsto x = x}_{\ell_2} \ell_1$
 \end{enumerate}
-Recall \cref{def:fillers} for the definition of \emph{fillers}.
 %
 Show this type is equivalent to $S^1 \times S^1$.
 %
@@ -811,11 +866,6 @@ Show this type is equivalent to $S^1 \times S^1$.
   on point constructors (as in cubical type theory), otherwise it's quite
   intricate!
 
-\item We can define the unit interval type $\II$ to be the pushout of the constant span $1 \leftarrow 1 \rightarrow 1$. Working in Martin-Löf type theory \emph{without} univalence (and function extensionality) but with pushouts with strict definitional computation rules, prove that
-  \begin{enumerate}
-  \item $ [((x, y) : A \times A) \times (x = y)] \simeq (\II \to A)$
-  \item Use the above equivalence (or, if you prefer, a variation thereof) to derive function extensionality.
-  \end{enumerate}
 
 \end{enumerate}
 
@@ -823,82 +873,143 @@ Show this type is equivalent to $S^1 \times S^1$.
 \chapter[The Hopf fibration and the LES]{The Hopf fibration and the long exact sequence}
 
 \section{The fundamental group of the circle}
+\paragraph{plan}
+\begin{itemize}
+\item Compute our first proper homotopy group: $\pi_1(S^1)$.
+\item Main tool: Long exact sequence of homotopy groups 
+\item Compute $\pi_3(S^2)$
+\end{itemize}
+---
+\begin{itemize}
+\item Spoiler: $\pi_1(S^1) \cong \bZ$
+\item $S^1$ is special : already $\Omega S^1 \simeq \bZ$ (no need to truncate)
+\end{itemize}
 
-With the tools we have built up, we can now recreate a very classical result, that $\pi_1(S^1) = \ZZ$.
-We do this in the usual way, by constructing the universal cover of the circle.
-Consider the type family:
-\begin{align*}
-    R : S^1 &\to \UU \\
-    R(\ast) &:= \ZZ \\
-    \ap_R(\Sloop) &:= ( \_ + 1 )
-\end{align*}
-where we consider $\_ + 1 : \ZZ = \ZZ$ by univalence.
-
-This cover looks like a homotopy theoretic version of the real numbers, wound up in a helix over the circle.
-Over each point in the circle we have a copy of the integers, and rotating around the circle once, increases the integer in the cover.
-You can imagine unwinding a loop that goes round the origin $n$ times, to a segment $[0, n]$ (or $[n,0]$ for negative $n$) in the real numbers.
-Our goal now is to show that this type family actually corresponds to the identity types on the circle.
-To do this we will use the fundamental theorem of the identity types.
-It's sensible to expect this to work, since our picture of $R$ is the real line, which is contractible.
-
-To start with there is an obvious map $\ast = x \to R(x)$ for $x : S^1$
-given by path induction sending $\refl_\ast$ to $0 : \ZZ$.
-Now our goal is to show the total space $(x : S^1) \times R(x)$ is contractible.
-The centre of contraction we choose is $(\ast, 0)$.
-Hence our goal is to show for all $x : S^1$, and $y : R(x)$ we have $(\ast, 0) = (x, y)$.
-By our characterisation of identity types of dependent sums~\eqref{eq:dep-sum}, this type is equivalent to $(p : \ast =_{S^1} x) \times (p_*0 =_{R(x)} y)$.
-By $S^1$-induction, since the second component is a proposition, this is the same as constructing a function
-$h : \ZZ \to (\ast =_{S^1} \ast)$
-satisfying $h(k)_*(0) = k$ for all $k$, together with
-a proof
-$H : {\Sloop}_*(h) = h$.
-To construct this proof, it will be helpful to generalise the situation to apply path induction.
-
+\begin{lemma}\label{lem:S1prop}
+  Let $P: S^1 \to \UU$ be a family of propositions. If $P(\star_{S¹})$ holds then $P(x)$ holds for all $x:S^1$.
+\end{lemma}
+\begin{proof}
+  Let $p : P(\star_{S^1})$. We define $f : (x : X) \to P(x)$ by $S^1$-elimination:
+  \begin{align*}
+    f(\star_{S^1}) &:= p \\
+    \apd_f{\Sloop} &:= \text{`isProp'} : \ub{\trp^P_{\Sloop}(p) = p}{p =^P_{\Sloop} p} 
+  \end{align*}
+\end{proof}
+\paragraph{'digression': some transport lemmas}
 \begin{lemma}
 \label{lem:trp-fun}
     Let $P,Q : X \to \UU$ and $p : x_0 =_X x_1$.
     Let $f : P(x_0) \to Q(x_0)$.
-    Then we can identify $p_*(f) : P(x_1) \to Q(x_1)$ with the composition
-    \[ Q(p) \circ f \circ P(p)^{-1} : P(x_1) \to Q(x_1).\]
+    Then we can identify $\trp^{x \mapsto P(x) \to Q(x)}_p(f) : P(x_1) \to Q(x_1)$ with the composition
+    \[ \trp^Q_p \circ f \circ \trp^Q_{p^{-1}} : P(x_1) \to Q(x_1).\]
+\end{lemma}
+\begin{proof}
+  By path induction.
+\end{proof}
+\begin{lemma} Let $p : x = y$ and $q: y =z$. We have $\trp^{b \mapsto x = b}_q(p) : p \cdot q$.
 \end{lemma}
 \begin{proof}
   By path induction.
 \end{proof}
 
-\begin{lemma}
-    The total space $(x : S^1) \times R(x)$ is contractible.
-\end{lemma}
-\begin{proof}
-  First we construct $h : (k : \ZZ) \to (\ast =_{S^1} \ast)$
-  by integer induction as the power $h(k) := \Sloop^k$.
-  This indeed satisfies $h(k)_*(0) = (\Sloop^k)_*(0) = k$, as desired.
+We can easily define a map $\Sloop^{(-)} : \bZ \to \Omega S^1$ by $\Sloop^{n+1} := \Sloop^n \cdot \Sloop$.
+\paragraph{Q: Other direction??} $\Omega S^1 \to \bZ$? Get stuck
+\paragraph{Change approach: fundamental theorem of identity types}
+Suppose we could define a family $R : S^1 \to \UU$ such that:
+\begin{itemize}
+\item $R(\star_{S^1}) = \bZ$
+\item $(x : S^1) \times R(x)$ is contractible
+\end{itemize}
+We get $\ub{\Omega S^1}{\star_{S^1} = \star_{S^1}} \to \ub{\bZ}{R(\star_{S^1})}$ is an equivalence.
 
-  Next we show ${\Sloop}_*(h) = h$.
-  To apply~\cref{lem:trp-fun} it's important to realize that we're transporting in the family of types $R(x) \to (\ast =_{S^1} x)$ for $x:S^1$. Now we have
-  \[ \Sloop_*(h) = (\blank \cdot \Sloop) \circ h \circ (\blank-1),\]
-  which maps $k:\ZZ$ to $\Sloop^{k-1}\cdot\Sloop$, which indeed equals $h(k)=\Sloop^k$.
-
-  Hence by the discussion above $(x : S^1) \times R(x)$ is contractible.
-\end{proof}
-
-\begin{corollary}\label{cor:id-S1}
-    The family of maps $\ast = x \to R(x)$ is a family of equivalences.
-    Hence $\Omega(S^1,\ast) \simeq \ZZ$.
-\end{corollary}
-\begin{proof}
-    Immediate from the previous lemma and the fundamental theorem of identity types
-\end{proof}
-Note also that by construction, this equivalence is an equivalence of groups.
+\paragraph{Defining $R$}
+We define $R$ by $S^1$-elimination:
+\begin{align*}
+    R : S^1 &\to \UU \\
+    R(\ast) &:= \ZZ \\
+    \ap_R(\Sloop) &:= \mathsf{ua}(x \mapsto x + 1)
+\end{align*}
+\axel{draw picture to argue why contr.}
+\paragraph{Fact:} $\trp^R_\Sloop(x) = x + 1$ and  $\trp^R_{-\Sloop}(x) = x - 1$.
+\paragraph{Proving contractibility}
+\textbf{Point of contraction:} there is a canonical point of $(x : S^1) \times R(x)$, namely $(\star_{S^1}, 0)$\\
+\textbf{Uniqueness:} Given any other two points $x : S^1$ and $r : R(x)$, show $(\star_{S^1},0) = (x,y)$.
+\begin{itemize}
+\item i.e. provide two pieces of data: $p : (x : S^1) (r : R(x)) \to \star_{S^1} = x$ and $q : (x : S^1) (r : R(x)) \to 0 =^{R}_{p(x,r)} r$. We leave $q$ as an exercise.
+%% \item Applying prev. lemma, we only need to construct $q_{\star_{S^1}} : (r : \ub{R(\star_{S^1})}{\bZ}) \to 0 =^{R}_{p(\star_{S^1},r)} r$
+\end{itemize}
+We construct $p$ by $S^1$-elimination:
+\[p(\star_{S^1}) : (r : \bZ) \to \star_{S^1} = \star_{S^1} \]
+\[p(\star_{S^1})(r) = \Sloop^r \]
+For the $\Sloop$ case, need to show
+\begin{align*}
+  (r \mapsto \Sloop^r) =^{x \mapsto R(x) \to \star_{S^1} = x}_{\Sloop} (r \mapsto \Sloop^r)
+\end{align*}
+i.e. for all $r: \bZ$
+\begin{align*}
+  \trp^{x \mapsto R(x) \to \star_{S^1} = x}_{\Sloop}(r \mapsto \Sloop^r)(r) = \Sloop^r
+\end{align*}
+ Decompose transport on LHS:
+\begin{align*}
+  \trp^{x \mapsto \star_{S^1} = x}_{\Sloop}(\Sloop^{\trp^{R}_{\Sloop^{-1}}(r)})
+\end{align*}
+We compute
+\[
+{\trp^{R}_{\Sloop^{-1}}(r)} = r-1
+\]
+\[ \trp^{x \mapsto \star_{S^1} = x}(\Sloop^{r-1}) = \Sloop^{r-1} \cdot \Sloop = \Sloop^r \]
+and we are done. This proves that $\Omega S^1 \simeq \bZ$ (with inverse given by $\Sloop^{(-)}$).
 
 \begin{corollary}
-    $\pi_1(S^1) = \ZZ$ and $\pi_n(S^1) = 0$ for all $n > 1$.
+  $S^1$ is a groupoid ($1$-type)
+\end{corollary}
+\begin{proof}
+  \begin{itemize}
+  \item WTS for all $x,y : S^1$ that $x = y$ is a set.
+  \item `Being a set' is a propoistion -- ETS when $x := y := \star_{S^1}$
+  \item $(\star_{S^1} = \star_{S^1}) \simeq \bZ$ which is a set. \qedhere
+  \end{itemize}
+\end{proof}
+
+\begin{corollary}
+  $\pi_n(S^1) = 0$ for $n>1$
+\end{corollary}
+
+\begin{corollary}
+    $\pi_1(S^1) \cong \ZZ$.
 \end{corollary}
 \begin{proof}
     We have
-    \[ \pi_1(S^1) := \Trunc{\Omega S^1}_0 = \Trunc{\ZZ}_0 = \ZZ \]
-    and for $n > 1$ we note $\Omega^n S^1 = \Omega^{n-1} \ZZ = 1$ since $\ZZ$ is a set.
-    Thus as a group $\pi_n(S^1)$ is trivial.
+    \[ \pi_1(S^1) := \Trunc{\Omega S^1}_0 \simeq \Trunc{\ZZ}_0 \simeq \ZZ \]
+    \begin{itemize}
+    \item Homomorphism? Inverse is given by $n \mapsto \trunc{\Sloop^n}_0$ and clearly
+      \[\trunc{\Sloop^{n+m}}_0 = \trunc{\Sloop^{n} \cdot \Sloop^{m}}_0 \qedhere\]
+    \end{itemize}
 \end{proof}
+
+\section{The long exact sequence -- A powerful tool for computing new homotopy groups from already known ones}
+
+Let $f : E \pto B$ be a pointed map and $F := \fib_f(\star_B)$. Get seq. of poined maps
+
+\[F \xrightarrow{\fst} E \xrightarrow{f} B \]
+
+Furthermore, we get a map $\partial : \Omega B \to F$ defined by $\partial(p) := (\star_B,\star_f \cdot p)$
+
+
+For any pointed map $f : E \pto B$ we get a long exact sequence of homotopy groups:
+\[
+  \begin{tikzcd}
+    & \cdots\ar[r] & \pi_{n+1}(B) \ar[dll] \\
+    \pi_n(F)\ar[r] & \pi_n(E)\ar[r] & \pi_n(B) \ar[dll] \\
+    \pi_{n-1}(F)\ar[r] & \cdots &\\
+    &\cdots\ar[r] & \pi_1(B) \ar[dll] \\
+    \pi_0(F)\ar[r] & \pi_0(E)\ar[r] & \pi_0(B)
+  \end{tikzcd}
+\]
+where $F:=\fib_f(\star_B)$ is the fiber of $f$ and the arrows are homomorphisms of groups until
+$\pi_1(B)$, and then maps of pointed sets.
+Exactness means that the image of a map equals the kernel of the next.
+
 
 \section{Multiplying points on the circle}
 
