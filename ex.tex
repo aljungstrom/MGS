@@ -1,0 +1,577 @@
+%% document class
+\documentclass[10pt,oneside,leqno,openright]{memoir}
+
+\input{macros}
+\newcommand*{\sto}{\rightsquigarrow}
+
+
+\begin{document}
+
+\frontmatter
+\thispagestyle{empty}
+\begin{center}
+  \LARGE
+  {\bfseries Synthetic Homotopy Theory}\\[1cm]
+  \large Exercises and Solutions for the\\[5mm]
+  \Large Midlands Graduate School (MGS)\\
+  \large 13--17 April 2026, Nottingham, UK\\[1cm]
+  by\\
+  Axel Ljungström and Aref Mohammadzadeh\\
+  School of Computer Science\\
+  University of Nottingham\\[1cm]
+  Heavily based on notes from MGS 2024 by
+  Ulrik Buchholtz and Mark Williams\\
+  \Large NB\enspace Subject to change: Refresh if needed
+\end{center}
+
+\vfill
+
+%\begin{abstract}
+%  These lecture notes aim to introduce the field of synthetic homotopy theory to a (mainly) computer science audience. That is, we shall assume that the reader cares about types,
+%\end{abstract}
+
+\clearpage
+
+\tableofcontents*
+
+\mainmatter
+
+%% \setcounter{chapter}{-1}
+
+%% \chapter{Introduction}
+
+\chapter{Truncated and connected types}
+%\textcite{Shulman-logic-of-space}
+
+
+\section{Exercises}
+\begin{enumerate}
+    \item Show that for $n \geq m$ and any type $A$ we have
+    \[ \Trunc{\Trunc{A}_n}_m \simeq \Trunc{A}_m. \]
+
+  \item\label{ex:n-conn-orth}
+    Show that a type $X$ is $n$-connected if and only if, for every $n$-type $Y$,
+    the diagonal map
+    \[ Y \to (X \to Y), \quad y\mapsto (x\mapsto y),
+    \]
+    is an equivalence.
+
+  \item Show that the map $\trunc\blank_n : X \to \Trunc X_n$ is $n$-connected.
+
+    \item Consider a map $f : X \to Y$.
+      We define its \textbf{$n$-image} to be the type $\im_n(f) :=
+      (y : Y) \times \Trunc{\fib_f(y)}_n$.
+    \begin{enumerate}
+    \item Show that we can factorise $f$ through the $n$-image, that is,
+      construct a commuting diagram:
+        \[\begin{tikzcd}
+            X \ar[rr, "f"] \ar[dr, swap, "p"] & & Y \\
+            & \im_n(f) \ar[ur, swap, "i"]
+        \end{tikzcd}\]
+    \item Show that $p$ is $n$-connected and $i$ is $n$-truncated.
+    \item Show that if $Z$ is any type, $g : X \to Z$ is $n$-connected, and $h:Z\to Y$ is $n$-truncated with $f = h\circ g$, then there is a unique equivalence $e : \im_n(f) \to Z$ with $e\circ p = g$ and $h\circ e = i$:
+      \[
+        \begin{tikzcd}
+      & Z \ar[dr,"h"] & \\
+      X \ar[rr,pos=0.7,"f"]\ar[dr,"p"'] \ar[ur,"g"]& & Y\\
+      & \im_n(f)\ar[ur,"i"']\ar[uu,dotted,pos=0.3, "e"] &
+    \end{tikzcd}
+  \]
+  (\emph{Hint})\enspace It's easier if you assume $g$ and $h$ are projections of
+  dependent sums.
+    \end{enumerate}
+
+    \item (Eckmann--Hilton). All paths will take place in a fixed type $X$.
+    \begin{enumerate}
+        \item Given paths $p_0, p_1 : x = y$ and $q_0, q_1: y = z$, and higher paths $r : p_0 = p_1$ and $s : q_0 = q_1$, define their \textbf{horizontal multiplication} $s \ast r : q_0 \cdot p_0 = q_1 \cdot p_1$ by path induction on $r$ and $p_0$.
+        \[\begin{tikzcd}
+    	x & y & z
+    	\arrow[""{name=0, anchor=center, inner sep=0}, "{p_1}"', bend right=40, from=1-1, to=1-2]
+    	\arrow[""{name=1, anchor=center, inner sep=0}, "{q_1}"', bend right=40, from=1-2, to=1-3]
+    	\arrow[""{name=2, anchor=center, inner sep=0}, "p_0", bend left=40, from=1-1, to=1-2]
+    	\arrow[""{name=3, anchor=center, inner sep=0}, "q_0", bend left=40, from=1-2, to=1-3]
+    	\arrow["s", shorten <=3pt, shorten >=3pt, Rightarrow, from=3, to=1]
+    	\arrow["r"', shorten <=3pt, shorten >=3pt, Rightarrow, from=2, to=0]
+        \end{tikzcd}\]
+
+        \item Given paths fitting into the following diagram
+    	\[\begin{tikzcd}
+        x && y && z
+        \arrow[""{name=0, anchor=center, inner sep=0}, "{p_1}"', bend right=40, from=1-1, to=1-3]
+    	\arrow[""{name=1, anchor=center, inner sep=0}, "{q_1}"', bend right=40, from=1-3, to=1-5]
+    	\arrow[""{name=2, anchor=center, inner sep=0}, "{p_0}", bend left=40, from=1-1, to=1-3]
+    	\arrow[""{name=3, anchor=center, inner sep=0}, "{q_0}", bend left=40, from=1-3, to=1-5]
+    	\arrow[""{name=4, anchor=center, inner sep=0}, from=1-1, to=1-3]
+    	\arrow[""{name=5, anchor=center, inner sep=0}, from=1-3, to=1-5]
+    	\arrow["{r_0}"', shorten <=2pt, shorten >=2pt, Rightarrow, from=2, to=4]
+    	\arrow["{r_1}"', shorten <=2pt, shorten >=2pt, Rightarrow, from=4, to=0]
+    	\arrow["{s_0}", shorten <=2pt, shorten >=2pt, Rightarrow, from=3, to=5]
+    	\arrow["{s_1}", shorten <=2pt, shorten >=2pt, Rightarrow, from=5, to=1]
+        \end{tikzcd}\]
+        show we have the \textbf{interchange law}:
+        \[ (s_1 \ast r_1) \cdot (s_0 \ast r_0) = (s_1 \cdot s_0) \ast (r_1 \cdot r_0)  \]
+
+        \item Deduce that for $n \geq 2$, the path composition in $\Omega^n(X, x)$ is commutative, and thus that $\pi_n(X, x)$ is abelian.
+    \end{enumerate}
+
+  \item Show that when $X$ is connected, that $\pi_n(X, x_0) \cong \pi_n(X, x_1)$ are merely isomorphic for any $x_0, x_1 : X$, that is, construct an element of the type
+    \[
+      (x_0, x_1: X) \to \Trunc{\pi_n(X,x_0) \simeq \pi_n(X,x_1)}.
+    \]
+
+    \item We define the observational equality type family of the natural numbers $E : \NN \to \NN \to \UU$  by
+        \begin{align*}
+            E(0,0) &= 1 \\
+            E(\mathrm{succ}(n), 0) &= 0 \\
+            E(0, \mathrm{succ}(n)) &= 0 \\
+            E(\mathrm{succ}(n), \mathrm{succ}(m)) &= E(n,m)
+        \end{align*}
+        \begin{enumerate}
+            \item Define a natural map $n = m \to E(n,m)$ for all $n, m : \NN$.
+            \item Use the fundamental theorem of identity types to show this natural map is an equivalence.
+        \end{enumerate}
+
+  \item Show that a type $X$ is $n+1$-truncated if and only if the diagonal map of $X$,
+    \[\delta_X : X \to X\times X,\quad x\mapsto (x,x),\]
+    is $n$-truncated.
+
+  \item Derive the usual elimination rules for the $\exists$- and
+    $\vee$-connectives on propositions, using the definitions as truncated
+    $\Sigma$- and $+$-types, respectively.
+
+  \item Show that $\Trunc X_0$ satisfies the universal property of the set
+    quotient of $X$ modulo the equivalence relation $\sim$, where $x\sim x'$ if
+    and only if $\Trunc{x=_X x'}$.
+
+  %% \item Given two functions $f : X_1 \to Y$ and $g : X_2 \to Y$, we
+  %%   can define their pullback $X_1 \times_Y X_2 := (x_1 : X_1) \times
+  %%   (x_2 : X_2) \times (f(x_1) = g(x_2))$. Letting $\UU/Y : = (X :
+  %%   \UU) \times (X \to Y)$, this can be viewed as a product $\times :
+  %%   \UU/Y \times \UU/Y \to \UU/Y$ defined by $(X_1,f) \times (X_2,g)
+  %%   := (X_1 \times_Y X_2 , (x_1,x_2,p) \mapsto f(x_1))$
+  %%   \begin{enumerate}
+  %%   \item Define the functorial action of $\times$. For this question, you should is a triple $(\alpha,\beta,\gamma)$.
+  %%   \item An Define the functorial action
+  %%   \end{enumerate}
+
+
+\begin{enumerate}
+  \item The obvious way of defining the type of arrows over the universe $(x:X)$
+\end{enumerate}
+This means, in particular, that we have an automorpism $(x:X) \times (X \to Y) \simeq (x : X) \times(X \to Y)$ defined by
+\[(X \xrightarrow{f} Y) \mapsto ((y : Y) \times (\fib_f(y)) \xrightarrow{\fst} Y).\]
+As a result, anytime we wish to prove a property ranging over the the slice $\UU/Y := $
+
+\end{enumerate}
+\section{Solutions}
+\begin{enumerate}
+    \item 
+    \item 
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item 
+    \item 
+    
+    
+
+    
+\end{enumerate}
+\chapter{A menagerie of higher inductive types}
+
+
+\section{Exercises}
+\begin{enumerate}
+\item \label{ex-pullpushdual} (Pushout-Pullback Duality) Consider a commutating square:
+
+\[
+    \begin{tikzcd}
+      A \ar[d,"f"']\ar[r,"g"] & C\ar[d,"{j}"] \\
+      B\ar[r,"{i}"'] & X
+    \end{tikzcd}
+  \]
+
+with $H : i \circ f \sim j \circ g$. Then the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+    \item The square is a pushout square.
+    \item the square
+    \[
+    \begin{tikzcd}
+      T^X \ar[d,"- \circ i"']\ar[r,"- \circ j"] & T^C\ar[d,"- \circ g"] \\
+      T^B\ar[r,"- \circ f"'] & T^A
+    \end{tikzcd}
+  \]
+is a pullback square, for every type $T$.
+\end{enumerate}
+\item Show that the two definitions of $S^1$ are equivalent, in two ways:
+\begin{enumerate}[label=(\roman*)]
+    \item Show the
+  HIT for $S^1$ is the same thing as $\Sigma 2$ by constructing an equivalence between them.
+  \item  By applying Exercise 2.\ref{ex-pullpushdual}.
+\end{enumerate}
+
+%% \item Recall the notion of quasi-isomorphism from \cref{rmk:qinv}. Show that $(S^1 \simeq S^1)$
+
+\item Show that evaluation at the loop gives pointed equivalence
+  \[
+    (S^1 \pto X) \pto \Omega X
+  \]
+  for any pointed type $X$.
+
+  Conclude, using the suspension--loop adjunction, that we have a natural equivalence
+  \[
+    (S^n \pto X) \pto \Omega^n X
+  \]
+  for all $n:\NN$.
+
+\item Show that a type $X$ is a proposition iff $\inl : X \to X \ast X$ is an equivalence.
+
+\item Show that $A\vee B \simeq A*B$ for propositions $A,B$, where
+  $A\vee B := \Trunc{A+B}$.  (Beware the notational overload between the wedge
+  sum and disjunction: It's not too bad in practice, because the only pointed
+  proposition is the unit type!)
+
+\item \begin{enumerate}[label=(\roman*)]
+    \item Consider a span $A \xleftarrow[]{f}X \xrightarrow[]{g}B$. Show that the following square is pushout:
+    \[
+    \begin{tikzcd}
+      X + X \ar[d,"f+g"']\ar[r,"\text{[id,id]}"]\pocorner & X\ar[d,"{inr \circ g}"] \\
+      A+B\ar[r,"\text{[inl,inr]}"'] & A \amalg_X B
+    \end{tikzcd}
+  \]
+  \item Apply this to show that for every type X we get $\Sigma X \simeq \mathsf{bool}*X$.
+\end{enumerate}. (Harder)
+  Show that $S^1 \wedge X \simeq \Sigma X$
+
+\item (Smash Product - Pointed Map Space Adjunction) 
+\begin{enumerate}[label=(\roman*)]
+    \item Prove that for each pointed type $B$, the fucnction $ (-) \land B$ is the left adjoint to the function $B \to_* (-) $ ,i.e. for every pointed types $A$ and $C$, there is a pointed equivalence:
+    $$
+    A \to_* ( B \to_* C) \simeq_* (A \land B) \to_* C
+    $$
+    \item Use this to prove that  $S^1 \land X \simeq \Sigma X$ for each type $X$.
+\end{enumerate}
+
+\item Show that the smash product is equivalently the pushout:
+  \[
+    \begin{tikzcd}
+      X + Y \ar[d]\ar[r] & X \times Y\ar[d]\\
+      1 + 1 \ar[r] & X \land Y
+    \end{tikzcd}
+  \]
+\item \begin{enumerate} [label=(\roman*)]
+    \item For all pointed types $X$, $Y$, and $A$, prove there is a pointed equivalence:
+    $$
+    X * Y \to_* A \,\simeq_* \, X \to (Y \to_* \Omega A) 
+    $$
+    \item For pointed types $X,Y$ prove that
+  \[X * Y \simeq_* \Sigma (X\wedge Y).\]
+\end{enumerate} 
+
+\item The torus, $T^2$, is often drawn as a (filled) square with side identifications
+\begin{equation}\label{eq:torus}
+\begin{tikzcd}[ampersand replacement=\&]
+	\star \& \star \\
+	\star \& \star
+	\arrow["{\ell_1}", from=1-1, to=1-2]
+	\arrow["{\ell_2}", from=2-1, to=1-1]
+	\arrow["{\ell_1}"', from=2-1, to=2-2]
+	\arrow["{\ell_2}"', from=2-2, to=1-2]
+\end{tikzcd}
+\end{equation}
+In HoTT, we can capture this as HIT with
+\begin{enumerate}
+\item[$\bullet$] A point constructor $\star : T^2$
+\item[$\bullet$] Two paths $\ell_1,\ell_2 : \star = \star$
+\item[$\bullet$] A filler $\mathsf{sq}$ of the square of paths in \eqref{eq:torus}.
+\end{enumerate}
+%Recall \cref{def:fillers} for the definition of \emph{fillers}.
+%
+Show this type is equivalent to $S^1 \times S^1$.
+%
+  (\emph{Hint})\enspace You may assume that eliminators compute definitionally
+  on point constructors (as in cubical type theory), otherwise it's quite
+  intricate!
+
+\item We can define the unit interval type $\II$ to be the pushout of the constant span $1 \leftarrow 1 \rightarrow 1$. Working in Martin-Löf type theory \emph{without} univalence (and function extensionality) but with pushouts with strict definitional computation rules, prove that
+  \begin{enumerate}[label=(\roman*)]
+  \item $ [((x, y) : A \times A) \times (x = y)] \simeq (\II \to A)$
+  \item Use the above equivalence (or, if you prefer, a variation thereof) to derive function extensionality.
+  \end{enumerate}
+  
+\item \begin{enumerate}[label=(\roman*)]
+    \item Show that if the square
+    \[
+    \begin{tikzcd}
+      A \ar[d,"f"']\ar[r,"g"] & C\ar[d,"{j}"] \\
+      B\ar[r,"{i}"'] & X
+    \end{tikzcd}
+  \]
+is a pullback, then so is
+\[
+    \begin{tikzcd}
+      \Omega A \ar[d,"\Omega f"']\ar[r,"\Omega g"] & \Omega C\ar[d,"{\Omega j}"] \\
+      \Omega B\ar[r,"{\Omega i}"'] & \Omega X
+    \end{tikzcd}
+  \]
+  \item For a map $A \xrightarrow[]{f}B$ show that $\Omega \, (\fib \,f) \simeq \fib \, (\Omega f)$
+\end{enumerate}
+  \item Show that the square
+    \[
+    \begin{tikzcd}
+      S^1 \ar[d,""']\ar[r,""] & 1\ar[d,"{}"] \\
+      S^1 \times S^1 \ar[r,"{}"'] & S^2 \lor S^1
+    \end{tikzcd}
+  \]
+  is a pushout.
+\end{enumerate}
+\section{Solutions}
+\begin{enumerate}
+\item 
+\item 
+\item 
+\item 
+\item 
+\item 
+\item 
+\item 
+\item 
+\item 
+\item 
+Write the interval as the pushout of the constant span $1 \leftarrow 1 \rightarrow 1$, with points 
+$0,1:\II $
+and path
+$
+\mathsf{seg}:0=1
+$.
+
+\begin{enumerate}[label=(\roman*)]
+\item Define
+\[
+\Phi:\Bigl(\sum_{x,y:A}(x=y)\Bigr)\to (\II\to A)
+\]
+by interval recursion:
+\[
+\Phi(x,y,p)\;:=\;\mathsf{rec}_{\II}(x,y,p).
+\]
+Thus, by the strict $\beta$-rules, we get:
+\[
+\Phi(x,y,p)(0)\equiv x,\qquad
+\Phi(x,y,p)(1)\equiv y,\qquad
+\ap_{\Phi(x,y,p)}(\mathsf{seg})\equiv p.
+\]
+
+Conversely, define
+\[
+\Psi:(\II\to A)\to \sum_{x,y:A}(x=y)
+\]
+by
+\[
+\Psi(h)\;:=\;\bigl(h(0),\,h(1),\,\ap_h(\mathsf{seg})\bigr).
+\]
+
+Then
+\[
+\Psi(\Phi(x,y,p))
+\equiv
+(x,y,p)
+\]
+judgmentally, by the strict $\beta$-rules above. For the other composite, if $h:\II\to A$, then
+\[
+\Phi(\Psi(h))
+=
+\Phi\bigl(h(0),h(1),\ap_h(\mathsf{seg})\bigr)
+\]
+is the map out of $\II$ with the same values on $0,1$ and the same action on $\mathsf{seg}$ as $h$; hence, by the $\eta$-rule of the pushout $\II$,
+\[
+\Phi(\Psi(h)) = h.
+\]
+Therefore
+\[
+\Bigl(\sum_{x,y:A}(x=y)\Bigr)\simeq (\II\to A).
+\]
+Note that we do not actually need strict $\beta$-rule for this part.
+
+\item First we derive non-dependent function extensionality. Let $f,g:A\to B$ and assume
+\[
+H:\prod_{a:A}(f(a)=g(a)).
+\]
+By part (i), for each $a:A$ we obtain a map
+\[
+\widetilde H(a):\II\to B
+\]
+such that
+\[
+\widetilde H(a)(0)\equiv f(a),\qquad
+\widetilde H(a)(1)\equiv g(a),\qquad
+\ap_{\widetilde H(a)}(\mathsf{seg})\equiv H(a).
+\]
+Now curry these maps:
+\[
+K:\II\to (A\to B),\qquad
+K(i)(a):=\widetilde H(a)(i).
+\]
+Then, using the strict computation rules from part (i) and the judgmental $\eta$-rule for functions,
+\[
+K(0)\equiv \lambda a.\,\widetilde H(a)(0)\equiv \lambda a.\,f(a)\equiv f,
+\]
+and similarly
+\[
+K(1)\equiv g.
+\]
+Hence
+\[
+\ap_K(\mathsf{seg}) : f=g.
+\]
+So ordinary function extensionality holds.
+
+To obtain dependent function extensionality, let $B:A\to \mathcal U$, let
+\[
+f,g:\prod_{a:A}B(a),
+\qquad
+H:\prod_{a:A}(f(a)=g(a)).
+\]
+Define
+\[
+f',g':A\to \sum_{a:A}B(a),
+\qquad
+f'(a):=(a,f(a)),\quad g'(a):=(a,g(a)).
+\]
+For each $a:A$, using $H(a)$ we get
+\[
+f'(a)=g'(a)
+\]
+in the $\Sigma$-type, namely by the path $(\refl_a,H(a))$. By ordinary function extensionality, this yields
+\[
+p:f'=g'.
+\]
+Now apply $\ap$ to the map
+\[
+s:\Bigl(A\to \sum_{a:A}B(a)\Bigr)\to \prod_{a:A}B(a),
+\qquad
+s(k)(a):= \pi_2(k(a)).
+\]
+Since $s(f')=f$ and $s(g')=g$, we obtain
+\[
+\ap_s(p):f=g.
+\]
+Thus full function extensionality follows.
+\color{red}
+It seems that we can prove (ii) without assuming $\eta$-rule for $\II$, right? Since we only need the right to left map from (i), and not the whole equivalence.
+\color{black}
+\end{enumerate}
+\item 
+\begin{enumerate}[label=(\roman*)]
+    \item Assume the given square is a pullback. Then
+    $A \simeq B \times_X C$.
+    Since for any pointed type $Y$ we have
+    \[
+    \Omega Y \simeq 1 \times_Y 1,
+    \]
+    and pullbacks commute with pullbacks (by 3-3 lemma for pullbacks), it follows that
+    \[
+    \Omega A
+    \;\simeq\;
+    \Omega(B \times_X C)
+    \;\simeq\;
+    (1 \times_B 1)\times_{(1 \times_X 1)}(1 \times_C 1)
+    \;\simeq\;
+    \Omega B \times_{\Omega X} \Omega C.
+    \]
+
+    \item The homotopy fiber of $f$ is the pullback
+    \[
+    \fib(f) \simeq 1 \times_B A.
+    \]
+    Apply (i) to this pullback square. 
+\end{enumerate}
+
+    \item Using the equation $S^1 \land X \simeq \Sigma X$ we can identify $S^2$ with $S^1 \land S^1$, which is pushout of $S^1 \lor S^1 \to S^1 \times S^1$ along the unit map. Now we have:
+      \[
+    \begin{tikzcd}
+      S^1 \lor S^1 \ar[d,""']\ar[r,""] & 1\ar[d,"{}"] \ar [r] & S^1 \ar[d] \\
+      S^1 \times S^1 \ar[r,"{}"'] & S^2 \ar [r] & S^2 \lor S^1
+    \end{tikzcd}
+    \]
+    Since both squares are pushouts, the pasting lemma for pushout says that the outer rectangle is a pushout. We get the goal by observing that the upper square in the following diagram is a pushout:
+      \[
+    \begin{tikzcd}
+      S^1 \ar[d,""']\ar[r,""] & 1\ar[d,"{}"] \\
+      S^1 \lor S^1 \ar[r,"{}"'] \ar[d] & S^1 \ar[d] \\ 
+      S^1 \times S^1 \ar [r] & S^2 \lor S^1
+    \end{tikzcd}
+    \]
+\end{enumerate}
+
+\chapter[The Hopf fibration and the LES]{The Hopf fibration and the long exact sequence}
+
+
+
+\section{Exercises}
+\begin{enumerate}
+\item Construct the product on the circle directly by double circle induction.
+\item Give another proof of~\cref{thm:S1-InfCyc} by showing that
+  $\ap_{\varphi} : (\ast=\ast) \to (\varphi(\ast)=\varphi(\ast))$ is an
+  equivalence.
+\item Construct a retraction $\rho : \Omega S^2 \to S^1$ of $\eta : S^1 \to \Omega S^2$.
+  (\emph{Hint}) Use the Hopf fibration.
+\item We can define a ``tensor product'' of $\ZZ$-torsors by setting
+  \[
+    (X,t) \otimes (Y,u) := (X \times Y/\sim, s)
+  \]
+  using the set quotient by the equivalence relation generated by
+  $(t(x),y) \sim (x,u(y))$, and setting $s[(x,y)] := [t(x),y)]$.  Check that
+  this operation is well defined and gives an H-space structure on $\Tors_\ZZ$
+  with the base point $(\ZZ,\suc)$ as neutral element.
+\item Investigate some other components of $\SetEndo$, in particular those
+  containing $(\Fin n,\suc)$, where $\Fin n=(k:\NN)\times(k<n)$ and the
+  successor operation is taken modulo $n$.
+  If this component is denoted $\Cyc_n$ (for $n$-cycles), what are the maps $\Cyc_n \to \Cyc_m$?
+\end{enumerate}
+
+\chapter[Freudenthal and Degrees]{The Freudenthal Suspension Theorem and Degrees}
+\label{ch:pushouts}
+
+\section{Exercises}
+
+\begin{enumerate}
+\item Deduce the dual Blakers--Massey~\cref{thm:dual-BM} from the Join
+  Connectivity~\cref{lem:join-connectivity} by identifying the fibers of the
+  cogap map with the joins of the fibers of legs in the cospan.
+
+\item Deduce the Wedge Connectivity Lemma from the dual Blakers--Massey~\cref{thm:dual-BM},
+  i.e., consider the pullback square, for pointed types $X,Y$,
+  \[
+    \begin{tikzcd}
+      1 \ar[d]\ar[r]\pbcorner & Y \ar[d] \\
+      X \ar[r] & X\times Y.
+    \end{tikzcd}
+  \]
+  Show that if $X$ is $n$-connected and $Y$ is $m$-connected, then the wedge
+  inclusion map $X \vee Y \to X \times Y$ is $(n+m)$-connected.
+
+\item Show that the counit $\varepsilon : \Sigma\Omega X \to X$ of the loop--suspension adjunction is $2n$-connected if $X$ is $n$-connected.
+
+\item Show that the pushout of an embedding is an embedding, i.e., if $g$ is $(-1)$-truncated, then so is $\inl$ in the pushout square:
+  \[
+    \begin{tikzcd}
+      R \ar[d,"f"']\ar[r,"g"]\pocorner & B\ar[d,"{\inr}"] \\
+      A\ar[r,"{\inl}"'] & Q
+    \end{tikzcd}
+  \]
+\end{enumerate}
+
+
+\raggedright
+%\printbibliography
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
