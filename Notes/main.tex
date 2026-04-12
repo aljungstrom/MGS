@@ -45,41 +45,78 @@
 
 \chapter*{Lecture 1}
 %\textcite{Shulman-logic-of-space}
-\subsection*{Why?}
+\subsection*{What is homotopy theory?}
 \begin{itemize}
-\item Understanding types better
+\item \axel{Homotopy theory is the study of paths between points in topological spaces, and continuous transformations between these paths. Draw picture}
+\item \axel{Turns out: types in type theory can be interpreted as spaces}
   \begin{itemize}
-  \item Types `=' spaces, so need to understand their higher structure
-  \end{itemize}
-\item Use type-theoretic tools to simpify problems from traditional homotopy theory/alg. topology
-  \begin{itemize}
-    \item E.g. compute homotopy groups of spheres
+  \item $A : \UU$ `A is a type' ---> \axel{draw}
+  \item $x:A$ ---> \axel{draw}
+  \item $p:x=_Ay$ ---> \axel{draw}
+  \item $p,q:x=_Ay$ ---> \axel{draw}
+  \item Synthetic homotopy theory = study of identity types in (homotopy) type theory
   \end{itemize}
 \end{itemize}
 
-\subsection*{Preliminary plan}
-\begin{enumerate}
-\item Preliminaries/defn of homotopy groups
-\item Higher inductive types, $\pi_1(S^1)$
-\item Long exact sequence of homotopy groups, $\pi_3(S^2)$
-\item The Blakers-Massey theorem and applications: $\pi_n(S^n)$ and cohomology
-\end{enumerate}
-
-\subsection*{Notation/conventions}
 \begin{itemize}
-\item In general: follow HoTT book.
-\item $\refl_{(x)} : x =_A x$
-\item $\UU$ = the universe of types 
-\item $\trp^{B}_p : B(x) \to B(y)$ where $B:A \to \UU$ and $p : x =_A y$
-\item $(x: X) \to B(x)$ instead of $\Pi_{x:X}B(x)$
-\item $(x : X) \times B(x)$ instead of $\Sigma_{x:X} B(x)$
-\item `Path induction' instead of `J-rule' or `identity induction'
+  \item \axel{Particularly interesting: loops} -- homotopy groups. This is what we will study. Group structure by composing loops \axel{draw $\pi_1(X,x)$}
 \end{itemize}
-\axel{
-Let $x_0 : X$ and $B: (x : X) \to x_0 = x \to \UU$. In order to construct elements $B(x,p)$ for all $x:X$ and $p : x_0 = x$, it suffices to do so when $x := x_0$ and $p := \refl_{x_0}$.
-}
 
-\section*{Univalence}
+
+\section*{Paths}
+
+\axel{Key tool: path induction}: Let $x:A$. In order to prove a statement/construct an element of type $(y:A) (p : x = y) \to B(x,p)$, it suffices to prove/construct an element of $B(x,\refl_x)$.
+
+\begin{example}
+  Given $p: x =_A y$ and $B:A \to \UU$, we get a map $\trp^B_p : B(x) \to B(y)$ by path induction on $p$:
+  \[\trp^B_{\refl_{x}} : B(x) \to B (x) \quad := \quad \mathsf{id}_{B(x)}\]
+\end{example}
+
+\begin{example}
+  Given $f :X \to Y$ and $p:x=y$, we have $\ap_f(p) : f(x) = g(x)$
+\end{example}
+
+\paragraph{Q.} What if $f : (x:X) \to B(x)$ is a dependent function? $f(x) = f(y)$ doesn't type check!
+
+\begin{definition}
+  Given $B: X \to \UU$ dep. type, $p: x_0 = y_0$, and terms $b_0 : B(x_0)$ and $b:B(x_1)$, define
+  \[(b_0 =^B_p b_1) := (\trp^B_p(b_0) = b_1) \]
+  $\uparrow$ the type of \textbf{dependent paths} from $b_0$ to $b_1$ (over $p$). 
+\end{definition}
+
+\axel{Coincides with usual equality type when $p$ is $\refl$}
+
+\begin{itemize}
+\item Can now define dependent $\ap$ for $f: (x:X) \to B(x)$ , i.e.\ $\apd_f : (p : x = y) \to f(x) =^B_p f(y)$ by pattern-matching.
+\end{itemize}
+
+\axel{How to define concatenation of paths?}
+
+\begin{example}
+  Given $p: x = y$ and $q:y = z$, we can define $p\cdot q : x = z$ and $p^{-1} : y = z$ by path induction on $p$, setting $\refl_{x} \cdot q = q$ and $\refl_{x}^{-1} := \refl_{x}$ 
+\end{example}
+  Get
+\begin{itemize}
+\item $p \cdot p^{-1} = \refl$
+\item $p^{-1} \cdot p = \refl$
+\item $p \cdot \refl = p$
+\item $\refl \cdot p = p$
+\item $(p \cdot q) \cdot r = p \cdot (q \cdot r)$
+\end{itemize}
+And
+%% \begin{itemize}
+%% \item Given $f :X \to Y$ and $p:x=y$, we have $\ap_f(p) : f(x) = g(x)$
+%% \item Exercise $\ap_f(p\cdot q) = \ap_f(p) \cdot \ap_f(q)$
+%% \end{itemize}
+
+
+\subsection*{Homotopy groups?}
+Naive def of first homotopy group (incorrect!): $\pi_1(X,x) := (x = x)$.\\
+%
+Almost but not quite right -- too many proofs of the group axioms.
+%
+
+
 \begin{definition}
     A type $X$ is \textbf{contractible} if the type
     \[ \isContr(X) := (x : X) \times ((y : X) \to x =_X y) \]
@@ -97,46 +134,14 @@ Let $x_0 : X$ and $B: (x : X) \to x_0 = x \to \UU$. In order to construct elemen
   \[ \fib_f(y) := (x : X) \times (f(x) = y) \]
 \end{definition}
 
-\begin{definition}
-  A function $f:X\to Y$ is an \textbf{equivalence} if $\fib_f(y)$ is contractible for all $y$.
-\end{definition}
-\begin{itemize}
-\item Let $(X\simeq Y) \times \isEquiv(f)$
-\item Fact: $\id_X : X \to X$ is an equivalence.
-\end{itemize}
-
-\begin{remark}\label{rmk:qinv}
-  Why not use $\underset{:= \qinv(f)}{\underbrace{(g : (Y \to X)) \times (g \circ f = \id) \times (f \circ g = \id)}}$ as definition?
-  \begin{itemize}
-  \item \axel {Too much structure}
-  \item $\qinv(f) \leftrightarrow \isEquiv(f)$ but $\qinv(f) \not\simeq \isEquiv(f)$. \axel{For our purposes, we can pretend that they are the same}.
-  \end{itemize}
-\end{remark}
 
 
-\begin{axiom}[Univalence]
-  The map
-  \[
-    \trp^{Y \mapsto X \simeq Y}_{(-)}(\mathsf{idEquiv}_X) : X=_\UU Y \to (X \simeq Y)
-  \]
-  is an equivalence.
-\end{axiom}
 
-\begin{itemize}
-\item In particular, $X \simeq Y \to X = Y$
-\end{itemize}
+\section*{Truncations}
 
-\begin{fact}
-  Univalence $\implies$ $\funExt(f) := (((x y : X) \to f(x) = g(x)) \to f = g)$
-\end{fact}
+%% \section*{Univalence}
 
-\begin{itemize}
-\item From now on, always assume univalence (and funExt). 
-\end{itemize}
-
-\section*{Univalence}
-
-\axel{The thing that makes types complicated is their higher structure. The notion of $n$-type helps us stratify this.}
+%% \axel{The thing that makes types complicated is their higher structure. The notion of $n$-type helps us stratify this.}
 
 \begin{definition}
     A type $X$ is
@@ -237,36 +242,6 @@ and an \textbf{embedding} if it's $-1$-truncated. For reasons we'll see later, w
     The map $\trunc{\blank}_n : X \to \Trunc{X}_n$ is $n$-connected.
 \end{example}
 
-\section*{Towards homotopy groups: path algebra}
-
-\paragraph{Recall:}
-Have $\_\cdot\_ : x = y \to y = z \to x = z$ and $(-)^{-1} : x = y \to y = x$ s.t.
-\begin{itemize}
-\item $p \cdot p^{-1} = \refl$
-\item $p^{-1} \cdot p = \refl$
-\item $p \cdot \refl = p$
-\item $\refl \cdot p = p$
-\item $(p \cdot q) \cdot r = p \cdot (q \cdot r)$
-\end{itemize}
-And
-\begin{itemize}
-\item Given $f :X \to Y$ and $p:x=y$, we have $\ap_f(p) : f(x) = g(x)$
-\item Exercise $\ap_f(p\cdot q) = \ap_f(p) \cdot \ap_f(q)$
-\end{itemize}
-
-\paragraph{Q.} What if $f : (x:X) \to B(x)$ is a dependent function? $f(x) = f(y)$ doesn't type check!
-
-\begin{definition}
-  Given $B: X \to \UU$ dep. type, $p: x_0 = y_0$, and terms $b_0 : B(x_0)$ and $b:B(x_1)$, define
-  \[(b_0 =^B_p b_1) := (\trp^B_p(b_0) = b_1) \]
-  $\uparrow$ the type of \textbf{dependent paths} from $b_0$ to $b_1$ (over $p$). 
-\end{definition}
-
-\axel{Coincides with usual equality type when $p$ is $\refl$}
-
-\begin{itemize}
-\item Can now define dependent $\ap$ for $f: (x:X) \to B(x)$ , i.e.\ $\apd_f : (p : x = y) \to f(x) =^B_p f(y)$ by pattern-matching.
-\end{itemize}
 
 
   
@@ -331,6 +306,42 @@ This type is itself pointed by $\refl_{\star_X}$.
 \begin{corollary}
   $\pi_{n \geq 1}(X)$ vanishes for any set $X$. In particular for $X = 1$.
 \end{corollary}
+
+\subsection*{Recap: univalence}
+\begin{definition}
+  A function $f:X\to Y$ is an \textbf{equivalence} if $\fib_f(y)$ is contractible for all $y$.
+\end{definition}
+\begin{itemize}
+\item Let $(X\simeq Y) \times \isEquiv(f)$
+\item Fact: $\id_X : X \to X$ is an equivalence.
+\end{itemize}
+
+\begin{remark}\label{rmk:qinv}
+  Why not use $\underset{:= \qinv(f)}{\underbrace{(g : (Y \to X)) \times (g \circ f = \id) \times (f \circ g = \id)}}$ as definition?
+  \begin{itemize}
+  \item \axel {Too much structure}
+  \item $\qinv(f) \leftrightarrow \isEquiv(f)$ but $\qinv(f) \not\simeq \isEquiv(f)$. \axel{For our purposes, we can pretend that they are the same}.
+  \end{itemize}
+\end{remark}
+
+\begin{axiom}[Univalence]
+  The canonical map $X=_\UU Y \to (X \simeq Y)$ is an equivalence.
+\end{axiom}
+
+\begin{itemize}
+\item In particular, $X \simeq Y \to X = Y$
+\end{itemize}
+
+\begin{fact}
+  Univalence $\implies$ $\funExt(f) := (((x y : X) \to f(x) = g(x)) \to f = g)$
+\end{fact}
+
+\begin{itemize}
+\item From now on, always assume univalence (and funExt). 
+\end{itemize}
+
+
+
 
 %% More exciting:
 %% \begin{proposition}
@@ -993,89 +1004,116 @@ Let $f : E \pto B$ be a pointed map and $F := \fib_f(\star_B)$. Get seq. of poin
 
 \[F \xrightarrow{\fst} E \xrightarrow{f} B \]
 
-Furthermore, we get a map $\partial : \Omega B \to F$ defined by $\partial(p) := (\star_B,\star_f \cdot p)$
+Furthermore, we get a map $\partial : \Omega B \to F$ defined by $\partial(p) := (\star_B,\star_f \cdot p)$.
+\begin{itemize}
+\item This gives us an infinite sequence of maps
+\end{itemize}
+\[\begin{tikzcd}[ampersand replacement=\&]
+	\& \dots \& {\Omega²(B)} \\
+	{\Omega(F)} \& {\Omega(A)} \& {\Omega(B)} \\
+	F \& A \& B
+	\arrow["{\Omega²(f)}", from=1-2, to=1-3]
+	\arrow[dashed, from=1-3, to=2-1]
+	\arrow["{\Omega(\fst)}", from=2-1, to=2-2]
+	\arrow["{\Omega(f)}", from=2-2, to=2-3]
+	\arrow[from=2-3, to=3-1]
+	\arrow["\fst", from=3-1, to=3-2]
+	\arrow["f", from=3-2, to=3-3]
+\end{tikzcd}\]
+Applying set truncation, we get a long exact sequence (LES)
+\[\begin{tikzcd}[ampersand replacement=\&]
+	\& \dots \& {\pi_2(B)} \\
+	{\pi_1(F)} \& {\pi_1(A)} \& {\pi_1(B)} \\
+	{\pi_0(F)} \& {\pi_0(A)} \& {\pi_0(B)}
+	\arrow["{f_*}", from=1-2, to=1-3]
+	\arrow[dashed, from=1-3, to=2-1]
+	\arrow["{\fst_*}", from=2-1, to=2-2]
+	\arrow["{f_*}", from=2-2, to=2-3]
+	\arrow[from=2-3, to=3-1]
+	\arrow["\fst", from=3-1, to=3-2]
+	\arrow["{f_*}", from=3-2, to=3-3]
+\end{tikzcd}\]
+Exactness = image of a map equals the kernel of the next.
 
-
-For any pointed map $f : E \pto B$ we get a long exact sequence of homotopy groups:
-\[
-  \begin{tikzcd}
-    & \cdots\ar[r] & \pi_{n+1}(B) \ar[dll] \\
-    \pi_n(F)\ar[r] & \pi_n(E)\ar[r] & \pi_n(B) \ar[dll] \\
-    \pi_{n-1}(F)\ar[r] & \cdots &\\
-    &\cdots\ar[r] & \pi_1(B) \ar[dll] \\
-    \pi_0(F)\ar[r] & \pi_0(E)\ar[r] & \pi_0(B)
-  \end{tikzcd}
-\]
-where $F:=\fib_f(\star_B)$ is the fiber of $f$ and the arrows are homomorphisms of groups until
-$\pi_1(B)$, and then maps of pointed sets.
-Exactness means that the image of a map equals the kernel of the next.
-
-
-\section{Multiplying points on the circle}
-
-We start our view into the world of higher homotopy types by having a closer look at the circle. It is a $1$-type, so under the homotopy hypothesis (identifying types and $\infty$-groupoids), it corresponds to a groupoid. We shall see in three ways that it carries a multiplication. It is the homotopical abstraction of the group of rotations in the plane, $\mathrm{SO(2)}$, or equivalently, the group of unit complex numbers, $\mathrm{U(1)} = \{\,z:\mathbb{C}^2 \mid \abs z=1\,\}$.
-
-For the first, we can ``by hand'' define the product operation $\_ \cdot \_ : S^1 \to S^1 \to S^1$. (Exercise)
-
-For the second, let us think about $S^1$ as a groupoid of structured objects. (This is how we first encounter many groupoids or categories, as structured sets, such as groups, rings, partial orders, etc.)
-
-Finally, we shall see that $S^1$ is itself the loop space of a pointed type, so we have
-an induced multiplication corresponding to composition of loops.
-
-\begin{definition}
-  The type of sets with an endomorphism is $\SetEndo := (X : \Set) \times (X \to X)$.
-\end{definition}
-Use univalence to verify that this is a groupoid.
-
-We have a map $\varphi : S^1 \to \SetEndo$ whose first component at $z : S^1$ is
-the identity type $\ast = z$ and whose second component is the map $\_ \cdot \Sloop : (\ast = z) \to (\ast = z)$ that composes with the loop.
-
-\begin{theorem}\label{thm:S1-InfCyc}
-  The map $\varphi : S^1 \to \SetEndo$ is an embedding, so it induces an equivalence
-  from $S^1$ to its image.
+\begin{theorem}
+  There is a map $\eta : S^3 \to S^2$ s.t. $\fib_\eta(\star_{S^2}) \simeq S^1$
 \end{theorem}
 \begin{proof}
-  Consider the diagram:
-  \begin{equation}\label{eq:setbundle-Sc-univ-comp}
-  \begin{tikzcd}
-    & S^1\ar[dl,"{(1,\cst_\ast)}"']\ar[d]\ar[dr,"\varphi"] & \\
-    \bigl((X:\UU)\times(X\to S^1)\bigr)_{(1,\cst_\ast)} \ar[r,"\sim"']
-    & (S^1\to\UU)_{(\ast=\blank)} \ar[r,"\sim"']
-    & \im(\varphi)
-  \end{tikzcd}
-\end{equation}
-To show $\varphi$ is an equivalence, it suffices to show the map on the left is
-an equivalence, but that is easy.
-
-Alternatively, we show that the middle vertical map is an equivalence, which follows from the \emph{type theoretic Yoneda lemma}: The identity type gives an embedding $X \hookrightarrow (X \to \UU)$, $x\mapsto (x' \mapsto x=_Xx')$.
+  Soon.
 \end{proof}
-Using~\cref{cor:id-S1} we can identify $\varphi(\ast)$ as the set of integers
-$\ZZ$ with the successor map $\suc : \ZZ \to \ZZ$.
+Applying LES with $F= S^1$, $E = S^3$ and $B=S^2$, we get
 
+\[\begin{tikzcd}[ampersand replacement=\&]
+	\& {\pi_2(S^3)} \& {\pi_2(S^2)} \\
+	{\pi_1(S^1)} \& {\pi_1(S^3)}
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=2-1]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+i.e.
+\[\begin{tikzcd}[ampersand replacement=\&]
+	\& 1 \& {\pi_2(S^2)} \\
+	{\pi_1(S^1)} \& 1
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=2-1]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+So $\pi_2(S^2) \cong \pi_1(S^1) \cong \bZ$!\\
+Also:
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{\pi_3(S^1)} \& {\pi_3(S^3)} \& {\pi_3(S^2)} \\
+	{\pi_2(S^1)}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=2-1]
+\end{tikzcd}\]
+i.e.\
+\[\begin{tikzcd}[ampersand replacement=\&]
+	1 \& {\pi_3(S^3)} \& {\pi_3(S^2)} \\
+	1
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=2-1]
+\end{tikzcd}\]
+So $\pi_3(S^2) \cong \pi_3(S^3)$. We will compute the latter group tomorrow.\\
+
+\begin{itemize}
+  \item How to prove theorem?
+\end{itemize}
+\section{Multiplying points on the circle}
 \begin{definition}
-  The type of $\ZZ$-torsors (relative to the generating element $1:\ZZ$), $\Tors_\ZZ$,
-  is the connected component of $\SetEndo$ at $(\ZZ,\suc)$.
+  An \textbf{H-space} is a pointed type $X$ together with a product $\mu:X \times X \to X$ together with:
+  \begin{align*}
+    l : (x :X)\to \mu(\star_X,x) = x\\
+    r : (x :X)\to \mu(x,\star_X) = x\\
+    p : l(\star_X) = r(\star_X)
+  \end{align*}
+  or, alternatively,
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{X\times X} \& X \\
+	{X\vee X}
+	\arrow["\mu", dotted, from=1-1, to=1-2]
+	\arrow[from=2-1, to=1-1]
+	\arrow[from=2-1, to=1-2]
+\end{tikzcd}\]
 \end{definition}
-So another way to state the theorem is that $\varphi$ induces an equivalence
-$S^1 \simeq \Tors_\ZZ$. In this form, $\ZZ$-torsors are also known as \textbf{infinite cycles}.
-See the exercises for how this gives another way of looking at the multiplication on the circle.
+Classically: $S^1 \simeq \mathrm{U(1)} = \{\,z:\mathbb{C}^2 \mid \abs z=1\,\}$, so there is a multiplication $S^1 \times S^1 \to S^1$ which gives $S^1$ an H-space structure.
 
-\bigskip
+In HoTT we can define this multiplication by (double) pattern matching:
+\begin{align*}
+  \star_{S^1} \cdot x &:= x\\
+  \ap_{(-)\cdot \star_{S^1}}(\Sloop) &:= \Sloop\\
+  \apd_{y \mapsto\ap_{(-)\cdot y}}(\Sloop) &:= ... : \Sloop =^{x \mapsto x = x}_{\Sloop} \Sloop
+\end{align*}
+exercise: fill in the gaps.
+\begin{proposition}
+  Ffor any $x : S^1$, multiplication $x : \cdot (-) : S^1 \to S^1$ is an equivalence.
+\end{proposition}
+\begin{proof}
+  Statement is a prop, so ets when $x=\star_{S^1}$. But $\star_{S^1} \cdot (-) = \id_{S^1}$, so we are done.
+\end{proof}
 
-Finally, we can improve the multiplication on the circle by exhibiting it as coming from composition of loops in another type. That is, we can find a pointed (1-connected) type $\B^2\ZZ$ and a pointed equivalence $S^1 \simeq_\bullet \Omega\B^2\ZZ$.
-In fact, we even have different ways of defining $\B^2\ZZ$:
-\begin{enumerate}
-\item We can take $\B^2\ZZ := \Trunc{S^2}_2$.
-\item We can take $\B^2\ZZ := (X : \UU) \times \setTrunc{X\simeq S^1}$.
-\item We can take $\B^2\ZZ := (X : \UU) \times \Trunc{X} \times
-  \bigl((x : X) \to S^1 \simeq_\bullet (X,x)\bigr)$.
-\end{enumerate}
-
-Once we have the LES we get $\pi_2(S^2) = \pi_1(S^1) = \ZZ$. This gives that $\Trunc{S^2}_2$ is a delooping of $S^1$. The second equivalence comes from an equivalence $(S^1\to S^1) \simeq (\ZZ \times S^1)$, from which we get that evaluation at $\ast$ is an equivalence:
-\[
-  \bigl((e : S^1 \simeq S^1) \times \Trunc{e = \id}\bigr)
-  \simeq S^1.
-\]
+In particular, we have inverses $(-)^{-1} : S^1 \to S^1$.
 
 \section{The Hopf fibration}
 
@@ -1083,15 +1121,10 @@ Once we have the LES we get $\pi_2(S^2) = \pi_1(S^1) = \ZZ$. This gives that $\T
   We define a type family $H : S^2 \to \UU$ by induction:
   \begin{align*}
     H(N) &:= H(S) := S^1 \\
-    \ap_H(\merid_z) &:= (z \cdot \blank)
+    \ap_H(\merid_z) &:= \mathsf{ua}(z \cdot \blank)
   \end{align*}
 \end{definition}
-Here we are using univalence implicitly to regard multiplication by $z$ as an identification $z \cdot\blank:S^1 = S^1$.
-
-In fact, we can do the same construction for any \textbf{left-invertible H-space},
-meaning a pointed type $A$ with a multiplication $\blank\cdot\blank:A\to A\to A$ s.t.\
-$a\cdot\pt = \pt\cdot a=a$ for all $a:A$, and $a\cdot\blank : A \to A$ is an equivalence for each $a:A$. We get $H : \Sigma A \to \UU$
-with $H(N) = H(S) = A$ and $\ap_H(\merid_a) = (a\cdot\blank)$.
+The map $(x : S^2) \times H(x) \xrightarrow{\fst} S^2$ has fibres $H(\star_{S^2}) := S^1$. So done if we can show that $(x : S^2) \times H(x) \simeq S^3$.
 
 We would like to identify the total space of such a family. This is exactly what is provided by the flattening lemma. We'll just state it for now, and defer the proof to~\cref{ch:pushouts}.
 \begin{lemma}[Flattening lemma]
