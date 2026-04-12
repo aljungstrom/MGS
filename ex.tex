@@ -52,7 +52,7 @@
   \item\label{ex:n-conn-orth}
     Show that a type $X$ is $n$-connected if and only if, for every $n$-type $Y$,
     the diagonal map
-    \[ Y \to (X \to Y), \quad y\mapsto (x\mapsto y),
+    \[ \delta: Y \to (X \to Y), \quad y\mapsto_\delta (x\mapsto y),
     \]
     is an equivalence.
 
@@ -113,7 +113,21 @@
 
         \item Deduce that for $n \geq 2$, the path composition in $\Omega^n(X, x)$ is commutative, and thus that $\pi_n(X, x)$ is abelian.
     \end{enumerate}
+    \item (The Fundamental Theorem of Identity Types)
+    
+    Let $R : X \to X \to \UU$ be a reflexive binary relation. The following are equivalent   \begin{enumerate}
+        \item The obvious map\footnote{i.e.\ the map defined by path induction which
+          sends $\refl_x$ to the term of type $R(x,x)$ given to us by
+          reflexivity of $R$} $x =_A y \to R(x,y)$  is an equivalence.
+        \item For any $x :X$, the total space $(y : X) \times (R(x ,y))$ is contractible.
+    \end{enumerate}
+ \item Recall that $\UU^{\le n} := (X: \UU) \times \isType{n}(X)$ is an $(n+1)$-type. This allows us to define $R : \Trunc{X}_{n+1} \times \Trunc{X}_{n+1} \to \UU^{\le n}$ by the truncation elimination: 
+    \[R(\trunc{x}_{n+1} , \trunc{y}_{n+1}) := \Trunc{x = y}_{n}\]
+    %
 
+    Apply the fundamental theorem of identity types with the above
+    family to deduce that $(\trunc{x}_{n+1} =_{\Trunc{X}_{n+1}} \trunc{y}_{n+1}) \simeq \Trunc{x = y}_n$
+    
   \item Show that when $X$ is connected, that $\pi_n(X, x_0) \cong \pi_n(X, x_1)$ are merely isomorphic for any $x_0, x_1 : X$, that is, construct an element of the type
     \[
       (x_0, x_1: X) \to \Trunc{\pi_n(X,x_0) \simeq \pi_n(X,x_1)}.
@@ -135,9 +149,6 @@
     \[\delta_X : X \to X\times X,\quad x\mapsto (x,x),\]
     is $n$-truncated.
 
-  \item Derive the usual elimination rules for the $\exists$- and
-    $\vee$-connectives on propositions, using the definitions as truncated
-    $\Sigma$- and $+$-types, respectively.
 
   \item Show that $\Trunc X_0$ satisfies the universal property of the set
     quotient of $X$ modulo the equivalence relation $\sim$, where $x\sim x'$ if
@@ -155,27 +166,131 @@
   %%   \end{enumerate}
 
 
-\begin{enumerate}
-  \item The obvious way of defining the type of arrows over the universe $(x:X)$
-\end{enumerate}
-This means, in particular, that we have an automorpism $(x:X) \times (X \to Y) \simeq (x : X) \times(X \to Y)$ defined by
-\[(X \xrightarrow{f} Y) \mapsto ((y : Y) \times (\fib_f(y)) \xrightarrow{\fst} Y).\]
-As a result, anytime we wish to prove a property ranging over the the slice $\UU/Y := $
-
+% \begin{enumerate}
+%   \item The obvious way of defining the type of arrows over the universe $(x:X)$
+% \end{enumerate}
+% This means, in particular, that we have an automorpism $(x:X) \times (X \to Y) \simeq (x : X) \times(X \to Y)$ defined by
+% \[(X \xrightarrow{f} Y) \mapsto ((y : Y) \times (\fib_f(y)) \xrightarrow{\fst} Y).\]
+% As a result, anytime we wish to prove a property ranging over the the slice $\UU/Y := $
 \end{enumerate}
 \section{Solutions}
 \begin{enumerate}
+    \item Define $f : \| \,\|A\|_n\|_k \to \|A\|_k$ to be $f (||a|_n|_k)= |a|_k$ and $g: \|A\|_k \to \|\, \|A\|_n\|_k$ to be $g(|a|_k)=||a|_n|_k$. Both functions are defined using the universal property of truncations, and the fact that $\|A\|_k$ is $n$-truncated because $k \leq n$. It's then easy to see that $f$ and $g$ define a quasi-eqivalent.
+
+    
+    \item First assume $X$ is an $n$-connected type. Then $\|X\|_n$ is contractible, and hence for every $n$-type $Y$, we apply the universal property of $n$-truncation and get:
+    \[
+    (X \to Y) \simeq (\|X\|_n \to Y) \simeq Y
+    \]
+    Therefore, we can identify $\delta$ with $id_Y$, and so it is an equivalence.
+
+    Conversely, let $\delta_Y : Y \to (X \to Y)$ defines an equivalence for all $n$-types $Y$. So in particular it is an equivalence for $Y:= \|X\|_n$. Applying this on $|\mbox{-}|_n : X \to \|X\|_n$, we get:
+    \[
+     \fib_{\delta_{\|X\|_n}}|\mbox{-}|_n
+    \]
+    is contractible. Unfolding this, we get that the type
+    \[
+    (z : \|X\|_n) \times (\mathsf{const}_z = |\mbox{-}|_n)
+    \]
+    is contractible. By function extensionality, we get that
+    \[
+    (z : \|X\|_n) \times ((x : X) \to |x|_n = z)
+    \]
+    is contractible. Now since identities of $\|X\|_n$ are $(n-1)$-truncated, and so $n$-truncated, we can apply universal property of truncation to get that $\|X\|_n$ is contractible.
+    \item First, show that the first projection map from $(z : \|A\|_n) \times \| \fib_{|\mbox{-}|_n}z\|_n$ to $\|A\|_n$ is an equivalence, using that the domain is an $n$-type. Then apply the following lemma:
+    \begin{lemma}
+        For any type $A$ and a family of types $B : A \to \UU$, the total space $(x: A) \times B(x)$ is contractible if and only of for each $x:A$, $B(x)$ is a contractible type.
+    \end{lemma}
+    \item The map $i$ is clearly $n$-truncated as its fibers are $n$-truncation and therefore $n$-types. We can identify $X$ with the total space of fibers $(y:Y) \to \fib_f(y)$. Then $p$ is $n$-connected by observing that the map between total spaces is $n$-connected if maps between fibers are, and the later is the result of the previous exercise.
+    \item
     \item 
     \item 
+    \item Since $X$ is a connected type, we have a map $f$ assigns to each two points $x_1,x_2 : X$ a path $f(x_1, x_2) :|x_1|_0 =_{\|X\|_0} |x_2|_0$. On the other hand, we know that any path $p: x_1 = x_2$ implies the goal, and since  the goal is a proposition, it is sufficient to find a proof for $\| x_1 = x_2\|$, which can be found by applying the following lemma.
+    \begin{lemma}
+For any type $X$ and any $x_1,x_2:X$, there is an equivalence
+\[
+\bigl(\,|x_1|_0 =_{\|X\|_0} |x_2|_0\,\bigr)\;\simeq\;\|\,x_1 =_X x_2\,\|.
+\]
+\end{lemma}
+
+\begin{proof}
+Since $\|X\|_0$ is a set, the type
+\[
+|x_1|_0 =_{\|X\|_0} |x_2|_0
+\]
+is a proposition; and $\|x_1=x_2\|$ is also a proposition. Hence it suffices to give maps in both directions.
+
+For
+\[
+\|x_1=x_2\| \to \bigl(|x_1|_0 = |x_2|_0\bigr),
+\]
+use propositional truncation recursion and send a path
+\[
+p:x_1=x_2
+\]
+to
+\[
+\ap_{|-|_0}(p): |x_1|_0 = |x_2|_0.
+\]
+
+For the converse, define the proposition-valued family
+\[
+P:\|X\|_0 \to \mathcal U,
+\qquad
+P(z):\equiv \|\,x_1 = z\,\|,
+\]
+where $P$ is induced from the family $y \mapsto \|x_1=y\|$ on $X$ by set-truncation recursion. Then $P(|x_1|_0)$ is inhabited by $|\refl_{x_1}|$. Thus, given
+\[
+q:|x_1|_0 = |x_2|_0,
+\]
+transporting along $q$ yields an inhabitant of
+\[
+P(|x_2|_0)\equiv \|x_1=x_2\|.
+\]
+
+Therefore the two proposition-valued types are equivalent. Note that one can generalize this result to $n$-truncation (see the HoTT book, Theorem 7.3.12).
+\end{proof}
     \item
-    \item
-    \item
-    \item
-    \item
-    \item
-    \item
-    \item 
-    \item 
+    \item For each $(x_1 , x_2) : X \times X$, we have:
+    $$\fib_{\delta_X} (x_1,x_2) = (x:X) \times ((x,x) = (x_1,x_2)) = (x:X) \times (x=x_1 \times x=x_2) = x_1 = x_2  ,$$
+    and we know that $X$ is $(n+1)$-truncated if and only if its identity types are $n$-truncated.
+    \item The relation
+\[
+x\sim x' \;:\!\!\equiv\; \Trunc{x=_X x'}
+\]
+is an equivalence relation: reflexivity is given by $|\refl_x|$, while symmetry and
+transitivity follow by truncation elimination into propositions.
+
+Now let $A$ be a set. To show that $\Trunc X_0$ is the set quotient of $X$ by $\sim$,
+we must show that precomposition with the truncation map
+\[
+|-|_0 : X \to \Trunc X_0
+\]
+induces an equivalence
+\[
+(\Trunc X_0 \to A)\;\simeq\;\Bigl\{\,f:X\to A \mid \forall x,x':X,\; x\sim x' \to f(x)=f(x')\,\Bigr\}.
+\]
+
+Given $g:\Trunc X_0\to A$, define $f:X\to A$ by $f(x):=g(|x|_0)$. Since $A$ is a set, the type
+$f(x)=f(x')$ is a proposition. Hence by truncation elimination it suffices to
+consider $p:x=x'$, in which case
+\[
+f(x)=g(|x|_0)=g(|x'|_0)=f(x')
+\]
+by applying $g$ to $\ap_{|-|_0}(p)$.
+
+Conversely, suppose $f:X\to A$ respects $\sim$. Since $A$ is a set, set-truncation
+recursion yields a map
+\[
+\bar f:\Trunc X_0\to A,
+\qquad
+\bar f(|x|_0):=f(x),
+\]
+and this is well-defined exactly because $f$ respects $\sim$.
+
+These two constructions are inverse to each other, by the computation rule for
+set truncation and by set-truncation induction. Therefore $\Trunc X_0$ satisfies
+the universal property of the set quotient of $X$ modulo $\sim$.
     
     
 
@@ -272,30 +387,30 @@ is a pullback square, for every type $T$.
   \[X * Y \simeq_* \Sigma (X\wedge Y).\]
 \end{enumerate} 
 
-\item The torus, $T^2$, is often drawn as a (filled) square with side identifications
-\begin{equation}\label{eq:torus}
-\begin{tikzcd}[ampersand replacement=\&]
-	\star \& \star \\
-	\star \& \star
-	\arrow["{\ell_1}", from=1-1, to=1-2]
-	\arrow["{\ell_2}", from=2-1, to=1-1]
-	\arrow["{\ell_1}"', from=2-1, to=2-2]
-	\arrow["{\ell_2}"', from=2-2, to=1-2]
-\end{tikzcd}
-\end{equation}
-In HoTT, we can capture this as HIT with
-\begin{enumerate}
-\item[$\bullet$] A point constructor $\star : T^2$
-\item[$\bullet$] Two paths $\ell_1,\ell_2 : \star = \star$
-\item[$\bullet$] A filler $\mathsf{sq}$ of the square of paths in \eqref{eq:torus}.
-\end{enumerate}
+% \item The torus, $T^2$, is often drawn as a (filled) square with side identifications
+% \begin{equation}\label{eq:torus}
+% \begin{tikzcd}[ampersand replacement=\&]
+% 	\star \& \star \\
+% 	\star \& \star
+% 	\arrow["{\ell_1}", from=1-1, to=1-2]
+% 	\arrow["{\ell_2}", from=2-1, to=1-1]
+% 	\arrow["{\ell_1}"', from=2-1, to=2-2]
+% 	\arrow["{\ell_2}"', from=2-2, to=1-2]
+% \end{tikzcd}
+% \end{equation}
+% In HoTT, we can capture this as HIT with
+% \begin{enumerate}
+% \item[$\bullet$] A point constructor $\star : T^2$
+% \item[$\bullet$] Two paths $\ell_1,\ell_2 : \star = \star$
+% \item[$\bullet$] A filler $\mathsf{sq}$ of the square of paths in \eqref{eq:torus}.
+% \end{enumerate}
 %Recall \cref{def:fillers} for the definition of \emph{fillers}.
-%
-Show this type is equivalent to $S^1 \times S^1$.
-%
-  (\emph{Hint})\enspace You may assume that eliminators compute definitionally
-  on point constructors (as in cubical type theory), otherwise it's quite
-  intricate!
+% %
+% Show this type is equivalent to $S^1 \times S^1$.
+% %
+  % (\emph{Hint})\enspace You may assume that eliminators compute definitionally
+  % on point constructors (as in cubical type theory), otherwise it's quite
+  % intricate!
 
 \item We can define the unit interval type $\II$ to be the pushout of the constant span $1 \leftarrow 1 \rightarrow 1$. Working in Martin-Löf type theory \emph{without} univalence (and function extensionality) but with pushouts with strict definitional computation rules, prove that
   \begin{enumerate}[label=(\roman*)]
@@ -331,7 +446,6 @@ is a pullback, then so is
 \end{enumerate}
 \section{Solutions}
 \begin{enumerate}
-\item 
 \item 
 \item 
 \item 
