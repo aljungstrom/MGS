@@ -205,6 +205,7 @@ To get some intuition (hopefully, you will get even more later on in the course)
     \begin{itemize}
     \item $1$, $\emptyset$ (and everything in between)
     \item The statement that a type is an $n$-type is itself a $(-1)$-type: $\mathsf{isProp}(\isType{n}(X))$.
+    \item The \textbf{singleton} type (over some $x:X$) i.e.\ $(y : X) \times (x = y)$ is contractible.
     \item We haven't come this far yet, but we will soon define what it means for a function to the an equivalence (roughly, `invertible'). The statement that $f: A \to B$ is an equivalence is a $(-1)$-type.
     \end{itemize}
   \item Sets ($0$-types). These are types that are discrete in nature -- they can have a bunch of points but no interesting paths (i.e.\ no interesting homotopical structure):
@@ -225,20 +226,20 @@ To get some intuition (hopefully, you will get even more later on in the course)
 %%     This also explains the indexing, as sets are \say{$0$-dimensional} objects. But it's also natural to use an indexing where contractible types are at level $0$: This hierarchy is called the h-level (homotopy level) hierarchy, so a type is \textbf{of hlevel $n+2$} if and only if it is an $n$-type.
 %% \end{remark}
 
-\begin{example}
-We give some basic examples of $n$-types.
-\begin{itemize}
-\item The only $-2$-type is the unit type $1$. More precisely, the type of
-  $-2$-types is contractible.
-  \begin{itemize}
-    \item Important mention: the \textbf{singleton} type (over some $x:X$) i.e. $(y : X) \times (x = y)$ is contractible.
-  \end{itemize}
-    \item $-1$-types are subtypes of $1$. For example the empty type $0$.
-    \item The type of integers $\ZZ$ is a $0$-type. More generally any (non higher) inductive type is a $0$-type.
-    \item The type of $n$-types in a universe $\UU$, $\UU^{\le n}$, is an $n+1$ type, for $n\ge-1$.
-    \item Any $n$-type is also an $(n+1)$-type
-\end{itemize}
-\end{example}
+%% \begin{example}
+%% We give some basic examples of $n$-types.
+%% \begin{itemize}
+%% \item The only $-2$-type is the unit type $1$. More precisely, the type of
+%%   $-2$-types is contractible.
+%%   \begin{itemize}
+%%     \item Important mention: the \textbf{singleton} type (over some $x:X$) i.e. $(y : X) \times (x = y)$ is contractible.
+%%   \end{itemize}
+%%     \item $-1$-types are subtypes of $1$. For example the empty type $0$.
+%%     \item The type of integers $\ZZ$ is a $0$-type. More generally any (non higher) inductive type is a $0$-type.
+%%     \item The type of $n$-types in a universe $\UU$, $\UU^{\le n}$, is an $n+1$ type, for $n\ge-1$.
+%%     \item Any $n$-type is also an $(n+1)$-type
+%% \end{itemize}
+%% \end{example}
 
 We said before that we'd like to be able to `quotient' by all `higher
 structure' of a type.
@@ -304,7 +305,7 @@ This type is itself pointed by $\refl_{\star_X}$.
 \end{itemize}
 
 \begin{definition}
-  The \textbf{first homotopy group} of a pointed type $X$ is defined by $\pi_1(X):= \Trunc{X}_0$
+  The \textbf{first homotopy group} (also the \textbf{the fundamental group}) of a pointed type $X$ is defined by $\pi_1(X):= \Trunc{X}_0$
   \begin{itemize}
     \item Multiplication is inherited immediately from path composition on $\Omega(X)$. By the univeral property: $\trunc{p}_0 \cdot \trunc{q}_0 = \trunc{p \cdot q}_0$
   \end{itemize}
@@ -325,7 +326,7 @@ This type is itself pointed by $\refl_{\star_X}$.
 
 
 
-\section{Things I should've talked about but didn't}
+\section*{Things I should've talked about but didn't}
 I didn't have time to mention that there is a notion of $n$-connected types. This notion is, in a sense, dual to the notion of $n$-type:
 \begin{definition}
     A type $X$ is \textbf{$n$-connected} if $\Trunc{X}_n$ is contractible.
@@ -335,7 +336,7 @@ We often simply write `connected' instead of `$0$-connected'.
   If $X$ is $(n \geq -1)$-connected, then $x=_{X}y$ is $(n-1)$-connected for all $x,y:X$.
 \end{proposition}
 
-Just like types and and functions 
+Just like types, functions can also be `$n$-types' (we call these $n$-truncated) and `$n$-connected'. This essentially means that they behave nicely when mapping into/out out of $n$-types/$n$-connected types. To define this notion, we need fibres: 
 \begin{definition}
   The \textbf{fibre} of a function $f:X\to Y$ over a point $y : Y$ is the type
   \[ \fib_f(y) := (x : X) \times (f(x) = y) \]
@@ -348,19 +349,8 @@ Just like types and and functions
         \item \textbf{$n$-connected} if $\fib_f(y)$ is $n$-connected for all $y:Y$.
     \end{enumerate}
 \end{definition}
-
-%% As special cases, a map $f:X\to Y$ is \textbf{surjective} if it's $-1$-connected
-%% and an \textbf{embedding} if it's $-1$-truncated. For reasons we'll see later, we think of $0$-truncated maps as \textbf{set bundles}.
-%% \begin{example}
-%%     The map $\trunc{\blank}_n : X \to \Trunc{X}_n$ is $n$-connected.
-%% \end{example}
-
-
-
-  
-
-
-\axel{Let's compute some very exciting homotopy groups!}
+%
+These notions are crucial, but their significance is perhaps most easily illustrated via the following results (our very first homotopy group computations!):
 \begin{proposition}
   If $X$ is an $n$-type, then $\pi_{k}(X)$ vanishes $\forall k>n$.
 \end{proposition}
@@ -372,6 +362,9 @@ Just like types and and functions
 \end{proposition}
 
 \subsection*{Recap: univalence}
+I never stated the univalence axiom, and that would probably have been appropriate for a course basde on homotopy type theory.
+%
+To state it, we need to define equivalences:
 \begin{definition}
   A function $f:X\to Y$ is an \textbf{equivalence} if $\fib_f(y)$ is contractible for all $y$.
 \end{definition}
@@ -379,31 +372,24 @@ Just like types and and functions
 \item Let $(X\simeq Y) \times \isEquiv(f)$
 \item Fact: $\id_X : X \to X$ is an equivalence.
 \end{itemize}
-
 \begin{remark}\label{rmk:qinv}
-  Why not use $\underset{:= \qinv(f)}{\underbrace{(g : (Y \to X)) \times (g \circ f = \id) \times (f \circ g = \id)}}$ as definition?
-  \begin{itemize}
-  \item \axel {Too much structure}
-  \item $\qinv(f) \leftrightarrow \isEquiv(f)$ but $\qinv(f) \not\simeq \isEquiv(f)$. \axel{For our purposes, we can pretend that they are the same}.
-  \end{itemize}
+  Why not use $\underset{:= \qinv(f)}{\underbrace{(g : (Y \to X)) \times (g \circ f = \id) \times (f \circ g = \id)}}$ as definition? The issue with this definition is that it is \emph{not a proposition}, so there may be many different proofs of it for a given function $f$. This makes it inappropriate to use. However, it turns out that  $\qinv(f)$ and $\isEquiv(f)$ both imply each other (i.e.\ they are \emph{logically equivalent}), so we can just pretend that these definitions are the same. That's certainly what I do when I construct (most) equivalences. For this reason, I will often talk about the `inverse' of an equivalence.
 \end{remark}
 
 \begin{axiom}[Univalence]
   The canonical map $X=_\UU Y \to (X \simeq Y)$ is an equivalence.
+  In particular, $X \simeq Y \to X = Y$
 \end{axiom}
-
-\begin{itemize}
-\item In particular, $X \simeq Y \to X = Y$
-\end{itemize}
+Above, the `canonical map' is defined using an appropriate
+$\mathsf{transport}$ or by path induction.
+%
+Constructing it is a good exercise if you feel uncertain about these
+concepts.
 
 \begin{fact}
-  Univalence $\implies$ $\funExt(f) := (((x y : X) \to f(x) = g(x)) \to f = g)$
+  Univalence implies function extensionality, i.e. the statement that if $(((x y : X) \to f(x) = g(x))$ then $f = g$
 \end{fact}
-
-\begin{itemize}
-\item From now on, always assume univalence (and funExt). 
-\end{itemize}
-
+From now on, we will always assume (and use) univalence/functio nextensionality, often without comment.
 
 
 
