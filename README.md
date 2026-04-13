@@ -1,2 +1,4 @@
 # mgs2026
-Synthetic Homotopy Theory with HoTT/UF (MGS 2026 course notes)
+Synthetic Homotopy Theory with HoTT/UF.
+
+See the directory PDF/ for course notes and exercises.
