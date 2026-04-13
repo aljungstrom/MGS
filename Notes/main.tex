@@ -16,7 +16,7 @@
   \Large Midlands Graduate School (MGS)\\
   \large 13--17 April 2026, Nottingham, UK\\[1cm]
   by\\
-  Axel Ljungström\\
+  Axel Ljungström and Aref Mohammadzadeh\\
   School of Computer Science\\
   University of Nottingham\\[1cm]
   Heavily based on notes from MGS 2024 by
@@ -129,12 +129,6 @@ Almost but not quite right -- too many proofs of the group axioms.
     is inhabited.
 \end{definition}
 
-\begin{definition}
-  The \textbf{fibre} of a function $f:X\to Y$ over a point $y : Y$ is the type
-  \[ \fib_f(y) := (x : X) \times (f(x) = y) \]
-\end{definition}
-
-
 
 
 \section*{Truncations}
@@ -173,13 +167,13 @@ Almost but not quite right -- too many proofs of the group axioms.
     \item cf. Hedberg's theorem
     \end{itemize}
   \item The universe of $n$-types, $\UU^{\le n} := (X : \UU) \times \isType{n}(X)$, is an $n+1$ type.
-    \begin{itemize}
-    \item Idea
-      \begin{align*}
-        [(X,\mathsf{nt}_X) \simeq_{\UU^{\le n}} (Y,\mathsf{nt}_Y) ] &\simeq (X =_{\UU} Y) \\
-        &\simeq (X \simeq Y)
-      \end{align*}
-    \end{itemize}
+    %% \begin{itemize}
+    %% \item Idea
+    %%   \begin{align*}
+    %%     [(X,\mathsf{nt}_X) \simeq_{\UU^{\le n}} (Y,\mathsf{nt}_Y) ] &\simeq (X =_{\UU} Y) \\
+    %%     &\simeq (X \simeq Y)
+    %%   \end{align*}
+    %% \end{itemize}
   \end{itemize}
 \end{example}
 
@@ -227,6 +221,12 @@ We give some basic examples of $n$-types.
 \item Convention: `connected' = `$0$-connected'
 \item If $X$ is $(n \geq -1)$-connected, then $x=_{X}y$ is $(n-1)$-connected for all $x,y:X$ (see Exercise X)
 \end{itemize}
+
+\begin{definition}
+  The \textbf{fibre} of a function $f:X\to Y$ over a point $y : Y$ is the type
+  \[ \fib_f(y) := (x : X) \times (f(x) = y) \]
+\end{definition}
+
 
 \begin{definition}
     A map $f : X \to Y$ is:
@@ -306,6 +306,9 @@ This type is itself pointed by $\refl_{\star_X}$.
 \begin{corollary}
   $\pi_{n \geq 1}(X)$ vanishes for any set $X$. In particular for $X = 1$.
 \end{corollary}
+\begin{proposition}
+  If $X$ is $n$-connected, then $\pi_{k}(X)$ vanishes $\forall k\leq n$.
+\end{proposition}
 
 \subsection*{Recap: univalence}
 \begin{definition}
@@ -414,134 +417,134 @@ Pointed version:
 %% %
 %% Let us spell out the key consequence of this theorem, because it is \emph{incredibly useful}. Fix a predicate $P : (X : \UU) \times (X \to Y) \to \UU$, i.e.\ a statement about universally quantified over all types $X$ and maps $X \to Y$. In order to prove that $P(X,f)$ holds for all $X \rightarrow{f} Y$, it suffices to prove $P$ for all first projections of the form $(y:Y) \times B(y) \xrightarrow{\fst} Y$.  
 
-\section{Exercises}
-\begin{enumerate}
-    \item Show that for $n \geq m$ and any type $A$ we have
-    \[ \Trunc{\Trunc{A}_n}_m \simeq \Trunc{A}_m. \]
-
-  \item\label{ex:n-conn-orth}
-    Show that a type $X$ is $n$-connected if and only if, for every $n$-type $Y$,
-    the diagonal map
-    \[ Y \to (X \to Y), \quad y\mapsto (x\mapsto y),
-    \]
-    is an equivalence.
-
-  \item Show that the map $\trunc\blank_n : X \to \Trunc X_n$ is $n$-connected.
-
-    \item Consider a map $f : X \to Y$.
-      We define its \textbf{$n$-image} to be the type $\im_n(f) :=
-      (y : Y) \times \Trunc{\fib_f(y)}_n$.
-    \begin{enumerate}
-    \item Show that we can factorise $f$ through the $n$-image, that is,
-      construct a commuting diagram:
-        \[\begin{tikzcd}
-            X \ar[rr, "f"] \ar[dr, swap, "p"] & & Y \\
-            & \im_n(f) \ar[ur, swap, "i"]
-        \end{tikzcd}\]
-    \item Show that $p$ is $n$-connected and $i$ is $n$-truncated.
-    \item Show that if $Z$ is any type, $g : X \to Z$ is $n$-connected, and $h:Z\to Y$ is $n$-truncated with $f = h\circ g$, then there is a unique equivalence $e : \im_n(f) \to Z$ with $e\circ p = g$ and $h\circ e = i$:
-      \[
-        \begin{tikzcd}
-      & Z \ar[dr,"h"] & \\
-      X \ar[rr,pos=0.7,"f"]\ar[dr,"p"'] \ar[ur,"g"]& & Y\\
-      & \im_n(f)\ar[ur,"i"']\ar[uu,dotted,pos=0.3, "e"] &
-    \end{tikzcd}
-  \]
-  (\emph{Hint})\enspace It's easier if you assume $g$ and $h$ are projections of
-  dependent sums.
-    \end{enumerate}
-
-    \item (Eckmann--Hilton). All paths will take place in a fixed type $X$.
-    \begin{enumerate}
-        \item Given paths $p_0, p_1 : x = y$ and $q_0, q_1: y = z$, and higher paths $r : p_0 = p_1$ and $s : q_0 = q_1$, define their \textbf{horizontal multiplication} $s \ast r : q_0 \cdot p_0 = q_1 \cdot p_1$ by path induction on $r$ and $p_0$.
-        \[\begin{tikzcd}
-    	x & y & z
-    	\arrow[""{name=0, anchor=center, inner sep=0}, "{p_1}"', bend right=40, from=1-1, to=1-2]
-    	\arrow[""{name=1, anchor=center, inner sep=0}, "{q_1}"', bend right=40, from=1-2, to=1-3]
-    	\arrow[""{name=2, anchor=center, inner sep=0}, "p_0", bend left=40, from=1-1, to=1-2]
-    	\arrow[""{name=3, anchor=center, inner sep=0}, "q_0", bend left=40, from=1-2, to=1-3]
-    	\arrow["s", shorten <=3pt, shorten >=3pt, Rightarrow, from=3, to=1]
-    	\arrow["r"', shorten <=3pt, shorten >=3pt, Rightarrow, from=2, to=0]
-        \end{tikzcd}\]
-
-        \item Given paths fitting into the following diagram
-    	\[\begin{tikzcd}
-        x && y && z
-        \arrow[""{name=0, anchor=center, inner sep=0}, "{p_1}"', bend right=40, from=1-1, to=1-3]
-    	\arrow[""{name=1, anchor=center, inner sep=0}, "{q_1}"', bend right=40, from=1-3, to=1-5]
-    	\arrow[""{name=2, anchor=center, inner sep=0}, "{p_0}", bend left=40, from=1-1, to=1-3]
-    	\arrow[""{name=3, anchor=center, inner sep=0}, "{q_0}", bend left=40, from=1-3, to=1-5]
-    	\arrow[""{name=4, anchor=center, inner sep=0}, from=1-1, to=1-3]
-    	\arrow[""{name=5, anchor=center, inner sep=0}, from=1-3, to=1-5]
-    	\arrow["{r_0}"', shorten <=2pt, shorten >=2pt, Rightarrow, from=2, to=4]
-    	\arrow["{r_1}"', shorten <=2pt, shorten >=2pt, Rightarrow, from=4, to=0]
-    	\arrow["{s_0}", shorten <=2pt, shorten >=2pt, Rightarrow, from=3, to=5]
-    	\arrow["{s_1}", shorten <=2pt, shorten >=2pt, Rightarrow, from=5, to=1]
-        \end{tikzcd}\]
-        show we have the \textbf{interchange law}:
-        \[ (s_1 \ast r_1) \cdot (s_0 \ast r_0) = (s_1 \cdot s_0) \ast (r_1 \cdot r_0)  \]
-
-        \item Deduce that for $n \geq 2$, the path composition in $\Omega^n(X, x)$ is commutative, and thus that $\pi_n(X, x)$ is abelian.
-    \end{enumerate}
-
-  \item Recall that $\UU^{\le n} := (X: \UU) \times \isType{n}(X)$ is an $(n+1)$-type. This allows us to define $R : \Trunc{X}_{n+1} \times \Trunc{X}_{n+1} \to \UU^{\le n}$ by the truncation elimination: 
-    \[R(\trunc{x}_{n+1} , \trunc{y}_{n+1}) := \Trunc{x = y}_{n}\]
-    %
-
-    Apply the fundamental theorem of identity types with the above
-    family to deduce that $(\trunc{x}_{n+1} =_{\Trunc{X}_{n+1}} \trunc{y}_{n+1}) \simeq \Trunc{x = y}_n$
-    
-  \item Show that when $X$ is connected, that $\pi_n(X, x_0) \cong \pi_n(X, x_1)$ are merely isomorphic for any $x_0, x_1 : X$, that is, construct an element of the type
-    \[
-      (x_0, x_1: X) \to \Trunc{\pi_n(X,x_0) \simeq \pi_n(X,x_1)}.
-    \]
-
-    \item We define the observational equality type family of the natural numbers $E : \NN \to \NN \to \UU$  by
-        \begin{align*}
-            E(0,0) &= 1 \\
-            E(\mathrm{succ}(n), 0) &= 0 \\
-            E(0, \mathrm{succ}(n)) &= 0 \\
-            E(\mathrm{succ}(n), \mathrm{succ}(m)) &= E(n,m)
-        \end{align*}
-        \begin{enumerate}
-            \item Define a natural map $n = m \to E(n,m)$ for all $n, m : \NN$.
-            \item Use the fundamental theorem of identity types to show this natural map is an equivalence.
-        \end{enumerate}
-
-  \item Show that a type $X$ is $n+1$-truncated if and only if the diagonal map of $X$,
-    \[\delta_X : X \to X\times X,\quad x\mapsto (x,x),\]
-    is $n$-truncated.
-
-  \item Derive the usual elimination rules for the $\exists$- and
-    $\vee$-connectives on propositions, using the definitions as truncated
-    $\Sigma$- and $+$-types, respectively.
-
-  \item Show that $\Trunc X_0$ satisfies the universal property of the set
-    quotient of $X$ modulo the equivalence relation $\sim$, where $x\sim x'$ if
-    and only if $\Trunc{x=_X x'}$.
-
-  %% \item Given two functions $f : X_1 \to Y$ and $g : X_2 \to Y$, we
-  %%   can define their pullback $X_1 \times_Y X_2 := (x_1 : X_1) \times
-  %%   (x_2 : X_2) \times (f(x_1) = g(x_2))$. Letting $\UU/Y : = (X :
-  %%   \UU) \times (X \to Y)$, this can be viewed as a product $\times :
-  %%   \UU/Y \times \UU/Y \to \UU/Y$ defined by $(X_1,f) \times (X_2,g)
-  %%   := (X_1 \times_Y X_2 , (x_1,x_2,p) \mapsto f(x_1))$
-  %%   \begin{enumerate}
-  %%   \item Define the functorial action of $\times$. For this question, you should is a triple $(\alpha,\beta,\gamma)$.
-  %%   \item An Define the functorial action
-  %%   \end{enumerate}
-
-
+%% \section{Exercises}
 %% \begin{enumerate}
-%%   \item The obvious way of defining the type of arrows over the universe $(x:X)$
+%%     \item Show that for $n \geq m$ and any type $A$ we have
+%%     \[ \Trunc{\Trunc{A}_n}_m \simeq \Trunc{A}_m. \]
+
+%%   \item\label{ex:n-conn-orth}
+%%     Show that a type $X$ is $n$-connected if and only if, for every $n$-type $Y$,
+%%     the diagonal map
+%%     \[ Y \to (X \to Y), \quad y\mapsto (x\mapsto y),
+%%     \]
+%%     is an equivalence.
+
+%%   \item Show that the map $\trunc\blank_n : X \to \Trunc X_n$ is $n$-connected.
+
+%%     \item Consider a map $f : X \to Y$.
+%%       We define its \textbf{$n$-image} to be the type $\im_n(f) :=
+%%       (y : Y) \times \Trunc{\fib_f(y)}_n$.
+%%     \begin{enumerate}
+%%     \item Show that we can factorise $f$ through the $n$-image, that is,
+%%       construct a commuting diagram:
+%%         \[\begin{tikzcd}
+%%             X \ar[rr, "f"] \ar[dr, swap, "p"] & & Y \\
+%%             & \im_n(f) \ar[ur, swap, "i"]
+%%         \end{tikzcd}\]
+%%     \item Show that $p$ is $n$-connected and $i$ is $n$-truncated.
+%%     \item Show that if $Z$ is any type, $g : X \to Z$ is $n$-connected, and $h:Z\to Y$ is $n$-truncated with $f = h\circ g$, then there is a unique equivalence $e : \im_n(f) \to Z$ with $e\circ p = g$ and $h\circ e = i$:
+%%       \[
+%%         \begin{tikzcd}
+%%       & Z \ar[dr,"h"] & \\
+%%       X \ar[rr,pos=0.7,"f"]\ar[dr,"p"'] \ar[ur,"g"]& & Y\\
+%%       & \im_n(f)\ar[ur,"i"']\ar[uu,dotted,pos=0.3, "e"] &
+%%     \end{tikzcd}
+%%   \]
+%%   (\emph{Hint})\enspace It's easier if you assume $g$ and $h$ are projections of
+%%   dependent sums.
+%%     \end{enumerate}
+
+%%     \item (Eckmann--Hilton). All paths will take place in a fixed type $X$.
+%%     \begin{enumerate}
+%%         \item Given paths $p_0, p_1 : x = y$ and $q_0, q_1: y = z$, and higher paths $r : p_0 = p_1$ and $s : q_0 = q_1$, define their \textbf{horizontal multiplication} $s \ast r : q_0 \cdot p_0 = q_1 \cdot p_1$ by path induction on $r$ and $p_0$.
+%%         \[\begin{tikzcd}
+%%     	x & y & z
+%%     	\arrow[""{name=0, anchor=center, inner sep=0}, "{p_1}"', bend right=40, from=1-1, to=1-2]
+%%     	\arrow[""{name=1, anchor=center, inner sep=0}, "{q_1}"', bend right=40, from=1-2, to=1-3]
+%%     	\arrow[""{name=2, anchor=center, inner sep=0}, "p_0", bend left=40, from=1-1, to=1-2]
+%%     	\arrow[""{name=3, anchor=center, inner sep=0}, "q_0", bend left=40, from=1-2, to=1-3]
+%%     	\arrow["s", shorten <=3pt, shorten >=3pt, Rightarrow, from=3, to=1]
+%%     	\arrow["r"', shorten <=3pt, shorten >=3pt, Rightarrow, from=2, to=0]
+%%         \end{tikzcd}\]
+
+%%         \item Given paths fitting into the following diagram
+%%     	\[\begin{tikzcd}
+%%         x && y && z
+%%         \arrow[""{name=0, anchor=center, inner sep=0}, "{p_1}"', bend right=40, from=1-1, to=1-3]
+%%     	\arrow[""{name=1, anchor=center, inner sep=0}, "{q_1}"', bend right=40, from=1-3, to=1-5]
+%%     	\arrow[""{name=2, anchor=center, inner sep=0}, "{p_0}", bend left=40, from=1-1, to=1-3]
+%%     	\arrow[""{name=3, anchor=center, inner sep=0}, "{q_0}", bend left=40, from=1-3, to=1-5]
+%%     	\arrow[""{name=4, anchor=center, inner sep=0}, from=1-1, to=1-3]
+%%     	\arrow[""{name=5, anchor=center, inner sep=0}, from=1-3, to=1-5]
+%%     	\arrow["{r_0}"', shorten <=2pt, shorten >=2pt, Rightarrow, from=2, to=4]
+%%     	\arrow["{r_1}"', shorten <=2pt, shorten >=2pt, Rightarrow, from=4, to=0]
+%%     	\arrow["{s_0}", shorten <=2pt, shorten >=2pt, Rightarrow, from=3, to=5]
+%%     	\arrow["{s_1}", shorten <=2pt, shorten >=2pt, Rightarrow, from=5, to=1]
+%%         \end{tikzcd}\]
+%%         show we have the \textbf{interchange law}:
+%%         \[ (s_1 \ast r_1) \cdot (s_0 \ast r_0) = (s_1 \cdot s_0) \ast (r_1 \cdot r_0)  \]
+
+%%         \item Deduce that for $n \geq 2$, the path composition in $\Omega^n(X, x)$ is commutative, and thus that $\pi_n(X, x)$ is abelian.
+%%     \end{enumerate}
+
+%%   \item Recall that $\UU^{\le n} := (X: \UU) \times \isType{n}(X)$ is an $(n+1)$-type. This allows us to define $R : \Trunc{X}_{n+1} \times \Trunc{X}_{n+1} \to \UU^{\le n}$ by the truncation elimination: 
+%%     \[R(\trunc{x}_{n+1} , \trunc{y}_{n+1}) := \Trunc{x = y}_{n}\]
+%%     %
+
+%%     Apply the fundamental theorem of identity types with the above
+%%     family to deduce that $(\trunc{x}_{n+1} =_{\Trunc{X}_{n+1}} \trunc{y}_{n+1}) \simeq \Trunc{x = y}_n$
+    
+%%   \item Show that when $X$ is connected, that $\pi_n(X, x_0) \cong \pi_n(X, x_1)$ are merely isomorphic for any $x_0, x_1 : X$, that is, construct an element of the type
+%%     \[
+%%       (x_0, x_1: X) \to \Trunc{\pi_n(X,x_0) \simeq \pi_n(X,x_1)}.
+%%     \]
+
+%%     \item We define the observational equality type family of the natural numbers $E : \NN \to \NN \to \UU$  by
+%%         \begin{align*}
+%%             E(0,0) &= 1 \\
+%%             E(\mathrm{succ}(n), 0) &= 0 \\
+%%             E(0, \mathrm{succ}(n)) &= 0 \\
+%%             E(\mathrm{succ}(n), \mathrm{succ}(m)) &= E(n,m)
+%%         \end{align*}
+%%         \begin{enumerate}
+%%             \item Define a natural map $n = m \to E(n,m)$ for all $n, m : \NN$.
+%%             \item Use the fundamental theorem of identity types to show this natural map is an equivalence.
+%%         \end{enumerate}
+
+%%   \item Show that a type $X$ is $n+1$-truncated if and only if the diagonal map of $X$,
+%%     \[\delta_X : X \to X\times X,\quad x\mapsto (x,x),\]
+%%     is $n$-truncated.
+
+%%   \item Derive the usual elimination rules for the $\exists$- and
+%%     $\vee$-connectives on propositions, using the definitions as truncated
+%%     $\Sigma$- and $+$-types, respectively.
+
+%%   \item Show that $\Trunc X_0$ satisfies the universal property of the set
+%%     quotient of $X$ modulo the equivalence relation $\sim$, where $x\sim x'$ if
+%%     and only if $\Trunc{x=_X x'}$.
+
+%%   %% \item Given two functions $f : X_1 \to Y$ and $g : X_2 \to Y$, we
+%%   %%   can define their pullback $X_1 \times_Y X_2 := (x_1 : X_1) \times
+%%   %%   (x_2 : X_2) \times (f(x_1) = g(x_2))$. Letting $\UU/Y : = (X :
+%%   %%   \UU) \times (X \to Y)$, this can be viewed as a product $\times :
+%%   %%   \UU/Y \times \UU/Y \to \UU/Y$ defined by $(X_1,f) \times (X_2,g)
+%%   %%   := (X_1 \times_Y X_2 , (x_1,x_2,p) \mapsto f(x_1))$
+%%   %%   \begin{enumerate}
+%%   %%   \item Define the functorial action of $\times$. For this question, you should is a triple $(\alpha,\beta,\gamma)$.
+%%   %%   \item An Define the functorial action
+%%   %%   \end{enumerate}
+
+
+%% %% \begin{enumerate}
+%% %%   \item The obvious way of defining the type of arrows over the universe $(x:X)$
+%% %% \end{enumerate}
+%% %% This means, in particular, that we have an automorpism $(x:X) \times (X \to Y) \simeq (x : X) \times(X \to Y)$ defined by
+%% %% \[(X \xrightarrow{f} Y) \mapsto ((y : Y) \times (\fib_f(y)) \xrightarrow{\fst} Y).\]
+%% %% As a result, anytime we wish to prove a property ranging over the the slice $\UU/Y := $
+
 %% \end{enumerate}
-%% This means, in particular, that we have an automorpism $(x:X) \times (X \to Y) \simeq (x : X) \times(X \to Y)$ defined by
-%% \[(X \xrightarrow{f} Y) \mapsto ((y : Y) \times (\fib_f(y)) \xrightarrow{\fst} Y).\]
-%% As a result, anytime we wish to prove a property ranging over the the slice $\UU/Y := $
 
-\end{enumerate}
-
-\chapter{A menagerie of higher inductive types}
+\chapter*{Lecture 2: A menagerie of higher inductive types}
 
 \paragraph{Plan}
 \begin{enumerate}
@@ -572,7 +575,7 @@ Pointed version:
 is an equivalence.\\
 \textbf{Dependent version:} for a dependent type $B : S^1 \to \UU$, the evaluation map
 \[
-  \Bigl((z : S^1) \to B(z)\Bigr) \to \Bigl(x : B(\ast) \times (\Sloop_*(x)
+  \Bigl((z : S^1) \to B(z)\Bigr) \to \Bigl(x : B(\ast) \times (x
   =^B_{\Sloop} x)\Bigr),
   \quad f \mapsto (f(\ast), \apd_f(\Sloop))
 \]
@@ -610,6 +613,17 @@ is an equivalence.
     \end{align*}
     \axel{Draw pictures}
 \end{definition}
+We write
+\[\begin{tikzcd}[ampersand replacement=\&]
+	A \& C \\
+	B \& D
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+\end{tikzcd}\]
+to express that $D$ is the pushout $B \sqcup^A C$ defined above.
 
 \begin{definition} Numerous construction of (in general, higher) types as pushouts:
     \begin{enumerate}
@@ -682,38 +696,41 @@ Instead we can define the higher spheres uniformly via iterated suspension.
 \end{itemize}
 
 
-\paragraph{Exercise:} check that the the 
+%% \paragraph{Exercise:} check that the the multiplic 
 
-\begin{lemma}
-  \label{lem:n-trunc-sphere-orth}
-  A type $X$ is $n$-truncated if and only if the diagonal map
-  \[ X \to (S^{n+1} \to X),\quad
-    x\mapsto(z \mapsto x),\]
-  is an equivalence.
-\end{lemma}
-\begin{proof}
-  Induction on $n$. For $n=-2$ we have $S^{n+1}=S^{-1}=0$, so $(0\to X)=1$ is the unit type.
+%% \begin{lemma}
+%%   \label{lem:n-trunc-sphere-orth}
+%%   A type $X$ is $n$-truncated if and only if the diagonal map
+%%   \[ X \to (S^{n+1} \to X),\quad
+%%     x\mapsto(z \mapsto x),\]
+%%   is an equivalence.
+%% \end{lemma}
+%% \begin{proof}
+%%   Induction on $n$. For $n=-2$ we have $S^{n+1}=S^{-1}=0$, so $(0\to X)=1$ is the unit type.
 
-  In the step case, note that
-  \[(S^{n+1} \to X) \simeq (x_0,x_1:X)\times(S^n \to (x_0=_Xx_1))\]
-  If $X$ is $n$ truncated, then $x_0=x_1$ is $n-1$-truncated, and by induction hypothesis
-  the type is equivalence to $(x_0,x_1:X)\times(x_0=x_1)$, which is equivalent to $X$,
-  and this agrees with the diagonal map.
+%%   In the step case, note that
+%%   \[(S^{n+1} \to X) \simeq (x_0,x_1:X)\times(S^n \to (x_0=_Xx_1))\]
+%%   If $X$ is $n$ truncated, then $x_0=x_1$ is $n-1$-truncated, and by induction hypothesis
+%%   the type is equivalence to $(x_0,x_1:X)\times(x_0=x_1)$, which is equivalent to $X$,
+%%   and this agrees with the diagonal map.
 
-  Conversely, to show that the diagonal map $(x_0=x_1) \to (S^n \to x_0=x_1)$ is an equivalence,
-  it suffices to show that the map on total spaces
-  \[
-    \bigl((x_0,x_1:X) \times (x_0=x_1)\bigr) \to
-    \bigl((x_0,x_1:X) \times (S^n \to x_0=x_1)\bigr)
-  \]
-  is, but this can be identified with the one we have by assumption.
-\end{proof}
+%%   Conversely, to show that the diagonal map $(x_0=x_1) \to (S^n \to x_0=x_1)$ is an equivalence,
+%%   it suffices to show that the map on total spaces
+%%   \[
+%%     \bigl((x_0,x_1:X) \times (x_0=x_1)\bigr) \to
+%%     \bigl((x_0,x_1:X) \times (S^n \to x_0=x_1)\bigr)
+%%   \]
+%%   is, but this can be identified with the one we have by assumption.
+%% \end{proof}
+
+Recall following exercise:
+\paragraph{Exercise} A type $A$ is $n$-connected iff the diagonal map $X \to (A \to X)$ is an equivalence for any $n$-types $X$. 
 
 \begin{theorem}[Connectivity of suspension]
     If $X$ is $n$-connected then $\Sigma X$ is $n+1$-connected.
 \end{theorem}
 \begin{proof}
-  Using~Exercise 1.\ref{ex:n-conn-orth}, it suffices to show that the diagonal map
+  Using the exercise, it suffices to show that the diagonal map
   \[
     Y \to (\Sigma X \to Y)
   \]
@@ -775,11 +792,75 @@ or form the pushouts of the rows resulting in a span
 \begin{proof}
   Direct but technical.
 \end{proof}
+
+Let's consider an application. For it, we need a quick lemma whose proof is direct:
+\begin{lemma}
+  Given an equivance $e:A \simeq B$, the following is a pushout square:
+  \[\begin{tikzcd}[ampersand replacement=\&]
+	A \& C \\
+	B \& C
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["e"', from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+\end{tikzcd}\]
+\end{lemma}
+
+\begin{proposition}
+  Consider a commutative diagram of the form:
+\[\begin{tikzcd}[ampersand replacement=\&]
+	A \& C \& E \\
+	B \& D \& F
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+	\arrow[from=2-2, to=2-3]
+\end{tikzcd}\]
+TFAE:
+\begin{itemize}
+\item $F$ is a pushout of the rightmost square
+\item $F$ is a pushout of the outermost square
+\end{itemize}
+\end{proposition}
+\begin{proof}
+  SS
+\end{proof}
+
+
+%% \axel{Pushout pasting?}
+
 \begin{proposition}
   For any types $A,B,C$, there is a natural equivalence
   \[(A * B) * C \simeq A * (B * C).\]
 \end{proposition}
-\begin{proof}
+To prove this, we will need to know that the pushouts commute with products, i.e. if
+\[\begin{tikzcd}[ampersand replacement=\&]
+	A \& C \\
+	B \& D
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+\end{tikzcd}\]
+is a pushout square, then so is
+\[\begin{tikzcd}[ampersand replacement=\&]
+	A \times X \& C \times X \\
+	B \times X \& D \times X
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+\end{tikzcd}\]
+(exercise).
+
+\begin{proof}[Proof of proposition]
   Consider the commuting diagram
   \[
     \begin{tikzcd}
@@ -803,8 +884,9 @@ or form the pushouts of the rows resulting in a span
   \]
   whose pushout is $(A*B)*C$.
 \end{proof}
-
+%
 In the exercises we'll construct natural equivalences $2*A\simeq \Sigma A$.
+%
 \begin{corollary}\label{cor:Sn-join-Sm}
   For every $n,m:\NN$ we have an equivalence
   \[
@@ -812,76 +894,76 @@ In the exercises we'll construct natural equivalences $2*A\simeq \Sigma A$.
   \]
 \end{corollary}
 
-\section{Exercises}
-\begin{enumerate}
-\item Show that the two definitions of $S^1$ are equivalent. That is show the
-  HIT for $S^1$ is the same thing as $\Sigma 2$.
+%% \section{Exercises}
+%% \begin{enumerate}
+%% \item Show that the two definitions of $S^1$ are equivalent. That is show the
+%%   HIT for $S^1$ is the same thing as $\Sigma 2$.
 
-%% \item Recall the notion of quasi-isomorphism from \cref{rmk:qinv}. Show that $(S^1 \simeq S^1)$
+%% %% \item Recall the notion of quasi-isomorphism from \cref{rmk:qinv}. Show that $(S^1 \simeq S^1)$
 
-\item Show that evaluation at the loop gives pointed equivalence
-  \[
-    (S^1 \pto X) \pto \Omega X
-  \]
-  for any pointed type $X$.
+%% \item Show that evaluation at the loop gives pointed equivalence
+%%   \[
+%%     (S^1 \pto X) \pto \Omega X
+%%   \]
+%%   for any pointed type $X$.
 
-  Conclude, using the suspension--loop adjunction, that we have a natural equivalence
-  \[
-    (S^n \pto X) \pto \Omega^n X
-  \]
-  for all $n:\NN$.
+%%   Conclude, using the suspension--loop adjunction, that we have a natural equivalence
+%%   \[
+%%     (S^n \pto X) \pto \Omega^n X
+%%   \]
+%%   for all $n:\NN$.
 
-\item Show that a type $X$ is a proposition iff $\inl : X \to X \ast X$ is an equivalence.
+%% \item Show that a type $X$ is a proposition iff $\inl : X \to X \ast X$ is an equivalence.
 
-\item Show that $A\vee B \simeq A*B$ for propositions $A,B$, where
-  $A\vee B := \Trunc{A+B}$.  (Beware the notational overload between the wedge
-  sum and disjunction: It's not too bad in practice, because the only pointed
-  proposition is the unit type!)
+%% \item Show that $A\vee B \simeq A*B$ for propositions $A,B$, where
+%%   $A\vee B := \Trunc{A+B}$.  (Beware the notational overload between the wedge
+%%   sum and disjunction: It's not too bad in practice, because the only pointed
+%%   proposition is the unit type!)
 
-\item Show that $2 \ast X \simeq \Sigma X $ for any pointed type $X$. (Harder)
-  Show that $S^1 \wedge X \simeq \Sigma X$
+%% \item Show that $2 \ast X \simeq \Sigma X $ for any pointed type $X$. (Harder)
+%%   Show that $S^1 \wedge X \simeq \Sigma X$
 
-\item Show that the smash product is equivalently the pushout:
-  \[
-    \begin{tikzcd}
-      X + Y \ar[d]\ar[r] & X \times Y\ar[d]\\
-      1 + 1 \ar[r] & X \wedge Y
-    \end{tikzcd}
-  \]
-\item Construct for pointed types $X,Y$ an equivalence
-  \[X * Y \simeq \Sigma(X\wedge Y).\]
+%% \item Show that the smash product is equivalently the pushout:
+%%   \[
+%%     \begin{tikzcd}
+%%       X + Y \ar[d]\ar[r] & X \times Y\ar[d]\\
+%%       1 + 1 \ar[r] & X \wedge Y
+%%     \end{tikzcd}
+%%   \]
+%% \item Construct for pointed types $X,Y$ an equivalence
+%%   \[X * Y \simeq \Sigma(X\wedge Y).\]
 
-\item We can define the unit interval type $\II$ to be the pushout of the constant span $1 \leftarrow 1 \rightarrow 1$. Working in Martin-Löf type theory \emph{without} univalence (and function extensionality) but with pushouts with definitional computation rules for point constructors\footnote{Given a triplet $(x,y,p) : ((x, y) : A \times A) \times (x = y)$, the universal property of truncation gives us a function $f : \II \to A$. The statement means that the equalities $f(\inl{\star_1}) = x$ and $f(\inr{\star_1}) = y$ hold strictly, i.e.\ by $\refl$.}, prove function extensionality.
+%% \item We can define the unit interval type $\II$ to be the pushout of the constant span $1 \leftarrow 1 \rightarrow 1$. Working in Martin-Löf type theory \emph{without} univalence (and function extensionality) but with pushouts with definitional computation rules for point constructors\footnote{Given a triplet $(x,y,p) : ((x, y) : A \times A) \times (x = y)$, the universal property of truncation gives us a function $f : \II \to A$. The statement means that the equalities $f(\inl{\star_1}) = x$ and $f(\inr{\star_1}) = y$ hold strictly, i.e.\ by $\refl$.}, prove function extensionality.
 
-\item The torus, $T^2$, is often drawn as a (filled) square with side identifications
-\begin{equation}\label{eq:torus}
-\begin{tikzcd}[ampersand replacement=\&]
-	\star \& \star \\
-	\star \& \star
-	\arrow["{\ell_1}", from=1-1, to=1-2]
-	\arrow["{\ell_2}", from=2-1, to=1-1]
-	\arrow["{\ell_1}"', from=2-1, to=2-2]
-	\arrow["{\ell_2}"', from=2-2, to=1-2]
-\end{tikzcd}
-\end{equation}
-In HoTT, we can capture this as HIT with
-\begin{enumerate}
-\item[$\bullet$] A point constructor $\star : T^2$
-\item[$\bullet$] Two paths $\ell_1,\ell_2 : \star = \star$
-\item[$\bullet$] A filler $\mathsf{sq}$ of the square of paths in \eqref{eq:torus}, i.e.\ a path $\ell_1 \cdot \ell_2 = \ell_2 \cdot \ell_1$ or, equivalently, $\ell_1 =^{x \mapsto x = x}_{\ell_2} \ell_1$
-\end{enumerate}
-%
-Show this type is equivalent to $S^1 \times S^1$.
-%
-  (\emph{Hint})\enspace You may assume that eliminators compute definitionally
-  on point constructors (as in cubical type theory), otherwise it's quite
-  intricate!
-
-
-\end{enumerate}
+%% \item The torus, $T^2$, is often drawn as a (filled) square with side identifications
+%% \begin{equation}\label{eq:torus}
+%% \begin{tikzcd}[ampersand replacement=\&]
+%% 	\star \& \star \\
+%% 	\star \& \star
+%% 	\arrow["{\ell_1}", from=1-1, to=1-2]
+%% 	\arrow["{\ell_2}", from=2-1, to=1-1]
+%% 	\arrow["{\ell_1}"', from=2-1, to=2-2]
+%% 	\arrow["{\ell_2}"', from=2-2, to=1-2]
+%% \end{tikzcd}
+%% \end{equation}
+%% In HoTT, we can capture this as HIT with
+%% \begin{enumerate}
+%% \item[$\bullet$] A point constructor $\star : T^2$
+%% \item[$\bullet$] Two paths $\ell_1,\ell_2 : \star = \star$
+%% \item[$\bullet$] A filler $\mathsf{sq}$ of the square of paths in \eqref{eq:torus}, i.e.\ a path $\ell_1 \cdot \ell_2 = \ell_2 \cdot \ell_1$ or, equivalently, $\ell_1 =^{x \mapsto x = x}_{\ell_2} \ell_1$
+%% \end{enumerate}
+%% %
+%% Show this type is equivalent to $S^1 \times S^1$.
+%% %
+%%   (\emph{Hint})\enspace You may assume that eliminators compute definitionally
+%%   on point constructors (as in cubical type theory), otherwise it's quite
+%%   intricate!
 
 
-\chapter[The Hopf fibration and the LES]{The Hopf fibration and the long exact sequence}
+%% \end{enumerate}
+
+
+\chapter*[The Hopf fibration and the LES]{Lecture 3: The Hopf fibration and the long exact sequence}
 
 \section{The fundamental group of the circle}
 \paragraph{plan}
@@ -1217,29 +1299,33 @@ We conclude that $\pi_2(S^2)\simeq \ZZ$ and $\pi_n(S^3)\simeq\pi_n(S^2)$ for $n\
 
 \clearpage
 
-\section{Exercises}
-\begin{enumerate}
-\item Construct the product on the circle directly by double circle induction.
-\item Give another proof of~\cref{thm:S1-InfCyc} by showing that
-  $\ap_{\varphi} : (\ast=\ast) \to (\varphi(\ast)=\varphi(\ast))$ is an
-  equivalence.
-\item Construct a retraction $\rho : \Omega S^2 \to S^1$ of $\eta : S^1 \to \Omega S^2$.
-  (\emph{Hint}) Use the Hopf fibration.
-\item We can define a ``tensor product'' of $\ZZ$-torsors by setting
-  \[
-    (X,t) \otimes (Y,u) := (X \times Y/\sim, s)
-  \]
-  using the set quotient by the equivalence relation generated by
-  $(t(x),y) \sim (x,u(y))$, and setting $s[(x,y)] := [t(x),y)]$.  Check that
-  this operation is well defined and gives an H-space structure on $\Tors_\ZZ$
-  with the base point $(\ZZ,\suc)$ as neutral element.
-\item Investigate some other components of $\SetEndo$, in particular those
-  containing $(\Fin n,\suc)$, where $\Fin n=(k:\NN)\times(k<n)$ and the
-  successor operation is taken modulo $n$.
-  If this component is denoted $\Cyc_n$ (for $n$-cycles), what are the maps $\Cyc_n \to \Cyc_m$?
-\end{enumerate}
+%% \section{Exercises}
+%% \axel{Ideas:
+%%   \begin{enumerate}
+%%   \item Characterise whne homotopy groups of (a) $n$-connected and (b) $n$-truncated types vanish
+%%   \item Other fibration? Double cover of circle?
+%%   \item Homotopy groups of 
+%% \end{enumerate}}
+%% \begin{enumerate}
+%% \item Construct a retraction $\rho : \Omega S^2 \to S^1$ of $\eta : S^1 \to \Omega S^2$.
+%%   (\emph{Hint}) Use the Hopf fibration.
+%% \item Let $\rho : $
+  
+%% \item We can define a ``tensor product'' of $\ZZ$-torsors by setting
+%%   \[
+%%     (X,t) \otimes (Y,u) := (X \times Y/\sim, s)
+%%   \]
+%%   using the set quotient by the equivalence relation generated by
+%%   $(t(x),y) \sim (x,u(y))$, and setting $s[(x,y)] := [t(x),y)]$.  Check that
+%%   this operation is well defined and gives an H-space structure on $\Tors_\ZZ$
+%%   with the base point $(\ZZ,\suc)$ as neutral element.
+%% \item Investigate some other components of $\SetEndo$, in particular those
+%%   containing $(\Fin n,\suc)$, where $\Fin n=(k:\NN)\times(k<n)$ and the
+%%   successor operation is taken modulo $n$.
+%%   If this component is denoted $\Cyc_n$ (for $n$-cycles), what are the maps $\Cyc_n \to \Cyc_m$?
+%\end{enumerate}
 
-\chapter[Freudenthal and Degrees]{The Freudenthal Suspension Theorem and Degrees}
+\chapter*[Freudenthal and Degrees]{Lecture 4: The Freudenthal Suspension Theorem and Degrees}
 \label{ch:pushouts}
 
 In this chapter we'll compute some nontrivial homotopy groups of spheres, namely
@@ -1458,34 +1544,34 @@ We also get~\cref{thm:BM} from the following more precise theorem:
   $(k(n+m+4)-2)$-connected.
 \end{theorem}
 
-\section{Exercises}
+%% \section{Exercises}
 
-\begin{enumerate}
-\item Deduce the dual Blakers--Massey~\cref{thm:dual-BM} from the Join
-  Connectivity~\cref{lem:join-connectivity} by identifying the fibers of the
-  cogap map with the joins of the fibers of legs in the cospan.
+%% \begin{enumerate}
+%% \item Deduce the dual Blakers--Massey~\cref{thm:dual-BM} from the Join
+%%   Connectivity~\cref{lem:join-connectivity} by identifying the fibers of the
+%%   cogap map with the joins of the fibers of legs in the cospan.
 
-\item Deduce the Wedge Connectivity Lemma from the dual Blakers--Massey~\cref{thm:dual-BM},
-  i.e., consider the pullback square, for pointed types $X,Y$,
-  \[
-    \begin{tikzcd}
-      1 \ar[d]\ar[r]\pbcorner & Y \ar[d] \\
-      X \ar[r] & X\times Y.
-    \end{tikzcd}
-  \]
-  Show that if $X$ is $n$-connected and $Y$ is $m$-connected, then the wedge
-  inclusion map $X \vee Y \to X \times Y$ is $(n+m)$-connected.
+%% \item Deduce the Wedge Connectivity Lemma from the dual Blakers--Massey~\cref{thm:dual-BM},
+%%   i.e., consider the pullback square, for pointed types $X,Y$,
+%%   \[
+%%     \begin{tikzcd}
+%%       1 \ar[d]\ar[r]\pbcorner & Y \ar[d] \\
+%%       X \ar[r] & X\times Y.
+%%     \end{tikzcd}
+%%   \]
+%%   Show that if $X$ is $n$-connected and $Y$ is $m$-connected, then the wedge
+%%   inclusion map $X \vee Y \to X \times Y$ is $(n+m)$-connected.
 
-\item Show that the counit $\varepsilon : \Sigma\Omega X \to X$ of the loop--suspension adjunction is $2n$-connected if $X$ is $n$-connected.
+%% \item Show that the counit $\varepsilon : \Sigma\Omega X \to X$ of the loop--suspension adjunction is $2n$-connected if $X$ is $n$-connected.
 
-\item Show that the pushout of an embedding is an embedding, i.e., if $g$ is $(-1)$-truncated, then so is $\inl$ in the pushout square:
-  \[
-    \begin{tikzcd}
-      R \ar[d,"f"']\ar[r,"g"]\pocorner & B\ar[d,"{\inr}"] \\
-      A\ar[r,"{\inl}"'] & Q
-    \end{tikzcd}
-  \]
-\end{enumerate}
+%% \item Show that the pushout of an embedding is an embedding, i.e., if $g$ is $(-1)$-truncated, then so is $\inl$ in the pushout square:
+%%   \[
+%%     \begin{tikzcd}
+%%       R \ar[d,"f"']\ar[r,"g"]\pocorner & B\ar[d,"{\inr}"] \\
+%%       A\ar[r,"{\inl}"'] & Q
+%%     \end{tikzcd}
+%%   \]
+%% \end{enumerate}
 
 \chapter{Outlook}
 
