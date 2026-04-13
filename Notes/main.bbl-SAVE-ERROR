@@ -1,0 +1,1665 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{ABFJ-BM}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=3db6a906c0925e84b9a8d7787b67d992}{%
+           family={Anel},
+           familyi={A\bibinitperiod},
+           given={Mathieu},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0acb3f72b6c94ae3306ad186582aaa97}{%
+           family={Biedermann},
+           familyi={B\bibinitperiod},
+           given={Georg},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f21181ec68032ce5db3ed51c5380b793}{%
+           family={Finster},
+           familyi={F\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=879e6f70ccf8d5999602c642fcda57b3}{%
+           family={Joyal},
+           familyi={J\bibinitperiod},
+           given={André},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9378f3d8924590ffc41ebc4251116fc7}
+      \strng{fullhash}{9378f3d8924590ffc41ebc4251116fc7}
+      \strng{bibnamehash}{9378f3d8924590ffc41ebc4251116fc7}
+      \strng{authorbibnamehash}{9378f3d8924590ffc41ebc4251116fc7}
+      \strng{authornamehash}{9378f3d8924590ffc41ebc4251116fc7}
+      \strng{authorfullhash}{9378f3d8924590ffc41ebc4251116fc7}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{J. Topol.}
+      \field{number}{4}
+      \field{title}{A generalized {B}lakers-{M}assey theorem}
+      \field{volume}{13}
+      \field{year}{2020}
+      \field{pages}{1521\bibrangedash 1553}
+      \range{pages}{33}
+      \verb{doi}
+      \verb 10.1112/topo.12163
+      \endverb
+    \endentry
+    \entry{Symmetry}{misc}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=6d232f8f72448bcec4812b308c5674c0}{%
+           family={Bezem},
+           familyi={B\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=409448cb828eda10650d18b18b2f0d08}{%
+           family={Buchholtz},
+           familyi={B\bibinitperiod},
+           given={Ulrik},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3cfbc8c7b7fb6beac019367f234586da}{%
+           family={Cagne},
+           familyi={C\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=50ceb7c975d5b0ffa3b5044b4f9932fd}{%
+           family={Dundas},
+           familyi={D\bibinitperiod},
+           given={Bjørn\bibnamedelima Ian},
+           giveni={B\bibinitperiod\bibinitdelim I\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=e5b197f9abb9382c464eae92cdcc1b2c}{%
+           family={Grayson},
+           familyi={G\bibinitperiod},
+           given={Daniel\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=1}}%
+      }
+      \strng{namehash}{e0be90dfca6c37c2612505c7a7c3f9dc}
+      \strng{fullhash}{e0be90dfca6c37c2612505c7a7c3f9dc}
+      \strng{bibnamehash}{e0be90dfca6c37c2612505c7a7c3f9dc}
+      \strng{authorbibnamehash}{e0be90dfca6c37c2612505c7a7c3f9dc}
+      \strng{authornamehash}{e0be90dfca6c37c2612505c7a7c3f9dc}
+      \strng{authorfullhash}{e0be90dfca6c37c2612505c7a7c3f9dc}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{6}
+      \field{howpublished}{\url{https://github.com/UniMath/SymmetryBook}}
+      \field{month}{4}
+      \field{note}{Commit: \texttt{994b4f1}}
+      \field{title}{Symmetry}
+      \field{year}{2024}
+      \field{dateera}{ce}
+    \endentry
+    \entry{BruneriePhD}{thesis}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=53dc8f3c495b26c98e56971f67e8e71c}{%
+           family={Brunerie},
+           familyi={B\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{fullhash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{bibnamehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{authorbibnamehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{authornamehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{authorfullhash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \field{extraname}{1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arxiv}
+      \field{title}{{On the homotopy groups of spheres in homotopy type theory}}
+      \field{type}{PhD thesis}
+      \field{year}{2016}
+      \verb{eprint}
+      \verb 1606.05916
+      \endverb
+    \endentry
+    \entry{Brunerie_Steenrod}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=53dc8f3c495b26c98e56971f67e8e71c}{%
+           family={Brunerie},
+           familyi={B\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{fullhash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{bibnamehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{authorbibnamehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{authornamehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{authorfullhash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \field{extraname}{2}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{TYPES 2017 extended abstract}
+      \field{title}{The Steenrod squares in homotopy type theory}
+      \field{year}{2017}
+    \endentry
+    \entry{BrunerieJames}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=53dc8f3c495b26c98e56971f67e8e71c}{%
+           family={Brunerie},
+           familyi={B\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{fullhash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{bibnamehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{authorbibnamehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{authornamehash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \strng{authorfullhash}{53dc8f3c495b26c98e56971f67e8e71c}
+      \field{extraname}{3}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{J. Autom. Reason.}
+      \field{month}{8}
+      \field{number}{2}
+      \field{title}{{The James Construction and $\pi_4(\mathbb {S}^{3})$ in Homotopy Type Theory}}
+      \field{volume}{63}
+      \field{year}{2019}
+      \true{nocite}
+      \field{pages}{255\bibrangedash 284}
+      \range{pages}{30}
+      \verb{doi}
+      \verb 10.1007/s10817-018-9468-2
+      \endverb
+    \endentry
+    \entry{BCFR-Central}{misc}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=409448cb828eda10650d18b18b2f0d08}{%
+           family={Buchholtz},
+           familyi={B\bibinitperiod},
+           given={Ulrik},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=2,uniquepart=given,hash=6f97339e753cd08aeeb6cac7e49cf44c}{%
+           family={Christensen},
+           familyi={C\bibinitperiod},
+           given={J.\bibnamedelimi Daniel},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=2}}%
+        {{un=0,uniquepart=base,hash=fe6bb88dc872ada527a7174adf88f5e1}{%
+           family={Flaten},
+           familyi={F\bibinitperiod},
+           given={Jarl\bibnamedelimb G.\bibnamedelimi Taxerås},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b1bb80d57e903f657e4b411a28823e28}{%
+           family={Rijke},
+           familyi={R\bibinitperiod},
+           given={Egbert},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{7ca575787f4014e0eeb1c72c620497ef}
+      \strng{fullhash}{7ca575787f4014e0eeb1c72c620497ef}
+      \strng{bibnamehash}{7ca575787f4014e0eeb1c72c620497ef}
+      \strng{authorbibnamehash}{7ca575787f4014e0eeb1c72c620497ef}
+      \strng{authornamehash}{7ca575787f4014e0eeb1c72c620497ef}
+      \strng{authorfullhash}{7ca575787f4014e0eeb1c72c620497ef}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.AT}
+      \field{eprinttype}{arXiv}
+      \field{title}{Central H-spaces and banded types}
+      \field{year}{2023}
+      \verb{eprint}
+      \verb 2301.02636
+      \endverb
+    \endentry
+    \entry{BuchholtzDoornRijke2018}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=409448cb828eda10650d18b18b2f0d08}{%
+           family={Buchholtz},
+           familyi={B\bibinitperiod},
+           given={Ulrik},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=241ef3eeb33e764da3482b74049133fa}{%
+           family={Doorn},
+           familyi={D\bibinitperiod},
+           given={Floris},
+           giveni={F\bibinitperiod},
+           givenun=0,
+           prefix={van},
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=b1bb80d57e903f657e4b411a28823e28}{%
+           family={Rijke},
+           familyi={R\bibinitperiod},
+           given={Egbert},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Oxford, United Kingdom}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{804f3427c93dfd0ea62206eac62abb04}
+      \strng{fullhash}{804f3427c93dfd0ea62206eac62abb04}
+      \strng{bibnamehash}{804f3427c93dfd0ea62206eac62abb04}
+      \strng{authorbibnamehash}{804f3427c93dfd0ea62206eac62abb04}
+      \strng{authornamehash}{804f3427c93dfd0ea62206eac62abb04}
+      \strng{authorfullhash}{804f3427c93dfd0ea62206eac62abb04}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 33rd Annual ACM/IEEE Symposium on Logic in Computer Science}
+      \field{eprinttype}{arxiv}
+      \field{series}{LICS ’18}
+      \field{title}{Higher Groups in Homotopy Type Theory}
+      \field{year}{2018}
+      \field{pages}{205\bibrangedash 214}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/3209108.3209150
+      \endverb
+      \verb{eprint}
+      \verb 1802.04315
+      \endverb
+    \endentry
+    \entry{BuchholtzFavonia}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=409448cb828eda10650d18b18b2f0d08}{%
+           family={Buchholtz},
+           familyi={B\bibinitperiod},
+           given={Ulrik},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3d24817d0df7057b57f1021f29ec0256}{%
+           family={Hou\bibnamedelima (Favonia)},
+           familyi={H\bibinitperiod\bibinitdelim (\bibinitperiod},
+           given={Kuen-Bang},
+           giveni={K\bibinithyphendelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8e2309c5432e9c262aad88d81eb1bbc1}
+      \strng{fullhash}{8e2309c5432e9c262aad88d81eb1bbc1}
+      \strng{bibnamehash}{8e2309c5432e9c262aad88d81eb1bbc1}
+      \strng{authorbibnamehash}{8e2309c5432e9c262aad88d81eb1bbc1}
+      \strng{authornamehash}{8e2309c5432e9c262aad88d81eb1bbc1}
+      \strng{authorfullhash}{8e2309c5432e9c262aad88d81eb1bbc1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{Logical Methods in Computer Science}}
+      \field{month}{6}
+      \field{title}{{Cellular Cohomology in Homotopy Type Theory}}
+      \field{volume}{{Volume 16, Issue 2}}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.23638/LMCS-16(2:7)2020
+      \endverb
+    \endentry
+    \entry{BuchholtzRijke2017}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=409448cb828eda10650d18b18b2f0d08}{%
+           family={Buchholtz},
+           familyi={B\bibinitperiod},
+           given={Ulrik},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b1bb80d57e903f657e4b411a28823e28}{%
+           family={Rijke},
+           familyi={R\bibinitperiod},
+           given={Egbert},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{fullhash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{bibnamehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{authorbibnamehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{authornamehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{authorfullhash}{2bfb5a34be53486777f502613dc3f197}
+      \field{extraname}{1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{32nd Annual ACM/IEEE Symposium on Logic in Computer Science (LICS 2017)}
+      \field{eprinttype}{arxiv}
+      \field{title}{The real projective spaces in homotopy type theory}
+      \field{year}{2017}
+      \field{pages}{1\bibrangedash 8}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1109/LICS.2017.8005146
+      \endverb
+      \verb{eprint}
+      \verb 1704.05770
+      \endverb
+    \endentry
+    \entry{BR2018}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=409448cb828eda10650d18b18b2f0d08}{%
+           family={Buchholtz},
+           familyi={B\bibinitperiod},
+           given={Ulrik},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b1bb80d57e903f657e4b411a28823e28}{%
+           family={Rijke},
+           familyi={R\bibinitperiod},
+           given={Egbert},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Institute of Mathematics, Czech Academy of Sciences}%
+      }
+      \strng{namehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{fullhash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{bibnamehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{authorbibnamehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{authornamehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{authorfullhash}{2bfb5a34be53486777f502613dc3f197}
+      \field{extraname}{2}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Higher Structures}
+      \field{month}{11}
+      \field{number}{1}
+      \field{title}{The Cayley-Dickson Construction in Homotopy Type Theory}
+      \field{volume}{2}
+      \field{year}{2018}
+      \true{nocite}
+      \field{pages}{30\bibrangedash 41}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.21136/hs.2018.02
+      \endverb
+    \endentry
+    \entry{Buchholtz_Rijke_2023}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=409448cb828eda10650d18b18b2f0d08}{%
+           family={Buchholtz},
+           familyi={B\bibinitperiod},
+           given={Ulrik},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b1bb80d57e903f657e4b411a28823e28}{%
+           family={Rijke},
+           familyi={R\bibinitperiod},
+           given={Egbert},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{fullhash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{bibnamehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{authorbibnamehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{authornamehash}{2bfb5a34be53486777f502613dc3f197}
+      \strng{authorfullhash}{2bfb5a34be53486777f502613dc3f197}
+      \field{extraname}{3}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{Mathematical Structures in Computer Science}
+      \field{number}{8}
+      \field{title}{The long exact sequence of homotopy {$n$}-groups}
+      \field{volume}{33}
+      \field{year}{2023}
+      \field{pages}{679\bibrangedash 687}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1017/S0960129523000038
+      \endverb
+      \verb{eprint}
+      \verb 1912.08696
+      \endverb
+    \endentry
+    \entry{SnSymm}{misc}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=3cfbc8c7b7fb6beac019367f234586da}{%
+           family={Cagne},
+           familyi={C\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=409448cb828eda10650d18b18b2f0d08}{%
+           family={Buchholtz},
+           familyi={B\bibinitperiod},
+           given={Ulrik},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3f5382feec7de06619a7160fc059ee8}{%
+           family={Kraus},
+           familyi={K\bibinitperiod},
+           given={Nicolai},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6d232f8f72448bcec4812b308c5674c0}{%
+           family={Bezem},
+           familyi={B\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{327baf18040fef96f8ec74c2cb30d450}
+      \strng{fullhash}{327baf18040fef96f8ec74c2cb30d450}
+      \strng{bibnamehash}{327baf18040fef96f8ec74c2cb30d450}
+      \strng{authorbibnamehash}{327baf18040fef96f8ec74c2cb30d450}
+      \strng{authornamehash}{327baf18040fef96f8ec74c2cb30d450}
+      \strng{authorfullhash}{327baf18040fef96f8ec74c2cb30d450}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{cs.LO}
+      \field{eprinttype}{arXiv}
+      \field{title}{On symmetries of spheres in univalent foundations}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2401.15037
+      \endverb
+    \endentry
+    \entry{CS-Hurewicz}{article}{}
+      \name{author}{2}{}{%
+        {{un=2,uniquepart=given,hash=6f97339e753cd08aeeb6cac7e49cf44c}{%
+           family={Christensen},
+           familyi={C\bibinitperiod},
+           given={J\bibnamedelima Daniel},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=2}}%
+        {{un=0,uniquepart=base,hash=87996b1689e10b76574197fff913b5fb}{%
+           family={Scoccola},
+           familyi={S\bibinitperiod},
+           given={Luis},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Mathematical Sciences Publishers}%
+      }
+      \strng{namehash}{77510f9259dbb29856292643dec5ac89}
+      \strng{fullhash}{77510f9259dbb29856292643dec5ac89}
+      \strng{bibnamehash}{77510f9259dbb29856292643dec5ac89}
+      \strng{authorbibnamehash}{77510f9259dbb29856292643dec5ac89}
+      \strng{authornamehash}{77510f9259dbb29856292643dec5ac89}
+      \strng{authorfullhash}{77510f9259dbb29856292643dec5ac89}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Algebraic \& Geometric Topology}
+      \field{month}{7}
+      \field{number}{5}
+      \field{title}{The Hurewicz theorem in homotopy type theory}
+      \field{volume}{23}
+      \field{year}{2023}
+      \field{pages}{2107\bibrangedash 2140}
+      \range{pages}{34}
+      \verb{doi}
+      \verb 10.2140/agt.2023.23.2107
+      \endverb
+    \endentry
+    \entry{CORS}{article}{}
+      \name{author}{4}{}{%
+        {{un=2,uniquepart=given,hash=6f97339e753cd08aeeb6cac7e49cf44c}{%
+           family={Christensen},
+           familyi={C\bibinitperiod},
+           given={J.\bibnamedelimi Daniel},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=2}}%
+        {{un=0,uniquepart=base,hash=218e12e167bf45f3658a07d51eadabb6}{%
+           family={Opie},
+           familyi={O\bibinitperiod},
+           given={Morgan},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b1bb80d57e903f657e4b411a28823e28}{%
+           family={Rijke},
+           familyi={R\bibinitperiod},
+           given={Egbert},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=87996b1689e10b76574197fff913b5fb}{%
+           family={Scoccola},
+           familyi={S\bibinitperiod},
+           given={Luis},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Institute of Mathematics, Czech Academy of Sciences}%
+      }
+      \strng{namehash}{d14666dbc5c707a2efb411e3f69c4662}
+      \strng{fullhash}{d14666dbc5c707a2efb411e3f69c4662}
+      \strng{bibnamehash}{d14666dbc5c707a2efb411e3f69c4662}
+      \strng{authorbibnamehash}{d14666dbc5c707a2efb411e3f69c4662}
+      \strng{authornamehash}{d14666dbc5c707a2efb411e3f69c4662}
+      \strng{authorfullhash}{d14666dbc5c707a2efb411e3f69c4662}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Higher Structures}
+      \field{month}{2}
+      \field{number}{1}
+      \field{title}{Localization in Homotopy Type Theory}
+      \field{volume}{4}
+      \field{year}{2020}
+      \field{pages}{1\bibrangedash 32}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.21136/hs.2020.01
+      \endverb
+    \endentry
+    \entry{CR-LexModalities}{article}{}
+      \name{author}{2}{}{%
+        {{un=2,uniquepart=given,hash=6f97339e753cd08aeeb6cac7e49cf44c}{%
+           family={Christensen},
+           familyi={C\bibinitperiod},
+           given={J.\bibnamedelimi Daniel},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=2}}%
+        {{un=0,uniquepart=base,hash=b1bb80d57e903f657e4b411a28823e28}{%
+           family={Rijke},
+           familyi={R\bibinitperiod},
+           given={Egbert},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e675059bdcb80344c370c5ad2aaa2565}
+      \strng{fullhash}{e675059bdcb80344c370c5ad2aaa2565}
+      \strng{bibnamehash}{e675059bdcb80344c370c5ad2aaa2565}
+      \strng{authorbibnamehash}{e675059bdcb80344c370c5ad2aaa2565}
+      \strng{authornamehash}{e675059bdcb80344c370c5ad2aaa2565}
+      \strng{authorfullhash}{e675059bdcb80344c370c5ad2aaa2565}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Pure and Applied Algebra}
+      \field{number}{3}
+      \field{title}{Characterizations of modalities and lex modalities}
+      \field{volume}{226}
+      \field{year}{2022}
+      \field{pages}{106848}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.jpaa.2021.106848
+      \endverb
+    \endentry
+    \entry{Doorn2018}{thesis}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=241ef3eeb33e764da3482b74049133fa}{%
+           family={Doorn},
+           familyi={D\bibinitperiod},
+           given={Floris},
+           giveni={F\bibinitperiod},
+           givenun=0,
+           prefix={van},
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
+      }
+      \list{institution}{1}{%
+        {Carnegie Mellon University}%
+      }
+      \strng{namehash}{241ef3eeb33e764da3482b74049133fa}
+      \strng{fullhash}{241ef3eeb33e764da3482b74049133fa}
+      \strng{bibnamehash}{241ef3eeb33e764da3482b74049133fa}
+      \strng{authorbibnamehash}{241ef3eeb33e764da3482b74049133fa}
+      \strng{authornamehash}{241ef3eeb33e764da3482b74049133fa}
+      \strng{authorfullhash}{241ef3eeb33e764da3482b74049133fa}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.AT}
+      \field{eprinttype}{arXiv}
+      \field{title}{On the Formalization of Higher Inductive Types and Synthetic Homotopy Theory}
+      \field{type}{phdthesis}
+      \field{year}{2018}
+      \verb{eprint}
+      \verb 1808.10690
+      \endverb
+    \endentry
+    \entry{GrahamHomology}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=62651ed85ea431c2900ce1b89c53e38c}{%
+           family={Graham},
+           familyi={G\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{62651ed85ea431c2900ce1b89c53e38c}
+      \strng{fullhash}{62651ed85ea431c2900ce1b89c53e38c}
+      \strng{bibnamehash}{62651ed85ea431c2900ce1b89c53e38c}
+      \strng{authorbibnamehash}{62651ed85ea431c2900ce1b89c53e38c}
+      \strng{authornamehash}{62651ed85ea431c2900ce1b89c53e38c}
+      \strng{authorfullhash}{62651ed85ea431c2900ce1b89c53e38c}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.LO}
+      \field{eprinttype}{arXiv}
+      \field{title}{Synthetic Homology in Homotopy Type Theory}
+      \field{year}{2018}
+      \verb{eprint}
+      \verb 1706.01540
+      \endverb
+    \endentry
+    \entry{BlakersMasseyHoTT}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=3d24817d0df7057b57f1021f29ec0256}{%
+           family={Hou\bibnamedelima (Favonia)},
+           familyi={H\bibinitperiod\bibinitdelim (\bibinitperiod},
+           given={Kuen-Bang},
+           giveni={K\bibinithyphendelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f21181ec68032ce5db3ed51c5380b793}{%
+           family={Finster},
+           familyi={F\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ca5689112ca04c45bc58fbf25144a438}{%
+           family={Licata},
+           familyi={L\bibinitperiod},
+           given={Daniel\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7c4f8c4cd687c31f652591f365a798ef}{%
+           family={Lumsdaine},
+           familyi={L\bibinitperiod},
+           given={Peter\bibnamedelima LeFanu},
+           giveni={P\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{410814e335dc146322ed281b3e6e7072}
+      \strng{fullhash}{410814e335dc146322ed281b3e6e7072}
+      \strng{bibnamehash}{410814e335dc146322ed281b3e6e7072}
+      \strng{authorbibnamehash}{410814e335dc146322ed281b3e6e7072}
+      \strng{authornamehash}{410814e335dc146322ed281b3e6e7072}
+      \strng{authorfullhash}{410814e335dc146322ed281b3e6e7072}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in Computer Science}
+      \field{isbn}{9781450343916}
+      \field{series}{LICS '16}
+      \field{title}{A Mechanization of the Blakers-Massey Connectivity Theorem in Homotopy Type Theory}
+      \field{year}{2016}
+      \field{pages}{565\bibrangedash 574}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/2933575.2934545
+      \endverb
+    \endentry
+    \entry{FavoniaHarper}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3d24817d0df7057b57f1021f29ec0256}{%
+           family={Hou\bibnamedelima (Favonia)},
+           familyi={H\bibinitperiod\bibinitdelim (\bibinitperiod},
+           given={Kuen-Bang},
+           giveni={K\bibinithyphendelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=73259fe928ce8add0f265e234f8de3a6}{%
+           family={Harper},
+           familyi={H\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=798f257c1bd7d355ba845bfbdc8b0ff1}{%
+           family={Ghilezan},
+           familyi={G\bibinitperiod},
+           given={Silvia},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e8b850069770b4f3aa73b7f7270940ad}{%
+           family={Geuvers},
+           familyi={G\bibinitperiod},
+           given={Herman},
+           giveni={H\bibinitperiod}}}%
+        {{hash=ae53a7db98ddf5f6566ff9c3b64a2258}{%
+           family={Ivetic},
+           familyi={I\bibinitperiod},
+           given={Jelena},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Dagstuhl, Germany}%
+      }
+      \list{publisher}{1}{%
+        {Schloss Dagstuhl -- Leibniz-Zentrum für Informatik}%
+      }
+      \strng{namehash}{8627467f7ad487b1d713af6148f67483}
+      \strng{fullhash}{8627467f7ad487b1d713af6148f67483}
+      \strng{bibnamehash}{8627467f7ad487b1d713af6148f67483}
+      \strng{authorbibnamehash}{8627467f7ad487b1d713af6148f67483}
+      \strng{authornamehash}{8627467f7ad487b1d713af6148f67483}
+      \strng{authorfullhash}{8627467f7ad487b1d713af6148f67483}
+      \strng{editorbibnamehash}{e4c76f97941b1c582e75ca18e019ea35}
+      \strng{editornamehash}{e4c76f97941b1c582e75ca18e019ea35}
+      \strng{editorfullhash}{e4c76f97941b1c582e75ca18e019ea35}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{22nd International Conference on Types for Proofs and Programs (TYPES 2016)}
+      \field{series}{Leibniz International Proceedings in Informatics (LIPIcs)}
+      \field{title}{{Covering Spaces in Homotopy Type Theory}}
+      \field{volume}{97}
+      \field{year}{2018}
+      \true{nocite}
+      \field{pages}{11:1\bibrangedash 11:16}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.4230/LIPIcs.TYPES.2016.11
+      \endverb
+    \endentry
+    \entry{FavoniaShulman}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3d24817d0df7057b57f1021f29ec0256}{%
+           family={Hou\bibnamedelima (Favonia)},
+           familyi={H\bibinitperiod\bibinitdelim (\bibinitperiod},
+           given={Kuen-Bang},
+           giveni={K\bibinithyphendelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a49cc4742950659ae680e1c40f2295a9}{%
+           family={Shulman},
+           familyi={S\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Schloss Dagstuhl – Leibniz-Zentrum für Informatik}%
+      }
+      \strng{namehash}{16bea126141d9ab202cd9f5b88d773e3}
+      \strng{fullhash}{16bea126141d9ab202cd9f5b88d773e3}
+      \strng{bibnamehash}{16bea126141d9ab202cd9f5b88d773e3}
+      \strng{authorbibnamehash}{16bea126141d9ab202cd9f5b88d773e3}
+      \strng{authornamehash}{16bea126141d9ab202cd9f5b88d773e3}
+      \strng{authorfullhash}{16bea126141d9ab202cd9f5b88d773e3}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{25th EACSL Annual Conference on Computer Science Logic (CSL 2016). Leibniz International Proceedings in Informatics (LIPIcs)}
+      \field{title}{The Seifert-van Kampen Theorem in Homotopy Type Theory}
+      \field{volume}{62}
+      \field{year}{2016}
+      \true{nocite}
+      \field{pages}{22:1\bibrangedash 22:16}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.4230/LIPICS.CSL.2016.22
+      \endverb
+    \endentry
+    \entry{KrausAltenkirch2018}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b3f5382feec7de06619a7160fc059ee8}{%
+           family={Kraus},
+           familyi={K\bibinitperiod},
+           given={Nicolai},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=90877ea5f7e44778ae02b3d3954a7a1e}{%
+           family={Altenkirch},
+           familyi={A\bibinitperiod},
+           given={Thorsten},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Oxford, United Kingdom}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{383942cf922af1755a08eb53258b0b0e}
+      \strng{fullhash}{383942cf922af1755a08eb53258b0b0e}
+      \strng{bibnamehash}{383942cf922af1755a08eb53258b0b0e}
+      \strng{authorbibnamehash}{383942cf922af1755a08eb53258b0b0e}
+      \strng{authornamehash}{383942cf922af1755a08eb53258b0b0e}
+      \strng{authorfullhash}{383942cf922af1755a08eb53258b0b0e}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 33rd Annual ACM/IEEE Symposium on Logic in Computer Science}
+      \field{isbn}{9781450355834}
+      \field{series}{LICS '18}
+      \field{title}{Free Higher Groups in Homotopy Type Theory}
+      \field{year}{2018}
+      \true{nocite}
+      \field{pages}{599\bibrangedash 608}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/3209108.3209183
+      \endverb
+    \endentry
+    \entry{Kraus-vonRaumer}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b3f5382feec7de06619a7160fc059ee8}{%
+           family={Kraus},
+           familyi={K\bibinitperiod},
+           given={Nicolai},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=958711fe05928f429fa93d19f5e6c43b}{%
+           family={Raumer},
+           familyi={R\bibinitperiod},
+           given={Jakob},
+           giveni={J\bibinitperiod},
+           givenun=0,
+           prefix={von},
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
+      }
+      \list{location}{1}{%
+        {Vancouver, Canada}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Press}%
+      }
+      \strng{namehash}{4a304b97c009532bd691c13ac493b897}
+      \strng{fullhash}{4a304b97c009532bd691c13ac493b897}
+      \strng{bibnamehash}{4a304b97c009532bd691c13ac493b897}
+      \strng{authorbibnamehash}{4a304b97c009532bd691c13ac493b897}
+      \strng{authornamehash}{4a304b97c009532bd691c13ac493b897}
+      \strng{authorfullhash}{4a304b97c009532bd691c13ac493b897}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 34th Annual ACM/IEEE Symposium on Logic in Computer Science}
+      \field{series}{LICS '19}
+      \field{title}{Path spaces of higher inductive types in homotopy type theory}
+      \field{year}{2021}
+      \verb{doi}
+      \verb 10.5555/3470152.3470159
+      \endverb
+    \endentry
+    \entry{AgdaCohomology}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=cb6c4bd0ccf9d63234ebf370137161ae}{%
+           family={Lamiaux},
+           familyi={L\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e34ee708579aa75cb641c497433797f2}{%
+           family={Ljungström},
+           familyi={L\bibinitperiod},
+           given={Axel},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=324585bd6e55e1a2fb4eaa984c14da0b}{%
+           family={Mörtberg},
+           familyi={M\bibinitperiod},
+           given={Anders},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{6b51d1b4a07aeb169c025a78857ced85}
+      \strng{fullhash}{6b51d1b4a07aeb169c025a78857ced85}
+      \strng{bibnamehash}{6b51d1b4a07aeb169c025a78857ced85}
+      \strng{authorbibnamehash}{6b51d1b4a07aeb169c025a78857ced85}
+      \strng{authornamehash}{6b51d1b4a07aeb169c025a78857ced85}
+      \strng{authorfullhash}{6b51d1b4a07aeb169c025a78857ced85}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 12th ACM SIGPLAN International Conference on Certified Programs and Proofs}
+      \field{series}{CPP 2023}
+      \field{title}{Computing Cohomology Rings in Cubical Agda}
+      \field{year}{2023}
+      \field{pages}{239\bibrangedash 252}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1145/3573105.3575677
+      \endverb
+    \endentry
+    \entry{LicataFinster}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ca5689112ca04c45bc58fbf25144a438}{%
+           family={Licata},
+           familyi={L\bibinitperiod},
+           given={Daniel\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f21181ec68032ce5db3ed51c5380b793}{%
+           family={Finster},
+           familyi={F\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Vienna, Austria}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{b186cb4567729d662319ba8e9631133b}
+      \strng{fullhash}{b186cb4567729d662319ba8e9631133b}
+      \strng{bibnamehash}{b186cb4567729d662319ba8e9631133b}
+      \strng{authorbibnamehash}{b186cb4567729d662319ba8e9631133b}
+      \strng{authornamehash}{b186cb4567729d662319ba8e9631133b}
+      \strng{authorfullhash}{b186cb4567729d662319ba8e9631133b}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the Joint Meeting of the Twenty-Third EACSL Annual Conference on Computer Science Logic (CSL) and the Twenty-Ninth Annual ACM/IEEE Symposium on Logic in Computer Science (LICS)}
+      \field{series}{CSL-LICS '14}
+      \field{title}{Eilenberg-MacLane spaces in homotopy type theory}
+      \field{year}{2014}
+      \verb{doi}
+      \verb 10.1145/2603088.2603153
+      \endverb
+    \endentry
+    \entry{LicataShulman2013}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ca5689112ca04c45bc58fbf25144a438}{%
+           family={Licata},
+           familyi={L\bibinitperiod},
+           given={Daniel\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a49cc4742950659ae680e1c40f2295a9}{%
+           family={Shulman},
+           familyi={S\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE Computer Society}%
+      }
+      \strng{namehash}{ae3ffe4d7160c5c7ea4ed34301736acc}
+      \strng{fullhash}{ae3ffe4d7160c5c7ea4ed34301736acc}
+      \strng{bibnamehash}{ae3ffe4d7160c5c7ea4ed34301736acc}
+      \strng{authorbibnamehash}{ae3ffe4d7160c5c7ea4ed34301736acc}
+      \strng{authornamehash}{ae3ffe4d7160c5c7ea4ed34301736acc}
+      \strng{authorfullhash}{ae3ffe4d7160c5c7ea4ed34301736acc}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2013 28th Annual ACM/IEEE Symposium on Logic in Computer Science}
+      \field{series}{LICS '13}
+      \field{title}{Calculating the Fundamental Group of the Circle in Homotopy Type Theory}
+      \field{year}{2013}
+      \true{nocite}
+      \field{pages}{223\bibrangedash 232}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/LICS.2013.28
+      \endverb
+    \endentry
+    \entry{FormalBrunerie}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=e34ee708579aa75cb641c497433797f2}{%
+           family={Ljungström},
+           familyi={L\bibinitperiod},
+           given={Axel},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=324585bd6e55e1a2fb4eaa984c14da0b}{%
+           family={Mörtberg},
+           familyi={M\bibinitperiod},
+           given={Anders},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{59ae6d95bb994f85c629c679a92fea1a}
+      \strng{fullhash}{59ae6d95bb994f85c629c679a92fea1a}
+      \strng{bibnamehash}{59ae6d95bb994f85c629c679a92fea1a}
+      \strng{authorbibnamehash}{59ae6d95bb994f85c629c679a92fea1a}
+      \strng{authornamehash}{59ae6d95bb994f85c629c679a92fea1a}
+      \strng{authorfullhash}{59ae6d95bb994f85c629c679a92fea1a}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2023 38th Annual ACM/IEEE Symposium on Logic in Computer Science (LICS)}
+      \field{month}{6}
+      \field{title}{Formalizing $\pi_4(S^3)\simeq \mathbb{Z}/2\mathbb{Z}$ and Computing a Brunerie Number in Cubical Agda}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.1109/lics56636.2023.10175833
+      \endverb
+    \endentry
+    \entry{LumsdaineLicata}{misc}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=7c4f8c4cd687c31f652591f365a798ef}{%
+           family={Lumsdaine},
+           familyi={L\bibinitperiod},
+           given={Peter\bibnamedelima LeFanu},
+           giveni={P\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ca5689112ca04c45bc58fbf25144a438}{%
+           family={Licata},
+           familyi={L\bibinitperiod},
+           given={Daniel\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{531a8cd17beaff51cef9f8e743cd54de}
+      \strng{fullhash}{531a8cd17beaff51cef9f8e743cd54de}
+      \strng{bibnamehash}{531a8cd17beaff51cef9f8e743cd54de}
+      \strng{authorbibnamehash}{531a8cd17beaff51cef9f8e743cd54de}
+      \strng{authornamehash}{531a8cd17beaff51cef9f8e743cd54de}
+      \strng{authorfullhash}{531a8cd17beaff51cef9f8e743cd54de}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Agda formalization}
+      \field{title}{Freudenthal Suspension Theorem}
+      \field{year}{2012}
+      \verb{urlraw}
+      \verb https://github.com/dlicata335/hott-agda/commits/master/homotopy/Freudenthal.agda
+      \endverb
+      \verb{url}
+      \verb https://github.com/dlicata335/hott-agda/commits/master/homotopy/Freudenthal.agda
+      \endverb
+    \endentry
+    \entry{Myers2022}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=5e4483260e70411ee8f2ec4093d57437}{%
+           family={Myers},
+           familyi={M\bibinitperiod},
+           given={David\bibnamedelima Jaz},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Institute of Mathematics, Czech Academy of Sciences}%
+      }
+      \strng{namehash}{5e4483260e70411ee8f2ec4093d57437}
+      \strng{fullhash}{5e4483260e70411ee8f2ec4093d57437}
+      \strng{bibnamehash}{5e4483260e70411ee8f2ec4093d57437}
+      \strng{authorbibnamehash}{5e4483260e70411ee8f2ec4093d57437}
+      \strng{authornamehash}{5e4483260e70411ee8f2ec4093d57437}
+      \strng{authorfullhash}{5e4483260e70411ee8f2ec4093d57437}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Higher Structures}
+      \field{month}{7}
+      \field{number}{1}
+      \field{title}{Good Fibrations through the Modal Prism}
+      \field{volume}{6}
+      \field{year}{2022}
+      \field{pages}{212\bibrangedash 255}
+      \range{pages}{44}
+      \verb{doi}
+      \verb 10.21136/hs.2022.04
+      \endverb
+    \endentry
+    \entry{myers2023commuting}{misc}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=5e4483260e70411ee8f2ec4093d57437}{%
+           family={Myers},
+           familyi={M\bibinitperiod},
+           given={David\bibnamedelima Jaz},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1996defd263ab2379863dfbfe3ffd9c6}{%
+           family={Riley},
+           familyi={R\bibinitperiod},
+           given={Mitchell},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9365fbd1424b030f49f59b8f9503ed5d}
+      \strng{fullhash}{9365fbd1424b030f49f59b8f9503ed5d}
+      \strng{bibnamehash}{9365fbd1424b030f49f59b8f9503ed5d}
+      \strng{authorbibnamehash}{9365fbd1424b030f49f59b8f9503ed5d}
+      \strng{authornamehash}{9365fbd1424b030f49f59b8f9503ed5d}
+      \strng{authorfullhash}{9365fbd1424b030f49f59b8f9503ed5d}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.CT}
+      \field{eprinttype}{arXiv}
+      \field{title}{Commuting Cohesions}
+      \field{year}{2023}
+      \verb{eprint}
+      \verb 2301.13780
+      \endverb
+    \endentry
+    \entry{Rijke2022}{unpublished}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b1bb80d57e903f657e4b411a28823e28}{%
+           family={Rijke},
+           familyi={R\bibinitperiod},
+           given={Egbert},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b1bb80d57e903f657e4b411a28823e28}
+      \strng{fullhash}{b1bb80d57e903f657e4b411a28823e28}
+      \strng{bibnamehash}{b1bb80d57e903f657e4b411a28823e28}
+      \strng{authorbibnamehash}{b1bb80d57e903f657e4b411a28823e28}
+      \strng{authornamehash}{b1bb80d57e903f657e4b411a28823e28}
+      \strng{authorfullhash}{b1bb80d57e903f657e4b411a28823e28}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Book draft; version of 8 April}
+      \field{title}{Introduction to Homotopy Type Theory}
+      \field{year}{2022}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://raw.githubusercontent.com/martinescardo/HoTTEST-Summer-School/main/HoTT/hott-intro.pdf
+      \endverb
+      \verb{url}
+      \verb https://raw.githubusercontent.com/martinescardo/HoTTEST-Summer-School/main/HoTT/hott-intro.pdf
+      \endverb
+    \endentry
+    \entry{RSS}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=b1bb80d57e903f657e4b411a28823e28}{%
+           family={Rijke},
+           familyi={R\bibinitperiod},
+           given={Egbert},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a49cc4742950659ae680e1c40f2295a9}{%
+           family={Shulman},
+           familyi={S\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fb17eb7a080e0246fc98e395e0a4ec5b}{%
+           family={Spitters},
+           familyi={S\bibinitperiod},
+           given={Bas},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{41523e54d57743a358e719fc73fb3692}
+      \strng{fullhash}{41523e54d57743a358e719fc73fb3692}
+      \strng{bibnamehash}{41523e54d57743a358e719fc73fb3692}
+      \strng{authorbibnamehash}{41523e54d57743a358e719fc73fb3692}
+      \strng{authornamehash}{41523e54d57743a358e719fc73fb3692}
+      \strng{authorfullhash}{41523e54d57743a358e719fc73fb3692}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Log. Methods Comput. Sci.}
+      \field{number}{1}
+      \field{title}{Modalities in homotopy type theory}
+      \field{volume}{16}
+      \field{year}{2020}
+      \field{pages}{Paper No. 2\bibrangessep 79}
+      \range{pages}{-1}
+    \endentry
+    \entry{Scoccola_2020}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=87996b1689e10b76574197fff913b5fb}{%
+           family={Scoccola},
+           familyi={S\bibinitperiod},
+           given={Luis},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{87996b1689e10b76574197fff913b5fb}
+      \strng{fullhash}{87996b1689e10b76574197fff913b5fb}
+      \strng{bibnamehash}{87996b1689e10b76574197fff913b5fb}
+      \strng{authorbibnamehash}{87996b1689e10b76574197fff913b5fb}
+      \strng{authornamehash}{87996b1689e10b76574197fff913b5fb}
+      \strng{authorfullhash}{87996b1689e10b76574197fff913b5fb}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematical Structures in Computer Science}
+      \field{number}{5}
+      \field{title}{Nilpotent types and fracture squares in homotopy type theory}
+      \field{volume}{30}
+      \field{year}{2020}
+      \field{pages}{511\bibrangedash 544}
+      \range{pages}{34}
+      \verb{doi}
+      \verb 10.1017/S0960129520000146
+      \endverb
+    \endentry
+    \entry{Shulman-Brouwer}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a49cc4742950659ae680e1c40f2295a9}{%
+           family={Shulman},
+           familyi={S\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a49cc4742950659ae680e1c40f2295a9}
+      \strng{fullhash}{a49cc4742950659ae680e1c40f2295a9}
+      \strng{bibnamehash}{a49cc4742950659ae680e1c40f2295a9}
+      \strng{authorbibnamehash}{a49cc4742950659ae680e1c40f2295a9}
+      \strng{authornamehash}{a49cc4742950659ae680e1c40f2295a9}
+      \strng{authorfullhash}{a49cc4742950659ae680e1c40f2295a9}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Math. Structures Comput. Sci.}
+      \field{number}{6}
+      \field{title}{Brouwer's fixed-point theorem in real-cohesive homotopy type theory}
+      \field{volume}{28}
+      \field{year}{2018}
+      \true{nocite}
+      \field{pages}{856\bibrangedash 941}
+      \range{pages}{86}
+      \verb{doi}
+      \verb 10.1017/S0960129517000147
+      \endverb
+    \endentry
+    \entry{Shulman-logic-of-space}{incollection}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a49cc4742950659ae680e1c40f2295a9}{%
+           family={Shulman},
+           familyi={S\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge Univ. Press, Cambridge}%
+      }
+      \strng{namehash}{a49cc4742950659ae680e1c40f2295a9}
+      \strng{fullhash}{a49cc4742950659ae680e1c40f2295a9}
+      \strng{bibnamehash}{a49cc4742950659ae680e1c40f2295a9}
+      \strng{authorbibnamehash}{a49cc4742950659ae680e1c40f2295a9}
+      \strng{authornamehash}{a49cc4742950659ae680e1c40f2295a9}
+      \strng{authorfullhash}{a49cc4742950659ae680e1c40f2295a9}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{New spaces in mathematics---formal and conceptual reflections}
+      \field{title}{Homotopy type theory: the logic of space}
+      \field{year}{2021}
+      \true{nocite}
+      \field{pages}{322\bibrangedash 403}
+      \range{pages}{82}
+    \endentry
+    \entry{syllepsis}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b5c0b0cfc77dbf25a3df28ad9c3ddff8}{%
+           family={Sojakova},
+           familyi={S\bibinitperiod},
+           given={Kristina},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=78b205cc912bda2f8e13b27b178817a8}{%
+           family={Kavvos},
+           familyi={K\bibinitperiod},
+           given={G.\bibnamedelimi A.},
+           giveni={G\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Haifa, Israel}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{c4307400c88fd41c05e6fe1afa86f3e5}
+      \strng{fullhash}{c4307400c88fd41c05e6fe1afa86f3e5}
+      \strng{bibnamehash}{c4307400c88fd41c05e6fe1afa86f3e5}
+      \strng{authorbibnamehash}{c4307400c88fd41c05e6fe1afa86f3e5}
+      \strng{authornamehash}{c4307400c88fd41c05e6fe1afa86f3e5}
+      \strng{authorfullhash}{c4307400c88fd41c05e6fe1afa86f3e5}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 37th Annual ACM/IEEE Symposium on Logic in Computer Science}
+      \field{series}{LICS '22}
+      \field{title}{Syllepsis in Homotopy Type Theory}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.1145/3531130.3533347
+      \endverb
+    \endentry
+    \entry{Swan2022}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=8ee19f1d4be394393ff061418a8f7fba}{%
+           family={Swan},
+           familyi={S\bibinitperiod},
+           given={Andrew\bibnamedelima W},
+           giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Centre pour la Communication Scientifique Directe (CCSD)}%
+      }
+      \strng{namehash}{8ee19f1d4be394393ff061418a8f7fba}
+      \strng{fullhash}{8ee19f1d4be394393ff061418a8f7fba}
+      \strng{bibnamehash}{8ee19f1d4be394393ff061418a8f7fba}
+      \strng{authorbibnamehash}{8ee19f1d4be394393ff061418a8f7fba}
+      \strng{authornamehash}{8ee19f1d4be394393ff061418a8f7fba}
+      \strng{authorfullhash}{8ee19f1d4be394393ff061418a8f7fba}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Logical Methods in Computer Science}
+      \field{month}{1}
+      \field{title}{On the Nielsen-Schreier Theorem in Homotopy Type Theory}
+      \field{volume}{Volume 18, Issue 1}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.46298/lmcs-18(1:18)2022
+      \endverb
+    \endentry
+    \entry{HoTT}{misc}{}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labeldatesource}{nodate}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{a Coq library of formalized proofs, available at \url{https://github.com/HoTT/HoTT}}
+      \field{title}{{The HoTT Library}}
+      \true{nocite}
+    \endentry
+    \entry{hottbook}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=eb3cec164c1f4cb5cd7394d2677e2a1c}{%
+           family={{Univalent Foundations Program}},
+           familyi={U\bibinitperiod},
+           given={The},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Institute for Advanced Study}%
+      }
+      \list{publisher}{1}{%
+        {\url{https://homotopytypetheory.org/book}}%
+      }
+      \strng{namehash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \strng{fullhash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \strng{bibnamehash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \strng{authorbibnamehash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \strng{authornamehash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \strng{authorfullhash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Homotopy Type Theory: Univalent Foundations of Mathematics}
+      \field{year}{2013}
+    \endentry
+    \entry{UniMath}{misc}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=0d96e6700be0d712c0a35b7559668f76}{%
+           family={Voevodsky},
+           familyi={V\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5e0b29e8a40c8ddb6f6748f3a24cf951}{%
+           family={Ahrens},
+           familyi={A\bibinitperiod},
+           given={Benedikt},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=c6721e8b23b97606befbc6750856d316}{%
+           family={Grayson},
+           familyi={G\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=1}}%
+      }
+      \strng{namehash}{9b498042a4d917ae4348b0ceb94be00c}
+      \strng{fullhash}{9b498042a4d917ae4348b0ceb94be00c}
+      \strng{bibnamehash}{9b498042a4d917ae4348b0ceb94be00c}
+      \strng{authorbibnamehash}{9b498042a4d917ae4348b0ceb94be00c}
+      \strng{authornamehash}{9b498042a4d917ae4348b0ceb94be00c}
+      \strng{authorfullhash}{9b498042a4d917ae4348b0ceb94be00c}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{{available} at \url{http://UniMath.org}}
+      \field{title}{{UniMath --- a computer-checked library of univalent mathematics}}
+      \true{nocite}
+    \endentry
+    \entry{Warn2023}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=4bfae9b5cdc18eae2a8c25783228a048}{%
+           family={Wärn},
+           familyi={W\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{2}{%
+        {Springer Science}%
+        {Business Media LLC}%
+      }
+      \strng{namehash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \strng{fullhash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \strng{bibnamehash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \strng{authorbibnamehash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \strng{authornamehash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \strng{authorfullhash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \field{extraname}{1}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Homotopy and Related Structures}
+      \field{month}{9}
+      \field{number}{2–3}
+      \field{title}{Eilenberg–Maclane spaces and stabilisation in homotopy type theory}
+      \field{volume}{18}
+      \field{year}{2023}
+      \field{pages}{357\bibrangedash 368}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1007/s40062-023-00330-5
+      \endverb
+    \endentry
+    \entry{Warn2024}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=4bfae9b5cdc18eae2a8c25783228a048}{%
+           family={Wärn},
+           familyi={W\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \strng{fullhash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \strng{bibnamehash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \strng{authorbibnamehash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \strng{authornamehash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \strng{authorfullhash}{4bfae9b5cdc18eae2a8c25783228a048}
+      \field{extraname}{2}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.AT}
+      \field{eprinttype}{arXiv}
+      \field{title}{Path spaces of pushouts}
+      \field{year}{2024}
+      \verb{eprint}
+      \verb 2402.12339
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
